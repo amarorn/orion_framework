@@ -1,0 +1,5 @@
+id,nome,email
+1,Ana,ana@example.com
+2,Bruno,bruno@example.com
+3,,sem_nome@example.com
+4,Carla,carla@example.com

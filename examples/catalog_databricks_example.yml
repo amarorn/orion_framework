@@ -1,0 +1,26 @@
+# Exemplo de catalog.yml usando Databricks
+
+# Datasource local (CSV)
+clientes_raw:
+  type: local_csv
+  path: examples/data/raw/clientes.csv
+
+# Datasource do Databricks usando tabela
+clientes_databricks:
+  type: databricks
+  table: clientes
+  # catalog e schema opcionais (se não especificados, usa os da config global)
+  # catalog: hive_metastore
+  # schema: default
+
+# Datasource do Databricks usando query customizada
+clientes_ativos:
+  type: databricks
+  query: "SELECT * FROM clientes WHERE status = 'ativo' AND data_cadastro > '2024-01-01'"
+
+# Output Databricks
+clientes_processados:
+  type: databricks
+  table: clientes_processados
+  mode: overwrite  # ou 'append'
+  # schema: analytics  # opcional, pode sobrescrever o schema da config global
