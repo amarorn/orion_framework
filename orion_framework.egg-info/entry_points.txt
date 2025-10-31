@@ -1,0 +1,3 @@
+[console_scripts]
+orion = application.cli.commands:cli
+
