@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Visão Geral · Oríon Framework</title>
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="navbar">
+        <a class="brand" href="./index.html">
+          <span class="logo">Ω</span>
+          <span>Oríon Framework Docs</span>
+        </a>
+        <nav>
+          <ul>
+            <li><a href="./index.html">Início</a></li>
+            <li><a href="./quickstart.html">Guia Rápido</a></li>
+            <li><a href="./architecture.html">Arquitetura</a></li>
+            <li><a href="./developer-guidelines.html">Guidelines</a></li>
+            <li><a href="./documentation.html">Documentação</a></li>
+            <li><a class="active" href="./overview.html">Visão Geral</a></li>
+            <li><a href="./databricks-setup.html">Databricks</a></li>
+            <li><a href="./diagrams.html">Diagramas</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="tag">Resumo Executivo</p>
+        <h1>Visão Geral do Oríon Framework</h1>
+        <p>
+          Conheça os objetivos, princípios de arquitetura e o fluxo completo de execução que
+          sustentam o Oríon Framework. Esta página condensa os principais pontos da
+          documentação oficial.
+        </p>
+      </section>
+
+      <section class="content">
+        <h2>Por que usar o Oríon?</h2>
+        <div class="grid split">
+          <div>
+            <p>
+              O Oríon foi projetado para acelerar a criação de pipelines de dados declarativos,
+              resilientes e totalmente observáveis. O framework aplica Clean Architecture e
+              princípios SOLID para garantir uma separação clara de responsabilidades.
+            </p>
+            <ul class="feature-list">
+              <li><strong>Clean Architecture</strong>: camadas independentes com contratos definidos.</li>
+              <li><strong>Type Safety</strong>: uso consistente de type hints e validações.</li>
+              <li><strong>Observabilidade</strong>: logging contextual embutido em cada node.</li>
+              <li><strong>Extensibilidade</strong>: conectores plugáveis para múltiplos backends.</li>
+              <li><strong>Idempotência</strong>: execução determinística para pipelines reproduzíveis.</li>
+            </ul>
+          </div>
+          <aside class="panel">
+            <h3>Índice rápido</h3>
+            <ol>
+              <li><a href="#arquitetura">Arquitetura</a></li>
+              <li><a href="#fluxo">Fluxo de Dados</a></li>
+              <li><a href="#rapido">Guia Rápido</a></li>
+              <li><a href="#conceitos">Conceitos Fundamentais</a></li>
+              <li><a href="#api">API Reference</a></li>
+              <li><a href="#exemplos">Exemplos</a></li>
+            </ol>
+          </aside>
+        </div>
+      </section>
+
+      <section id="arquitetura" class="content">
+        <h2>Arquitetura em Camadas</h2>
+        <p>
+          A arquitetura é organizada em três camadas principais seguindo a regra de dependência:
+          camadas externas dependem apenas de interfaces expostas por camadas internas.
+        </p>
+        <div class="code-block">
+          <pre><code>┌─────────────────────────────────────────────────────────────┐
+│                     APPLICATION LAYER                       │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐     │
+│  │   CLI        │  │   Runner     │  │   Builder    │     │
+│  └──────────────┘  └──────────────┘  └──────────────┘     │
+└─────────────────────────────────────────────────────────────┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────────┐
+│                       CORE LAYER                            │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐     │
+│  │   Pipeline   │  │     Node     │  │  Interfaces  │     │
+│  │              │  │              │  │  (Contracts) │     │
+│  └──────────────┘  └──────────────┘  └──────────────┘     │
+│  ┌──────────────┐  ┌──────────────┐                        │
+│  │  Use Cases   │  │   Entities   │                        │
+│  └──────────────┘  └──────────────┘                        │
+└─────────────────────────────────────────────────────────────┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────────┐
+│                  INFRASTRUCTURE LAYER                       │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐     │
+│  │  Connectors  │  │   Catalog    │  │   Logging    │     │
+│  │  - Local     │  │              │  │              │     │
+│  │  - Databricks│  │              │  │              │     │
+│  └──────────────┘  └──────────────┘  └──────────────┘     │
+│  ┌──────────────┐  ┌──────────────┐                        │
+│  │   Context    │  │    Config    │                        │
+│  └──────────────┘  └──────────────┘                        │
+└─────────────────────────────────────────────────────────────┘</code></pre>
+        </div>
+        <div class="grid split">
+          <div>
+            <h3>Core Layer</h3>
+            <p>Define contratos, entidades de domínio e orquestração das pipelines.</p>
+          </div>
+          <div>
+            <h3>Application Layer</h3>
+            <p>Orquestra casos de uso, CLI, builders e runners responsáveis pela execução.</p>
+          </div>
+          <div>
+            <h3>Infrastructure Layer</h3>
+            <p>Implementa conectores, logging, catálogo e configurações externas.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="fluxo" class="content">
+        <h2>Fluxo de Dados</h2>
+        <p>
+          O pipeline é inicializado via CLI, carrega configurações do catálogo e executa nodes
+          puros dentro de um <code>OrionContext</code>. Cada node pode carregar dados a partir de
+          conectores configurados e persistir resultados automaticamente.
+        </p>
+        <pre class="mermaid"><code>graph LR
+    CLI[CLI: orion run] --> Catalog[Carregar catalog.yml]
+    Catalog --> Context[Criar OrionContext]
+    Context --> Builder[PipelineBuilder]
+    Builder --> Runner[PipelineRunner]
+    Runner --> Nodes[Executar Nodes]
+    Nodes --> Save[Catalog.save opcional]
+</code></pre>
+        <p>
+          Consulte a página de <a href="./diagrams.html">Diagramas</a> para fluxos completos com
+          Mermaid, incluindo sequências de execução e persistência.
+        </p>
+      </section>
+
+      <section id="rapido" class="content">
+        <h2>Primeiros Passos</h2>
+        <p>
+          Utilize o <a href="./quickstart.html">Guia de Início Rápido</a> para preparar o ambiente
+          e executar uma pipeline em minutos. Lá você encontra instruções de instalação,
+          configuração de catálogos e exemplos práticos.
+        </p>
+      </section>
+
+      <section id="conceitos" class="content">
+        <h2>Conceitos Fundamentais</h2>
+        <ul class="feature-list">
+          <li><strong>Nodes</strong>: funções puras executadas com <code>context</code> e inputs.</li>
+          <li><strong>Catalog</strong>: abstrai carregamento e persistência de dados.</li>
+          <li><strong>Context</strong>: provê logging, configurações e acesso a conectores.</li>
+          <li><strong>PipelineBuilder</strong>: descreve dependências entre nodes.</li>
+          <li><strong>Datasets</strong>: contrato para entradas e saídas tipadas.</li>
+        </ul>
+      </section>
+
+      <section id="api" class="content">
+        <h2>API Reference</h2>
+        <p>
+          A <a href="./documentation.html">Documentação Completa</a> detalha classes, funções e
+          interfaces expostas pelo framework, com exemplos de código para cada cenário.
+        </p>
+      </section>
+
+      <section id="exemplos" class="content">
+        <h2>Exemplos e Próximos Passos</h2>
+        <div class="grid cards">
+          <a class="card" href="./databricks-setup.html">
+            <p class="tag">Integrações</p>
+            <h3>Databricks Setup</h3>
+            <p>Aprenda a configurar conectores Databricks e executar pipelines híbridas.</p>
+          </a>
+          <a class="card" href="./diagrams.html">
+            <p class="tag">Visuais</p>
+            <h3>Diagramas Mermaid</h3>
+            <p>Diagramas prontos para comunicação com times de engenharia e stakeholders.</p>
+          </a>
+          <a class="card" href="./developer-guidelines.html">
+            <p class="tag">Boas práticas</p>
+            <h3>Developer Guidelines</h3>
+            <p>Checklist de qualidade para contribuições e manutenção do projeto.</p>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Oríon Framework · Clean Data Pipelines com foco em observabilidade.</p>
+    </footer>
+  </body>
+</html>

@@ -33,11 +33,16 @@ Escolha seu idioma, mergulhe nas áreas-chave e encontre rapidamente guias, tuto
 - [requirements_databricks.txt](../requirements_databricks.txt) — optional dependency bundle.  
 - [GIT Flow Summary](../GITFLOW_SUMMARY.md) — branch strategy, recommended PR flow.  
 
+
+4. **[📝 Developer Guidelines](./DEVELOPER_GUIDELINES.md)**
+   - Padrões de código
+   - Boas práticas
+   - Checklist de PRs
+
 #### 🤝 Contribute & Support  
 - [Developer Guidelines](../DEVELOPER_GUIDELINES.md) — code style, testing expectations, PR checklist.  
 - [AGENTS.md](../AGENTS.md) — contributor guide tailored for automation agents.  
 - Run smoke tests locally: `python run_tests.py` and `python test_pipeline.py`.  
-
 ---  
 
 ### 🇧🇷 Português  
@@ -83,6 +88,33 @@ Escolha seu idioma, mergulhe nas áreas-chave e encontre rapidamente guias, tuto
 
 ## 📬 Need More?  
 
+### Pipeline Simples
+
+```python
+def extract(context):
+    return context.catalog.load("dados_raw")
+
+def transform(context, df):
+    return df.dropna()
+
+def create_pipeline():
+    builder = PipelineBuilder("minha_pipeline")
+    builder.add_node(extract, inputs=[], outputs=["dados_raw"])
+    builder.add_node(transform, inputs=["dados_raw"], outputs=["dados_processados"])
+    return builder.build()
+```
+
+## 🤝 Contribuindo
+
+Consulte as [Developer Guidelines](./DEVELOPER_GUIDELINES.md) antes de contribuir.
+
+## 📄 Licença
+
+[Adicione informações de licença aqui]
+
+---
+
+**Última atualização**: 2024
 - **Discuss & share**: abra uma issue relatando melhorias desejadas ou dúvidas.  
 - **Request features**: descreva o caso de uso, dados de entrada/saída e conectores.  
 - **Join roadmap**: contribua com documentação adicionando traduções ou novos tutoriais.  
