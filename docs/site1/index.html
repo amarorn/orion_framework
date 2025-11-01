@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Oríon Framework · Documentação</title>
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="navbar">
+        <a class="brand" href="./index.html">
+          <span class="logo">Ω</span>
+          <span>Oríon Framework Docs</span>
+        </a>
+        <nav>
+          <ul>
+            <li><a class="active" href="./index.html">Início</a></li>
+            <li><a href="./quickstart.html">Guia Rápido</a></li>
+            <li><a href="./architecture.html">Arquitetura</a></li>
+            <li><a href="./developer-guidelines.html">Guidelines</a></li>
+            <li><a href="./documentation.html">Documentação</a></li>
+            <li><a href="./overview.html">Visão Geral</a></li>
+            <li><a href="./databricks-setup.html">Databricks</a></li>
+            <li><a href="./diagrams.html">Diagramas</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="tag">Documentação Oficial</p>
+        <h1>Oríon Framework</h1>
+        <p>
+          Bem-vindo ao portal de documentação do <strong>Oríon Framework</strong>.
+          Aqui você encontra guias completos, arquitetura detalhada, melhores práticas e
+          integrações para criar pipelines de dados modernas com Clean Architecture.
+        </p>
+        <div class="badge-list">
+          <span class="badge">Clean Architecture</span>
+          <span class="badge">Observabilidade</span>
+          <span class="badge">Type Safety</span>
+          <span class="badge">Pipelines Declarativas</span>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">Comece por aqui</h2>
+        <div class="grid cards">
+          <a class="card" href="./quickstart.html">
+            <p class="tag">Passo a passo</p>
+            <h3>Guia de Início Rápido</h3>
+            <p>
+              Instalação, primeira pipeline em minutos e exemplos práticos para sair do zero
+              com o Oríon Framework.
+            </p>
+          </a>
+          <a class="card" href="./documentation.html">
+            <p class="tag">Referência</p>
+            <h3>Documentação Completa</h3>
+            <p>
+              Conceitos fundamentais, fluxos detalhados, guia de uso e referência das APIs
+              principais do framework.
+            </p>
+          </a>
+          <a class="card" href="./overview.html">
+            <p class="tag">Resumo</p>
+            <h3>Visão Geral</h3>
+            <p>
+              Principais pilares do framework, arquitetura em camadas e visão executiva para
+              alinhamento com stakeholders.
+            </p>
+          </a>
+          <a class="card" href="./architecture.html">
+            <p class="tag">Estratégia</p>
+            <h3>Arquitetura</h3>
+            <p>
+              Entenda a organização em camadas, princípios SOLID adotados e como estender o
+              framework com segurança.
+            </p>
+          </a>
+          <a class="card" href="./developer-guidelines.html">
+            <p class="tag">Boas práticas</p>
+            <h3>Developer Guidelines</h3>
+            <p>
+              Checklist de contribuições, convenções de código, padrões de testes e fluxo de
+              revisão para manter o projeto saudável.
+            </p>
+          </a>
+        </div>
+      </section>
+
+      <section>
+        <div class="content">
+          <h2>Fluxo de Dados (Visão Geral)</h2>
+          <p>
+            O Oríon organiza pipelines por meio de um <strong>PipelineBuilder</strong> que
+            orquestra funções puras (nodes) executadas com um
+            <strong>OrionContext</strong>. O contexto entrega catálogos, conectores e logging.
+          </p>
+          <pre><code>CLI → Catalog → Context → Pipeline → Nodes → Connectors → Storage</code></pre>
+          <p>
+            Explore os diagramas completos na página de <a href="./diagrams.html">Diagramas</a>
+            para entender cada etapa e os contratos entre as camadas do framework.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div class="content">
+          <h2>Recursos Essenciais</h2>
+          <div class="grid cards">
+            <div class="card">
+              <h3>Integrações Databricks</h3>
+              <p>
+                Configure credenciais, catálogos e pipelines híbridas utilizando o conector
+                oficial do Oríon para Databricks.
+              </p>
+              <a href="./databricks-setup.html">Ver passo a passo →</a>
+            </div>
+            <div class="card">
+              <h3>Diagramas Mermaid</h3>
+              <p>
+                Fluxos de dados, arquitetura em camadas e sequência de execução para embutir na
+                sua wiki ou apresentações técnicas.
+              </p>
+              <a href="./diagrams.html">Abrir diagramas →</a>
+            </div>
+            <div class="card">
+              <h3>Padrões de Projeto</h3>
+              <p>
+                Aplicação prática de SOLID, separação por camadas e como manter boundaries
+                saudáveis entre domínios.
+              </p>
+              <a href="./architecture.html">Detalhar arquitetura →</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Oríon Framework · Última atualização 2024 · <a href="./developer-guidelines.html">Contribua com o projeto</a></p>
+    </footer>
+  </body>
+</html>

@@ -36,7 +36,7 @@ Oríon é um framework Python para construção de pipelines de dados ETL/ELT, p
    - Diagramas detalhados
    - Extensibilidade
 
-4. **[📝 Developer Guidelines](../DEVELOPER_GUIDELINES.md)**
+4. **[📝 Developer Guidelines](./DEVELOPER_GUIDELINES.md)**
    - Padrões de código
    - Boas práticas
    - Checklist de PRs
@@ -100,7 +100,7 @@ def create_pipeline():
 
 ## 🤝 Contribuindo
 
-Consulte as [Developer Guidelines](../DEVELOPER_GUIDELINES.md) antes de contribuir.
+Consulte as [Developer Guidelines](./DEVELOPER_GUIDELINES.md) antes de contribuir.
 
 ## 📄 Licença
 

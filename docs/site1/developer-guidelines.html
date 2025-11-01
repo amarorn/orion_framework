@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Developer Guidelines · Oríon Framework</title>
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="navbar">
+        <a class="brand" href="./index.html">
+          <span class="logo">Ω</span>
+          <span>Oríon Framework Docs</span>
+        </a>
+        <nav>
+          <ul>
+            <li><a href="./index.html">Início</a></li>
+            <li><a href="./quickstart.html">Guia Rápido</a></li>
+            <li><a href="./architecture.html">Arquitetura</a></li>
+            <li><a class="active" href="./developer-guidelines.html">Guidelines</a></li>
+            <li><a href="./documentation.html">Documentação</a></li>
+            <li><a href="./overview.html">Visão Geral</a></li>
+            <li><a href="./databricks-setup.html">Databricks</a></li>
+            <li><a href="./diagrams.html">Diagramas</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="content">
+        <h1>🛠️ Guia de Contribuição</h1>
+        <p>
+          Este guia descreve as práticas recomendadas para colaborar com o Oríon Framework e
+          manter a base de código consistente, testável e fácil de evoluir.
+        </p>
+
+        <h2>✅ Pré-requisitos</h2>
+        <ul>
+          <li>Ler a <a href="./documentation.html">documentação completa</a>.</li>
+          <li>Configurar o ambiente conforme o <a href="./quickstart.html">Guia Rápido</a>.</li>
+          <li>Utilizar Python 3.10+ com <code>pip</code> atualizado.</li>
+        </ul>
+
+        <h2>🧱 Padrões de Arquitetura</h2>
+        <p>O projeto segue <strong>Clean Architecture</strong> e princípios <strong>SOLID</strong>.</p>
+        <ul>
+          <li><strong>Core (<code>core/</code>)</strong>: somente entidades e interfaces, sem dependências externas.</li>
+          <li><strong>Application (<code>application/</code>)</strong>: casos de uso, serviços e CLI; depende apenas de contratos.</li>
+          <li><strong>Infrastructure (<code>infrastructure/</code>)</strong>: implementações concretas (conectores, logging, persistência).</li>
+        </ul>
+
+        <h2>🧑‍💻 Estilo de Código</h2>
+        <ul>
+          <li>Use <em>type hints</em> completos e <code>from __future__ import annotations</code> quando necessário.</li>
+          <li>Priorize funções puras e componíveis nas pipelines.</li>
+          <li>Nomes descritivos: português para documentação, inglês para código.</li>
+          <li>Não envolva imports em blocos <code>try/except</code>.</li>
+          <li>Funções até ~40 linhas, extraindo responsabilidades auxiliares.</li>
+        </ul>
+
+        <h2>✅ Checklist de Pull Request</h2>
+        <ol>
+          <li>Adicione testes para a mudança.</li>
+          <li>Execute <code>pytest</code> localmente.</li>
+          <li>Atualize a documentação relevante.</li>
+          <li>Descreva claramente o contexto da PR (com screenshots quando necessário).</li>
+          <li>Solicite review antes do merge.</li>
+        </ol>
+
+        <h2>🧪 Testes</h2>
+        <ul>
+          <li>Use <code>pytest -q</code> como runner padrão.</li>
+          <li>Mocks ou fakes para dependências externas, com documentação dos passos manuais.</li>
+        </ul>
+
+        <h2>📦 Versionamento e Commits</h2>
+        <ul>
+          <li>Commits atômicos no formato <code>&lt;tipo&gt;: &lt;descrição&gt;</code>.</li>
+          <li>Faça <em>rebase</em> antes de abrir a PR.</li>
+          <li>Evite subir artefatos gerados ou temporários.</li>
+        </ul>
+
+        <h2>📚 Documentação</h2>
+        <ul>
+          <li>Novas features exigem exemplo em <code>examples/</code> ou nota na doc.</li>
+          <li>Use blocos de código com linguagem definida para syntax highlighting.</li>
+          <li>Mantenha consistência visual (emojis e títulos).</li>
+        </ul>
+
+        <h2>🤝 Comunicação</h2>
+        <ul>
+          <li>Use issues do GitHub para discutir ideias maiores.</li>
+          <li>Marque responsáveis em reviews.</li>
+          <li>Responda feedbacks com contexto e links para commits.</li>
+        </ul>
+
+        <h2>📄 Licença e Créditos</h2>
+        <p>Inclua cabeçalhos de licença quando necessário e reconheça autores originais.</p>
+
+        <hr />
+        <p>Obrigado por contribuir para o Oríon Framework! 💫</p>
+      </section>
+    </main>
+
+    <footer>
+      <p>Oríon Framework · Última atualização 2024 · <a href="./developer-guidelines.html">Contribua com o projeto</a></p>
+    </footer>
+  </body>
+</html>
