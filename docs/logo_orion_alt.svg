@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 256 256">
+  <defs>
+    <radialGradient id="nebula" cx="50%" cy="45%" r="70%">
+      <stop offset="0%" stop-color="#0A1C42" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#030712"/>
+    </radialGradient>
+    <linearGradient id="beam" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E5F2FF" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#5E8CFF" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="glyph" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#00F5FF"/>
+      <stop offset="50%" stop-color="#7B5DFF"/>
+      <stop offset="100%" stop-color="#FF6CFF"/>
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="40" ry="40" fill="url(#nebula)"/>
+  <g transform="translate(128 128)">
+    <circle r="96" fill="none" stroke="#163B7A" stroke-opacity="0.4" stroke-width="3" stroke-dasharray="6 12"/>
+    <circle r="72" fill="none" stroke="#0F1F43" stroke-opacity="0.6" stroke-width="2" stroke-dasharray="4 10"/>
+    <path d="M-72 -8 Q-8 -24 60 -8 T100 28" fill="none" stroke="url(#beam)" stroke-width="12" stroke-linecap="round" opacity="0.8"/>
+    <path d="M-32 -6 L0 -78 L32 -6 L84 0 L40 26 L58 84 L0 52 L-58 84 L-40 26 L-84 0 Z" fill="none" stroke="url(#glyph)" stroke-width="6" stroke-linejoin="round"/>
+    <circle cx="0" cy="0" r="18" fill="rgba(0,207,255,0.12)" stroke="#66F7FF" stroke-width="2"/>
+    <circle cx="46" cy="-52" r="6" fill="#66F7FF"/>
+    <circle cx="-58" cy="40" r="7" fill="#7A63FF"/>
+    <circle cx="74" cy="32" r="5" fill="#FF93FF"/>
+  </g>
+  <text x="128" y="228" text-anchor="middle" font-family="'Rajdhani', 'Segoe UI', sans-serif" font-weight="600" font-size="26" fill="#C1CCFF" letter-spacing="6">
+    ORION
+  </text>
+</svg>

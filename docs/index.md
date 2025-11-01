@@ -1,112 +1,90 @@
-# 📚 Oríon Framework - Documentação
+# 🚀 Orion Framework Documentation Portal  
 
-Bem-vindo à documentação completa do **Oríon Framework**, um framework de engenharia de dados moderno baseado em Clean Architecture.
+<p align="center">  
+  <img src="./logo_orion_origin.svg" alt="Orion Framework crest fusing medieval star charts and futuristic data motifs" width="240">  
+</p>  
 
-## 🎯 Sobre o Oríon
+Orion Framework combina arquitetura em camadas, pipelines orientadas a catálogo e conectores extensíveis para acelerar jornadas de dados.  
+Escolha seu idioma, mergulhe nas áreas-chave e encontre rapidamente guias, tutoriais e referências técnicas.  
 
-Oríon é um framework Python para construção de pipelines de dados ETL/ELT, projetado com foco em:
-- **Legibilidade**: Código simples e declarativo
-- **Manutenibilidade**: Arquitetura limpa e extensível
-- **Observabilidade**: Logging estruturado e contextual
-- **Type Safety**: Type hints obrigatórios
-- **Idempotência**: Execuções determinísticas
+---  
 
-## 📖 Documentação
+## 🌐 Language Selector · Seletor de Idioma  
 
-### Para Iniciantes
+### 🇬🇧 English  
 
-1. **[🚀 Guia de Início Rápido](./QUICKSTART.md)**
-   - Instalação
-   - Primeira pipeline em 5 minutos
-   - Exemplos práticos
+#### 🔰 Getting Started  
+- [Quickstart](./QUICKSTART.md) — install Orion, run the sample pipeline, understand the catalog.  
+- [docs/README.md](./README.md) — full overview, design goals, and the execution lifecycle.  
+- [Get Started Guide (root)](../GET_STARTED.md) — step-by-step onboarding with CLI commands.  
 
-2. **[📋 Documentação Completa](./README.md)**
-   - Visão geral do framework
-   - Fluxo de dados detalhado
-   - Conceitos fundamentais
-   - Guia de uso completo
-   - API Reference
+#### 🤔 Core Concepts  
+- [Architecture](./ARCHITECTURE.md) — Clean Architecture layers, SOLID principles, extensibility tips.  
+- [How It Works](./COMO_FUNCIONA.md) — pipeline flow, context orchestration, autosave logic.  
+- [Diagrams](./DIAGRAMS.md) — visual maps for entities, connectors, and execution timelines.  
 
-### Para Desenvolvedores
+#### 🔧 Tutorials & Examples  
+- [examples/](../examples) — reference pipelines, including `pipeline_clientes`.  
+- [exemplo_get_started/](../exemplo_get_started) — runnable end-to-end project with catalog, nodes, and data.  
+- [docs/EXEMPLO_RAPIDO.md](./EXEMPLO_RAPIDO.md) — quick recipe to customize nodes and outputs.  
 
-3. **[🏗️ Arquitetura](./ARCHITECTURE.md)**
-   - Clean Architecture
-   - Princípios SOLID
-   - Design Patterns
-   - Diagramas detalhados
-   - Extensibilidade
+#### 🔌 Integrations & Ops  
+- [Databricks Setup](./DATABRICKS_SETUP.md) — credentials, connector configuration, catalog updates.  
+- [requirements_databricks.txt](../requirements_databricks.txt) — optional dependency bundle.  
+- [GIT Flow Summary](../GITFLOW_SUMMARY.md) — branch strategy, recommended PR flow.  
 
-4. **[📝 Developer Guidelines](./DEVELOPER_GUIDELINES.md)**
-   - Padrões de código
-   - Boas práticas
-   - Checklist de PRs
+#### 🤝 Contribute & Support  
+- [Developer Guidelines](../DEVELOPER_GUIDELINES.md) — code style, testing expectations, PR checklist.  
+- [AGENTS.md](../AGENTS.md) — contributor guide tailored for automation agents.  
+- Run smoke tests locally: `python run_tests.py` and `python test_pipeline.py`.  
 
-### Integrações
+---  
 
-5. **[🔌 Setup do Databricks](./DATABRICKS_SETUP.md)**
-   - Configuração de credenciais
-   - Uso com Databricks
-   - Exemplos práticos
+### 🇧🇷 Português  
 
-## 🔄 Fluxo de Dados (Resumo)
+#### 🔰 Primeiros Passos  
+- [Guia Rápido](./QUICKSTART.md) — instalação, pipeline exemplo e uso do catálogo.  
+- [README da Documentação](./README.md) — visão completa do framework e fluxo de execução.  
+- [Guia de Início (raiz)](../GET_STARTED.md) — onboarding detalhado com comandos CLI.  
 
-```
-CLI → Catalog → Context → Pipeline → Nodes → Connectors → Storage
-```
+#### 🤔 Conceitos Centrais  
+- [Arquitetura](./ARCHITECTURE.md) — camadas, princípios SOLID e como estender o núcleo.  
+- [Como Funciona](./COMO_FUNCIONA.md) — fluxo de dados, contexto, autosave e logging.  
+- [Diagramas](./DIAGRAMS.md) — mapas visuais de entidades, conectores e execução.  
 
-**Veja o [diagrama completo](./README.md#fluxo-de-dados) na documentação principal.**
+#### 🔧 Tutoriais & Exemplos  
+- [examples/](../examples) — pipelines prontos, incluindo `pipeline_clientes`.  
+- [exemplo_get_started/](../exemplo_get_started) — projeto completo com catalog, nodes e dados.  
+- [docs/EXEMPLO_RAPIDO.md](./EXEMPLO_RAPIDO.md) — receita rápida para personalizar nodes e outputs.  
 
-## 🚀 Começando Agora
+#### 🔌 Integrações & Operações  
+- [Configuração Databricks](./DATABRICKS_SETUP.md) — credenciais, conector e ajustes no catalog.  
+- [requirements_databricks.txt](../requirements_databricks.txt) — dependências opcionais por recurso.  
+- [GITFLOW_VISUAL.md](./GITFLOW_VISUAL.md) e [GITFLOW_SUMMARY.md](../GITFLOW_SUMMARY.md) — fluxo de versionamento.  
 
-```bash
-# 1. Instalar
-pip install pandas pyyaml click
+#### 🤝 Contribuição & Suporte  
+- [GUIA_DESENVOLVEDOR.md](./GUIA_DESENVOLVEDOR.md) — padrões de código e dicas para PRs.  
+- [AGENTS.md](../AGENTS.md) — orientações para agentes e automações.  
+- Testes recomendados: `python run_tests.py` e `python test_pipeline.py`.  
 
-# 2. Criar pipeline
-orion run --module seu_module.pipeline --catalog catalog.yml
+---  
 
-# 3. Configurar Databricks (opcional)
-orion databricks-config-orion
-```
+## 🧭 Thematic Navigation  
 
-## 📁 Estrutura do Projeto
+| Tema / Theme | Links Principais |  
+| --- | --- |  
+| **Platform Overview** | `core/`, `application/`, `infrastructure/`, [Architecture](./ARCHITECTURE.md) |  
+| **Pipeline Authoring** | [QUICKSTART.md](./QUICKSTART.md), [EXEMPLO_RAPIDO.md](./EXEMPLO_RAPIDO.md), `examples/` |  
+| **Operations & Deployment** | [DATABRICKS_SETUP.md](./DATABRICKS_SETUP.md), `requirements_databricks.txt`, [AGENTS.md](../AGENTS.md) |  
+| **Governance & Workflow** | [GITFLOW_VISUAL.md](./GITFLOW_VISUAL.md), [GITFLOW_SUMMARY.md](../GITFLOW_SUMMARY.md), [Developer Guidelines](../DEVELOPER_GUIDELINES.md) |  
+| **Visual Assets** | [logo_orion.svg](./logo_orion.svg), [logo_orion_alt.svg](./logo_orion_alt.svg), [logo_orion_origin.svg](./logo_orion_origin.svg) |  
 
-```
-orion_framework/
-├── core/              # Entidades e interfaces
-├── application/       # Casos de uso, CLI, runners
-├── infrastructure/    # Conectores, logging, persistência
-├── examples/          # Pipelines de exemplo
-└── docs/             # Esta documentação
-```
+---  
 
-## 💡 Exemplos Rápidos
+## 📬 Need More?  
 
-### Pipeline Simples
+- **Discuss & share**: abra uma issue relatando melhorias desejadas ou dúvidas.  
+- **Request features**: descreva o caso de uso, dados de entrada/saída e conectores.  
+- **Join roadmap**: contribua com documentação adicionando traduções ou novos tutoriais.  
 
-```python
-def extract(context):
-    return context.catalog.load("dados_raw")
-
-def transform(context, df):
-    return df.dropna()
-
-def create_pipeline():
-    builder = PipelineBuilder("minha_pipeline")
-    builder.add_node(extract, inputs=[], outputs=["dados_raw"])
-    builder.add_node(transform, inputs=["dados_raw"], outputs=["dados_processados"])
-    return builder.build()
-```
-
-## 🤝 Contribuindo
-
-Consulte as [Developer Guidelines](./DEVELOPER_GUIDELINES.md) antes de contribuir.
-
-## 📄 Licença
-
-[Adicione informações de licença aqui]
-
----
-
-**Última atualização**: 2024
-
+> _Last updated · Última atualização_: 2024. Keep this page in sync when new guides or languages are introduced.

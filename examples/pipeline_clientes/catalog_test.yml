@@ -1,0 +1,7 @@
+clientes_raw:
+  type: local_csv
+  path: examples/data/raw/clientes.csv
+
+clientes_tratado:
+  type: local_csv
+  path: examples/data/processed/clientes_tratado.csv
