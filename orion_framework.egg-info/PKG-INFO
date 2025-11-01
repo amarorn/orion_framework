@@ -1,10 +1,14 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.4
 Name: orion-framework
 Version: 0.1.0
 Summary: Framework de engenharia de dados baseado em Clean Architecture
-Home-page: UNKNOWN
-License: UNKNOWN
-Description: UNKNOWN
-Platform: UNKNOWN
 Requires-Python: >=3.8
+Requires-Dist: pandas>=1.0.0
+Requires-Dist: pyyaml>=5.0
+Requires-Dist: click>=8.0
 Provides-Extra: databricks
+Requires-Dist: databricks-sql-connector>=2.0.0; extra == "databricks"
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
