@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Configuração Databricks · Oríon Framework</title>
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="navbar">
+        <a class="brand" href="./index.html">
+          <span class="logo">Ω</span>
+          <span>Oríon Framework Docs</span>
+        </a>
+        <nav>
+          <ul>
+            <li><a href="./index.html">Início</a></li>
+            <li><a href="./quickstart.html">Guia Rápido</a></li>
+            <li><a href="./architecture.html">Arquitetura</a></li>
+            <li><a href="./developer-guidelines.html">Guidelines</a></li>
+            <li><a href="./documentation.html">Documentação</a></li>
+            <li><a class="active" href="./databricks-setup.html">Databricks</a></li>
+            <li><a href="./diagrams.html">Diagramas</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="content">
+        <h1>Configuração do Databricks</h1>
+        <p>
+          Configure credenciais do Databricks uma única vez e reutilize-as em pipelines do Oríon
+          com segurança e produtividade.
+        </p>
+
+        <h2>1. Configurar credenciais via CLI</h2>
+        <pre><code class="language-bash">orion databricks-config-orion</code></pre>
+        <p>Informe quando solicitado:</p>
+        <ul>
+          <li><strong>server-hostname</strong>: endereço do workspace.</li>
+          <li><strong>http-path</strong>: caminho do SQL warehouse.</li>
+          <li><strong>access-token</strong>: token pessoal.</li>
+          <li><strong>catalog</strong> (opcional) e <strong>schema</strong> (opcional).</li>
+        </ul>
+        <p>A configuração é salva em <code>~/.orion/databricks.yml</code>.</p>
+
+        <h3>Alternativa: variáveis de ambiente</h3>
+        <pre><code class="language-bash">export DATABRICKS_SERVER_HOSTNAME="workspace.cloud.databricks.com"
+export DATABRICKS_HTTP_PATH="/sql/1.0/warehouses/abc123def456"
+export DATABRICKS_ACCESS_TOKEN="dapi..."
+export DATABRICKS_CATALOG="hive_metastore"
+export DATABRICKS_SCHEMA="default"</code></pre>
+
+        <h2>2. Declarar fontes no <code>catalog.yml</code></h2>
+        <pre><code class="language-yaml"># Carregar de uma tabela
+clientes_raw:
+  type: databricks
+  table: clientes
+
+# Carregar com query
+clientes_ativos:
+  type: databricks
+  query: "SELECT * FROM clientes WHERE status = 'ativo'"
+
+# Salvar no Databricks
+clientes_processados:
+  type: databricks
+  table: clientes_processados
+  mode: overwrite</code></pre>
+
+        <h3>Opções avançadas</h3>
+        <pre><code class="language-yaml">clientes_analytics:
+  type: databricks
+  table: clientes
+  catalog: analytics_catalog
+  schema: curated</code></pre>
+
+        <h2>3. Utilizar em nodes</h2>
+        <pre><code class="language-python">def extract(context: OrionContext):
+    df = context.catalog.load("clientes_raw")
+    context.logger.info(f"Carregados {len(df)} registros")
+    return df
+
+def load(context: OrionContext, df):
+    context.catalog.save("clientes_processados", df)
+    context.logger.info(f"Salvos {len(df)} registros")</code></pre>
+
+        <h2>4. Exemplo completo</h2>
+        <h3><code>catalog.yml</code></h3>
+        <pre><code class="language-yaml">clientes_raw:
+  type: databricks
+  table: raw.clientes
+
+clientes_processados:
+  type: databricks
+  table: analytics.clientes_processed
+  mode: overwrite</code></pre>
+
+        <h3><code>pipeline.py</code></h3>
+        <pre><code class="language-python">from ...infrastructure.config.context import OrionContext
+
+def extract(context: OrionContext):
+    df = context.catalog.load("clientes_raw")
+    context.logger.info(f"Extraídos {len(df)} registros do Databricks")
+    return df
+
+def transform(context: OrionContext, df):
+    df = df[df["status"] == "ativo"]
+    context.logger.info(f"Transformados: {len(df)} registros")
+    return df
+
+def load(context: OrionContext, df):
+    context.catalog.save("clientes_processados", df)
+    context.logger.info(f"Salvos {len(df)} registros no Databricks")</code></pre>
+
+        <h3>Executar</h3>
+        <pre><code class="language-bash">orion run \
+  --module examples.pipeline_clientes.pipeline \
+  --catalog examples/catalog.yml</code></pre>
+
+        <h2>Segurança</h2>
+        <ul>
+          <li>Não versione o arquivo <code>~/.orion/databricks.yml</code>.</li>
+          <li>Garanta permissões restritas: <code>chmod 600 ~/.orion/databricks.yml</code>.</li>
+          <li>Adicione <code>~/.orion/</code> ao <code>.gitignore</code>.</li>
+        </ul>
+
+        <h2>Troubleshooting</h2>
+        <h3>Configuração não encontrada</h3>
+        <p>Execute novamente o comando da CLI ou exporte as variáveis de ambiente.</p>
+
+        <h3>Falha ao conectar</h3>
+        <ul>
+          <li>Confirme hostname e HTTP path.</li>
+          <li>Verifique se o warehouse está ativo.</li>
+          <li>Cheque se o token não expirou.</li>
+        </ul>
+
+        <h3>Verificar configuração</h3>
+        <pre><code class="language-bash">cat ~/.orion/databricks.yml</code></pre>
+      </section>
+    </main>
+
+    <footer>
+      <p>Oríon Framework · Última atualização 2024 · <a href="./developer-guidelines.html">Contribua com o projeto</a></p>
+    </footer>
+  </body>
+</html>
