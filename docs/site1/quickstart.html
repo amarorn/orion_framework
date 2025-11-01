@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Guia de Início Rápido · Oríon Framework</title>
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="navbar">
+        <a class="brand" href="./index.html">
+          <span class="logo">Ω</span>
+          <span>Oríon Framework Docs</span>
+        </a>
+        <nav>
+          <ul>
+            <li><a href="./index.html">Início</a></li>
+            <li><a class="active" href="./quickstart.html">Guia Rápido</a></li>
+            <li><a href="./architecture.html">Arquitetura</a></li>
+            <li><a href="./documentation.html">Documentação</a></li>
+            <li><a href="./developer-guidelines.html">Guidelines</a></li>
+            <li><a href="./governanca.html">Governança</a></li>
+            <li><a href="./observabilidade.html">Observabilidade</a></li>
+            <li><a href="./databricks-setup.html">Databricks</a></li>
+            <li><a href="./diagrams.html">Diagramas</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="content">
+        <h1>🚀 Guia de Início Rápido</h1>
+        <p>
+          Aprenda a configurar o ambiente, criar uma pipeline simples e executar seu primeiro
+          fluxo de dados com o Oríon Framework em poucos minutos.
+        </p>
+
+        <h2>Pré-requisitos</h2>
+        <ul>
+          <li>Python 3.8 ou superior</li>
+          <li>pip</li>
+        </ul>
+
+        <h2>Instalação</h2>
+        <pre><code class="language-bash"># Clone ou navegue até o diretório do projeto
+cd orion_framework
+
+# Instale dependências básicas
+pip install pandas pyyaml click
+
+# (Opcional) Se for usar Databricks
+pip install databricks-sql-connector</code></pre>
+
+        <h2>Exemplo 1 · Pipeline CSV simples</h2>
+        <h3>1. Criar estrutura de diretórios</h3>
+        <pre><code class="language-bash">mkdir -p meu_pipeline/nodes
+mkdir -p data/raw data/processed</code></pre>
+
+        <h3>2. Criar <code>catalog.yml</code></h3>
+        <pre><code class="language-yaml"># meu_pipeline/catalog.yml
+clientes_raw:
+  type: local_csv
+  path: data/raw/clientes.csv
+
+clientes_processados:
+  type: local_csv
+  path: data/processed/clientes_processed.csv</code></pre>
+
+        <h3>3. Criar dados de exemplo</h3>
+        <pre><code class="language-bash">echo "nome,email,idade
+João Silva,joao@email.com,30
+Maria Santos,maria@email.com,25
+Pedro Costa,pedro@email.com,35" > data/raw/clientes.csv</code></pre>
+
+        <h3>4. Criar nodes</h3>
+        <p><strong>meu_pipeline/nodes/extract.py</strong></p>
+        <pre><code class="language-python">import pandas as pd
+from ...infrastructure.config.context import OrionContext
+
+def extract(context: OrionContext) -> pd.DataFrame:
+    df = context.catalog.load("clientes_raw")
+    context.logger.info(f"Extraídos {len(df)} registros")
+    return df</code></pre>
+
+        <p><strong>meu_pipeline/nodes/transform.py</strong></p>
+        <pre><code class="language-python">import pandas as pd
+from ...infrastructure.config.context import OrionContext
+
+def transform(context: OrionContext, df: pd.DataFrame) -> pd.DataFrame:
+    context.logger.info(f"Transformando {len(df)} registros")
+    df.columns = [c.strip().lower() for c in df.columns]
+    df["idade_categoria"] = df["idade"].apply(
+        lambda x: "jovem" if x < 30 else "adulto"
+    )
+    return df</code></pre>
+
+        <p><strong>meu_pipeline/nodes/load.py</strong></p>
+        <pre><code class="language-python">import pandas as pd
+from ...infrastructure.config.context import OrionContext
+
+def load(context: OrionContext, df: pd.DataFrame) -> None:
+    context.catalog.save("clientes_processados", df)
+    context.logger.info(f"Salvos {len(df)} registros processados")</code></pre>
+
+        <h3>5. Criar pipeline</h3>
+        <p><strong>meu_pipeline/pipeline.py</strong></p>
+        <pre><code class="language-python">from ...application.pipeline.builder import PipelineBuilder
+from .nodes.extract import extract
+from .nodes.transform import transform
+from .nodes.load import load
+
+def create_pipeline():
+    builder = PipelineBuilder("meu_pipeline_clientes")
+    builder.add_node(extract, inputs=[], outputs=["clientes_raw"])
+    builder.add_node(transform, inputs=["clientes_raw"], outputs=["clientes_processados"])
+    builder.add_node(load, inputs=["clientes_processados"], outputs=[])
+    return builder.build()</code></pre>
+
+        <h3>6. Executar</h3>
+        <pre><code class="language-bash">orion run \
+  --module meu_pipeline.pipeline \
+  --catalog meu_pipeline/catalog.yml</code></pre>
+
+        <h3>7. Verificar resultado</h3>
+        <pre><code class="language-bash">cat data/processed/clientes_processed.csv</code></pre>
+
+        <h2>Exemplo 2 · Pipeline com Databricks</h2>
+        <h3>1. Configurar Databricks</h3>
+        <pre><code class="language-bash">orion databricks-config-orion</code></pre>
+        <p>
+          Siga as instruções interativas para informar <em>server hostname</em>,
+          <em>HTTP path</em>, <em>access token</em> e, opcionalmente, o <em>catalog</em> e o
+          <em>schema</em> padrão.
+        </p>
+
+        <h3>2. Criar <code>catalog.yml</code></h3>
+        <pre><code class="language-yaml"># meu_pipeline/catalog.yml
+clientes_raw:
+  type: databricks
+  table: raw.clientes
+
+clientes_processados:
+  type: databricks
+  table: analytics.clientes_processed
+  mode: overwrite</code></pre>
+
+        <h3>3. Reutilizar nodes</h3>
+        <pre><code class="language-python">def extract(context: OrionContext) -> pd.DataFrame:
+    df = context.catalog.load("clientes_raw")  # Carrega do Databricks!
+    return df
+
+def load(context: OrionContext, df: pd.DataFrame) -> None:
+    context.catalog.save("clientes_processados", df)  # Salva no Databricks!</code></pre>
+      </section>
+    </main>
+
+    <footer>
+      <p>Oríon Framework · Última atualização 2024 · <a href="./developer-guidelines.html">Contribua com o projeto</a></p>
+    </footer>
+  </body>
+</html>

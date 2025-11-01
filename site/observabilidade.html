@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Observabilidade · Oríon Framework</title>
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="navbar">
+        <a class="brand" href="./index.html">
+          <span class="logo">Ω</span>
+          <span>Oríon Framework Docs</span>
+        </a>
+        <nav>
+          <ul>
+            <li><a href="./index.html">Início</a></li>
+            <li><a href="./quickstart.html">Guia Rápido</a></li>
+            <li><a href="./architecture.html">Arquitetura</a></li>
+            <li><a href="./documentation.html">Documentação</a></li>
+            <li><a href="./developer-guidelines.html">Guidelines</a></li>
+            <li><a href="./governanca.html">Governança</a></li>
+            <li><a class="active" href="./observabilidade.html">Observabilidade</a></li>
+            <li><a href="./databricks-setup.html">Databricks</a></li>
+            <li><a href="./diagrams.html">Diagramas</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="tag">SRE de Dados</p>
+        <h1>Observabilidade ponta a ponta</h1>
+        <p>
+          Instrumente pipelines com métricas, logs estruturados e rastreamento distribuído para
+          garantir confiabilidade operacional.
+        </p>
+      </section>
+
+      <section class="content">
+        <h2>📈 Métricas essenciais</h2>
+        <p>
+          Utilize o <code>context.metrics</code> (ou integre uma camada própria) para publicar
+          indicadores chave de cada execução.
+        </p>
+        <div class="grid cards">
+          <div class="card">
+            <h3>Tempo de execução</h3>
+            <p>Monitore duração de nodes e pipelines para detectar regressões.</p>
+          </div>
+          <div class="card">
+            <h3>Taxa de sucesso</h3>
+            <p>Crie alertas quando a proporção de execuções com falha exceder o limite.</p>
+          </div>
+          <div class="card">
+            <h3>Freshness</h3>
+            <p>Acompanhe o atraso de atualização de cada dataset crítico.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="content">
+        <h2>🪵 Logging estruturado</h2>
+        <p>
+          O <code>OrionContext.logger</code> é configurado com <em>handlers</em> contextualizados.
+          Padronize mensagens para facilitar correlação e análise.
+        </p>
+        <ul>
+          <li>Inclua IDs de execução, nome do node e parâmetros relevantes.</li>
+          <li>Envie logs para sistemas como <strong>Datadog</strong>, <strong>Splunk</strong> ou <strong>Elastic</strong>.</li>
+          <li>Utilize níveis (<code>info</code>, <code>warning</code>, <code>error</code>) para priorizar ações.</li>
+        </ul>
+      </section>
+
+      <section class="content">
+        <h2>🛰️ Rastreamento distribuído</h2>
+        <p>
+          Para pipelines que interagem com múltiplos serviços, propague <em>trace ids</em> e
+          corrija gargalos com ferramentas como <strong>OpenTelemetry</strong>.
+        </p>
+        <pre><code class="language-python">from orion_framework.application.context import OrionContext
+
+context = OrionContext(...)
+trace_id = context.tracing.start_span("orion.pipeline")
+
+with context.tracing.child_span("load_customers", trace_id=trace_id):
+    ...
+</code></pre>
+      </section>
+
+      <section class="content">
+        <h2>🚨 Alertas proativos</h2>
+        <p>
+          Combine métricas e logs para automatizar alertas multi-canal:
+        </p>
+        <ol>
+          <li>Dispare webhooks para Slack ou Teams com resumo da falha.</li>
+          <li>Integre com PagerDuty para escalonamento 24/7.</li>
+          <li>Abra incidentes automaticamente no Jira com contexto técnico.</li>
+        </ol>
+      </section>
+
+      <section class="content">
+        <h2>🔁 Playbooks de recuperação</h2>
+        <p>
+          Documente e automatize passos de rollback utilizando <code>pipelines</code> idempotentes
+          e checkpoints em camadas bronze/prata/ouro.
+        </p>
+        <div class="grid cards">
+          <div class="card">
+            <p class="tag">Detecção</p>
+            <h3>Dashboards dedicados</h3>
+            <p>Centralize métricas e logs em painéis interativos.</p>
+          </div>
+          <div class="card">
+            <p class="tag">Resposta</p>
+            <h3>Scripts automatizados</h3>
+            <p>Acelere correções com comandos <code>orion</code> reutilizáveis.</p>
+          </div>
+          <div class="card">
+            <p class="tag">Aprendizado</p>
+            <h3>Post-mortems leves</h3>
+            <p>Capture lições e atualize guidelines diretamente neste portal.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2024 Oríon Framework · Observabilidade</p>
+    </footer>
+  </body>
+</html>
