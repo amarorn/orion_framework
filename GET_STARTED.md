@@ -1,385 +1,129 @@
-# 🚀 Get Started - Orion Framework
+# 🚀 Guia de Início Rápido — Orion Framework
 
-Guia rápido para começar a usar o Orion Framework em **menos de 10 minutos**.
-
----
-
-## 📋 Pré-requisitos
-
-- Python 3.8 ou superior
-- pip instalado
-- Terminal/CLI
+Este guia coloca o Orion Framework em funcionamento em minutos. Você aprenderá a instalar o projeto, executar a pipeline de exemplo e construir a sua própria usando os componentes principais (`Pipeline`, `Node`, `DataCatalog` e `OrionContext`).
 
 ---
 
-## ⚡ Instalação Rápida
+## 1. Pré-requisitos
 
-### 1. Clone ou navegue até o projeto
+- Python 3.8+ com `pip`
+- Acesso ao terminal
+- (Opcional) Ambiente virtual para isolar dependências
 
-```bash
-cd orion_framework
-```
-
-### 2. Instale as dependências
-
-```bash
-pip install -e .
-```
-
-Ou instale manualmente:
-
-```bash
-pip install pandas pyyaml click
-```
-
-### 3. (Opcional) Para usar Databricks
-
-```bash
-pip install databricks-sql-connector
-```
-
-### 4. Verifique a instalação
-
-```bash
-orion --help
-```
-
-Se aparecer a ajuda do comando, está tudo OK! ✅
+> Dica: em macOS/Linux, execute `python3 --version` e `pip --version` para validar o ambiente.
 
 ---
 
-## 🎯 Primeiro Exemplo: Pipeline CSV Simples
+## 2. Instalação e Configuração
 
-Vamos criar uma pipeline que lê um CSV, processa os dados e salva o resultado.
+1. Navegue até a pasta do projeto:
+   ```bash
+   cd /Users/joseamaro/Documents/Estudos/orion_framework
+   ```
+2. (Opcional) Crie e ative um ambiente virtual:
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate  # Windows: .venv\Scripts\activate
+   ```
+3. Instale o framework em modo desenvolvimento:
+   ```bash
+   pip install -e .
+   ```
+4. Confirme se o CLI está acessível:
+   ```bash
+   orion --help
+   ```
+   A exibição do menu de ajuda indica que tudo está configurado ✅
 
-### Passo 1: Criar estrutura de diretórios
+Dependências adicionais:
+- `pip install databricks-sql-connector` para habilitar conectores Databricks.
+- Consulte `requirements_databricks.txt` para pacotes opcionais.
+
+---
+
+## 3. Estrutura Essencial
+
+```
+core/            # Entidades de domínio e regras de negócio
+application/     # Builders, runner e comandos CLI
+infrastructure/  # Catálogo, conectores e configuração
+examples/        # Pipelines de referência
+exemplo_get_started/  # Tutorial completo com dados e nodes
+docs/            # Documentação detalhada
+run_tests.py     # Smoke tests pós-instalação
+test_pipeline.py # Teste funcional end-to-end
+```
+
+Respeite essa separação em camadas ao criar novos módulos ou pipelines.
+
+---
+
+## 4. Execute o Exemplo Pronto
+
+Comece rodando a pipeline disponibilizada em `exemplo_get_started/`:
 
 ```bash
-mkdir -p meu_primeiro_pipeline/nodes
-mkdir -p meu_primeiro_pipeline/data/raw
-mkdir -p meu_primeiro_pipeline/data/processed
-```
-
-### Passo 2: Criar arquivo de dados de exemplo
-
-Crie o arquivo `meu_primeiro_pipeline/data/raw/clientes.csv`:
-
-```csv
-nome,email,idade,cidade
-João Silva,joao@email.com,30,São Paulo
-Maria Santos,maria@email.com,25,Rio de Janeiro
-Pedro Costa,pedro@email.com,35,Belo Horizonte
-Ana Oliveira,ana@email.com,28,São Paulo
-```
-
-### Passo 3: Criar o Catalog (catalog.yml)
-
-Crie `meu_primeiro_pipeline/catalog.yml`:
-
-```yaml
-clientes_raw:
-  type: local_csv
-  path: data/raw/clientes.csv
-
-clientes_processados:
-  type: local_csv
-  path: data/processed/clientes_processados.csv
-```
-
-### Passo 4: Criar os Nodes
-
-**meu_primeiro_pipeline/nodes/__init__.py**:
-```python
-# Arquivo vazio é OK
-```
-
-**meu_primeiro_pipeline/nodes/extract.py**:
-```python
-import pandas as pd
-from ...infrastructure.config.context import OrionContext
-
-def extract(context: OrionContext) -> pd.DataFrame:
-    """Extrai dados do catalog."""
-    df = context.catalog.load("clientes_raw")
-    context.logger.info(f"Extraídos {len(df)} registros de clientes")
-    return df
-```
-
-**meu_primeiro_pipeline/nodes/transform.py**:
-```python
-import pandas as pd
-from ...infrastructure.config.context import OrionContext
-
-def transform(context: OrionContext, df: pd.DataFrame) -> pd.DataFrame:
-    """Transforma os dados."""
-    context.logger.info(f"Transformando {len(df)} registros")
-    
-    # Normalizar colunas
-    df.columns = [c.strip().lower() for c in df.columns]
-    
-    # Adicionar categoria de idade
-    df["categoria_idade"] = df["idade"].apply(
-        lambda x: "jovem" if x < 30 else "adulto"
-    )
-    
-    # Contar por cidade
-    context.logger.info(f"Clientes por cidade: {df.groupby('cidade').size().to_dict()}")
-    
-    return df
-```
-
-### Passo 5: Criar a Pipeline
-
-**meu_primeiro_pipeline/pipeline.py**:
-```python
-from ...application.pipeline.builder import PipelineBuilder
-from .nodes.extract import extract
-from .nodes.transform import transform
-
-def create_pipeline():
-    builder = PipelineBuilder("minha_primeira_pipeline")
-    
-    # Node 1: Extrai dados
-    builder.add_node(
-        extract,
-        inputs=[],  # Não tem inputs
-        outputs=["clientes_raw"]  # Produz este output
-    )
-    
-    # Node 2: Transforma dados
-    builder.add_node(
-        transform,
-        inputs=["clientes_raw"],  # Usa o output do node anterior
-        outputs=["clientes_processados"]  # Produz este output
-    )
-    
-    return builder.build()
-```
-
-### Passo 6: Executar a Pipeline
-
-**Opção 1: Instalar o projeto em modo desenvolvimento (Recomendado)**
-
-```bash
-# Do diretório raiz do projeto orion_framework
-pip install -e .
-```
-
-Depois execute:
-
-```bash
-# Do diretório raiz do projeto
 orion run \
   --module exemplo_get_started.pipeline \
   --catalog exemplo_get_started/catalog.yml
 ```
 
-**Opção 2: Usar PYTHONPATH**
+O arquivo `data/processed/clientes_processados.csv` será gerado com uma nova coluna `categoria_idade`. Para executar sem instalar em modo editável, exporte o projeto diretamente:
 
 ```bash
-# Do diretório raiz do projeto
 PYTHONPATH=. orion run \
   --module exemplo_get_started.pipeline \
   --catalog exemplo_get_started/catalog.yml
 ```
 
-### Passo 7: Verificar o Resultado
+---
+
+## 5. Crie Sua Primeira Pipeline
+
+1. Estruture o diretório:
+   ```bash
+   mkdir -p meu_pipeline/{nodes,data/raw,data/processed}
+   ```
+2. Defina o `catalog.yml` mapeando datasets:
+   ```yaml
+   clientes_raw:
+     type: local_csv
+     path: data/raw/clientes.csv
+   clientes_processados:
+     type: local_csv
+     path: data/processed/clientes_processados.csv
+   ```
+3. Implemente nodes em `nodes/` usando `OrionContext` para carregar e salvar dados (veja exemplos em `exemplo_get_started/nodes`).
+4. Monte a pipeline com `PipelineBuilder` em `meu_pipeline/pipeline.py`, declarando inputs/outputs coerentes com o catalog.
+5. Execute:
+   ```bash
+   orion run --module meu_pipeline.pipeline --catalog meu_pipeline/catalog.yml
+   ```
+
+O autosave implementado em `core/entities/pipeline.py` garante que outputs com nomes presentes no catalog sejam persistidos automaticamente.
+
+---
+
+## 6. Valide com Testes
+
+Rode os testes rápidos antes de abrir PRs ou compartilhar alterações:
 
 ```bash
-cat meu_primeiro_pipeline/data/processed/clientes_processados.csv
+python run_tests.py      # Verifica imports e componentes críticos
+python test_pipeline.py  # Exercita uma pipeline end-to-end com logs
 ```
 
-Você deve ver o CSV processado com a nova coluna `categoria_idade`! 🎉
+Para novas funcionalidades, acrescente testes unitários nas pastas correspondentes (`core`, `application`, `infrastructure`) utilizando fixtures determinísticas e mocks para conectores externos.
 
 ---
 
-## 📊 O Que Aconteceu?
+## 7. Próximos Passos
 
-1. ✅ O framework carregou o `catalog.yml`
-2. ✅ Executou o node `extract`: carregou `clientes_raw` do CSV
-3. ✅ Executou o node `transform`: processou os dados e adicionou coluna `categoria_idade`
-4. ✅ Auto-salvou `clientes_processados` no catalog (porque está definido no catalog.yml)
-5. ✅ Os dados foram salvos em `data/processed/clientes_processados.csv`
+- Leia `docs/GUIA_DESENVOLVEDOR.md` e `docs/COMO_FUNCIONA.md` para aprofundar conceitos.
+- Explore `docs/EXEMPLO_RAPIDO.md` e `examples/` para mais receitas de pipelines.
+- Configure `orion databricks-config-orion` quando precisar falar com Databricks e atualize o `catalog.yml` com `type: databricks`.
+- Consulte `GITFLOW_SUMMARY.md` para alinhar fluxo de trabalho (branches, commits e PRs).
 
----
+Em caso de erro (`ModuleNotFoundError`, por exemplo), confirme que o ambiente virtual está ativo, reinstale com `pip install -e .` e utilize `PYTHONPATH=.` ao executar módulos diretamente.
 
-## 🎓 Entendendo os Conceitos
-
-### Catalog (catalog.yml)
-Define **onde estão os dados**:
-- `clientes_raw`: Arquivo CSV em `data/raw/clientes.csv`
-- `clientes_processados`: Arquivo CSV em `data/processed/clientes_processados.csv`
-
-### Nodes (nodes/)
-São funções Python que:
-- Recebem `context: OrionContext` como primeiro parâmetro
-- Podem receber inputs (dados de outros nodes ou do catalog)
-- Retornam outputs (dados processados)
-
-### Pipeline (pipeline.py)
-Define a **ordem de execução** dos nodes:
-1. `extract` → produz `clientes_raw`
-2. `transform` → usa `clientes_raw` → produz `clientes_processados`
-
----
-
-## 🔧 Executando o Exemplo Existente
-
-O projeto já vem com um exemplo pronto! Execute:
-
-```bash
-# Do diretório raiz do projeto
-PYTHONPATH=. orion run \
-  --module examples.pipeline_clientes.pipeline \
-  --catalog examples/pipeline_clientes/catalog.yml
-```
-
----
-
-## 📚 Próximos Passos
-
-### 1. Adicionar um Node de Load
-
-Modifique `meu_primeiro_pipeline/nodes/load.py`:
-
-```python
-import pandas as pd
-from ...infrastructure.config.context import OrionContext
-
-def load(context: OrionContext, df: pd.DataFrame) -> None:
-    """Salva dados processados."""
-    context.catalog.save("clientes_processados", df)
-    context.logger.info(f"✅ Salvos {len(df)} registros processados")
-```
-
-E adicione na pipeline:
-
-```python
-from .nodes.load import load
-
-# Na função create_pipeline():
-builder.add_node(
-    load,
-    inputs=["clientes_processados"],
-    outputs=[]  # Não produz outputs, só salva
-)
-```
-
-### 2. Pipeline com Múltiplos Outputs
-
-Crie um node que divide os dados:
-
-```python
-def split_by_city(context: OrionContext, df: pd.DataFrame):
-    """Divide clientes por cidade."""
-    sp = df[df["cidade"] == "São Paulo"]
-    outros = df[df["cidade"] != "São Paulo"]
-    context.logger.info(f"SP: {len(sp)}, Outros: {len(outros)}")
-    return sp, outros
-
-# Na pipeline:
-builder.add_node(
-    split_by_city,
-    inputs=["clientes_processados"],
-    outputs=["clientes_sp", "clientes_outros"]
-)
-```
-
-### 3. Usar Databricks
-
-**Configurar Databricks**:
-
-```bash
-orion databricks-config-orion
-```
-
-**Atualizar catalog.yml**:
-
-```yaml
-clientes_raw:
-  type: databricks
-  table: raw.clientes
-
-clientes_processados:
-  type: databricks
-  table: analytics.clientes_processed
-  mode: overwrite
-```
-
-Os nodes permanecem os mesmos! O framework automaticamente usa o conector apropriado.
-
----
-
-## 🐛 Problemas Comuns
-
-### Erro: "Module not found"
-
-**Solução**: Certifique-se de estar usando `PYTHONPATH=.` antes do comando:
-
-```bash
-PYTHONPATH=. orion run --module ...
-```
-
-Ou instale o projeto em modo desenvolvimento:
-
-```bash
-pip install -e .
-```
-
-### Erro: "Dataset 'X' not found in catalog"
-
-**Solução**: 
-- Verifique se o nome está correto no `catalog.yml`
-- Verifique se o caminho do arquivo está correto
-- Certifique-se de que o arquivo existe
-
-### Erro: "Input 'X' not found in memory or catalog"
-
-**Solução**:
-- Verifique se um node anterior produz esse output
-- Verifique se o nome do input está correto
-- Verifique a ordem dos nodes na pipeline
-
-### Pipeline não salva dados
-
-**Solução**:
-- Verifique se o output está definido no `catalog.yml`
-- O framework só auto-salva se o nome do output corresponde a uma entrada no catalog
-
----
-
-## 📖 Documentação Completa
-
-- 📘 [Guia do Desenvolvedor](docs/GUIA_DESENVOLVEDOR.md) - Guia completo de uso
-- 🔍 [Como Funciona](docs/COMO_FUNCIONA.md) - Explicação técnica detalhada
-- ⚡ [Exemplo Rápido](docs/EXEMPLO_RAPIDO.md) - Mais exemplos práticos
-- 📚 [Documentação Principal](docs/README.md) - Referência completa
-
----
-
-## ✅ Checklist de Início Rápido
-
-- [ ] Python 3.8+ instalado
-- [ ] Dependências instaladas (`pip install -e .`)
-- [ ] Comando `orion --help` funciona
-- [ ] Estrutura de diretórios criada
-- [ ] Arquivo CSV de exemplo criado
-- [ ] `catalog.yml` configurado
-- [ ] Nodes criados (extract, transform)
-- [ ] Pipeline criada
-- [ ] Pipeline executada com sucesso
-- [ ] Resultado verificado
-
----
-
-## 🎉 Pronto!
-
-Agora você já sabe o básico do Orion Framework! 
-
-Continue explorando:
-- Veja exemplos em `examples/`
-- Leia a documentação em `docs/`
-- Experimente criar suas próprias pipelines
-
-**Boa codificação!** 🚀
-
+Bom desenvolvimento! 💡
