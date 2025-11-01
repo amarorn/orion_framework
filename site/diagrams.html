@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Diagramas · Oríon Framework</title>
+    <link rel="stylesheet" href="./assets/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true, theme: 'dark' });</script>
+  </head>
+  <body>
+    <header>
+      <div class="navbar">
+        <a class="brand" href="./index.html">
+          <span class="logo">Ω</span>
+          <span>Oríon Framework Docs</span>
+        </a>
+        <nav>
+          <ul>
+            <li><a href="./index.html">Início</a></li>
+            <li><a href="./quickstart.html">Guia Rápido</a></li>
+            <li><a href="./architecture.html">Arquitetura</a></li>
+            <li><a href="./developer-guidelines.html">Guidelines</a></li>
+            <li><a href="./documentation.html">Documentação</a></li>
+            <li><a href="./databricks-setup.html">Databricks</a></li>
+            <li><a class="active" href="./diagrams.html">Diagramas</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="content">
+        <h1>📊 Diagramas Mermaid</h1>
+        <p>Diagramas oficiais do Oríon Framework prontos para embutir em apresentações ou wikis.</p>
+
+        <h2>Fluxo de dados completo</h2>
+        <div class="card">
+          <pre class="mermaid">graph TB
+    Start([CLI: orion run]) --> LoadConfig[Carregar catalog.yml]
+    LoadConfig --> CreateContext[Criar OrionContext]
+    CreateContext --> LoadPipeline[Carregar Pipeline via PipelineBuilder]
+
+    LoadPipeline --> InitRunner[PipelineRunner]
+    InitRunner --> UseCase[RunPipelineUseCase.execute]
+
+    UseCase --> Loop{Iterar Nodes}
+
+    Loop --> PrepareInputs{Preparar Inputs}
+    PrepareInputs -->|Em Memória| MemCheck{Tem em data?}
+    PrepareInputs -->|Do Catalog| CatalogLoad[Catalog.load]
+
+    MemCheck -->|Sim| UseMemory[Usar valor em memória]
+    MemCheck -->|Não| CatalogLoad
+
+    CatalogLoad --> ConnectorSelect{Selecionar Connector}
+    ConnectorSelect -->|local_csv| LocalConn[LocalCSVConnector]
+    ConnectorSelect -->|databricks| DatabricksConn[DatabricksConnector]
+
+    LocalConn --> LoadData[Carregar Dados]
+    DatabricksConn --> LoadData
+
+    LoadData --> ExecuteNode[Executar Node Function]
+    ExecuteNode --> NodeLog[context.logger.info]
+
+    ExecuteNode --> NormalizeOutput[Normalizar Output]
+    NormalizeOutput --> StoreMemory[Armazenar em data dict]
+
+    StoreMemory --> CheckCatalog{Output existe no catalog?}
+    CheckCatalog -->|Sim| AutoSave[Auto-salvar via Catalog]
+    CheckCatalog -->|Não| SkipSave[Pular salvamento]
+
+    AutoSave --> CatalogSave[Catalog.save]
+    CatalogSave --> ConnectorSelect
+
+    UseMemory --> ExecuteNode
+    SkipSave --> NextNode{Próximo Node?}
+
+    NextNode -->|Sim| Loop
+    NextNode -->|Não| ReturnResults[Retornar data dict]
+
+    ReturnResults --> End([Fim])
+
+    style Start fill:#e1f5ff
+    style End fill:#ffe1f5
+    style ExecuteNode fill:#fff5e1
+    style LoadData fill:#e1ffe1
+    style AutoSave fill:#f5e1ff</pre>
+        </div>
+
+        <h2>Arquitetura em camadas</h2>
+        <div class="card">
+          <pre class="mermaid">graph TB
+    subgraph "APPLICATION LAYER"
+        CLI[CLI Commands]
+        Runner[Pipeline Runner]
+        Builder[Pipeline Builder]
+        Viz[Visualization]
+    end
+
+    subgraph "CORE LAYER"
+        Pipeline[Pipeline Entity]
+        Node[Node Entity]
+        Dataset[Dataset Entity]
+        Interface[Interfaces\nIDataConnector\nILogger]
+        UseCase[RunPipelineUseCase]
+    end
+
+    subgraph "INFRASTRUCTURE LAYER"
+        LocalConn[LocalCSV Connector]
+        DBConn[Databricks Connector]
+        Catalog[Data Catalog]
+        Logger[Console Logger]
+        Context[Orion Context]
+        Config[Databricks Config]
+    end
+
+    CLI --> Runner
+    CLI --> Builder
+    Runner --> UseCase
+    Builder --> Pipeline
+
+    UseCase --> Pipeline
+    Pipeline --> Node
+
+    Node --> Interface
+    Node --> Context
+
+    Context --> Catalog
+    Context --> Logger
+
+    Catalog --> LocalConn
+    Catalog --> DBConn
+
+    DBConn --> Config
+
+    style CLI fill:#e1f5ff
+    style Pipeline fill:#fff5e1
+    style Catalog fill:#e1ffe1</pre>
+        </div>
+
+        <h2>Fluxo de execução de um node</h2>
+        <div class="card">
+          <pre class="mermaid">sequenceDiagram
+    participant P as Pipeline
+    participant N as Node
+    participant C as Context
+    participant Cat as Catalog
+    participant Conn as Connector
+    participant Mem as Memory(data)
+
+    P->>N: Preparar inputs
+    loop Para cada input
+        N->>Mem: Input em memória?
+        alt Em memória
+            Mem-->>N: Retorna valor
+        else Não em memória
+            N->>Cat: catalog.load(input_name)
+            Cat->>Conn: Selecionar connector
+            Conn->>Conn: load()
+            Conn-->>Cat: DataFrame
+            Cat-->>N: DataFrame
+        end
+    end
+
+    N->>C: Executar função(context, *inputs)
+    C->>C: Processar dados
+    C->>C: logger.info()
+    C-->>N: Retorna output(s)
+
+    N->>Mem: Armazenar output em data dict
+
+    alt Output existe no catalog
+        N->>Cat: catalog.save(output_name, data)
+        Cat->>Conn: Selecionar connector
+        Conn->>Conn: save()
+    end
+
+    N-->>P: Node concluído</pre>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Oríon Framework · Última atualização 2024 · <a href="./developer-guidelines.html">Contribua com o projeto</a></p>
+    </footer>
+  </body>
+</html>
