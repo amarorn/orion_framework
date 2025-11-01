@@ -1,0 +1,36 @@
+site_name: Oríon Framework
+site_description: Documentação oficial do Oríon Framework
+site_author: Equipe Oríon Framework
+repo_url: https://github.com/example/orion_framework
+repo_name: orion_framework
+nav:
+  - Início: index.md
+  - Guia de Início Rápido: QUICKSTART.md
+  - Documentação Completa: README.md
+  - Guia do Desenvolvedor: DEVELOPER_GUIDELINES.md
+  - Arquitetura: ARCHITECTURE.md
+  - Diagramas: DIAGRAMS.md
+  - Setup Databricks: DATABRICKS_SETUP.md
+docs_dir: docs
+theme:
+  name: material
+  language: pt
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+  font:
+    text: "Roboto"
+    code: "Roboto Mono"
+markdown_extensions:
+  - admonition
+  - codehilite
+  - toc:
+      permalink: true
+plugins:
+  - search
