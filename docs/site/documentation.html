@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation | Orion Framework</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+  </head>
+  <body>
+    <div class="floating-orbs" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <header class="site-header">
+      <div class="layout nav">
+        <a class="brand" href="index.html">
+          <img src="../logo_orion_origin.svg" alt="Orion crest">
+          <span>Orion Framework</span>
+        </a>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="index.html">
+            <span class="lang-inline is-active" data-lang="en">Why Orion?</span>
+            <span class="lang-inline" data-lang="pt">Por que Orion?</span>
+            <span class="lang-inline" data-lang="es">¿Por qué Orion?</span>
+          </a>
+          <a href="features.html">
+            <span class="lang-inline is-active" data-lang="en">Features</span>
+            <span class="lang-inline" data-lang="pt">Funcionalidades</span>
+            <span class="lang-inline" data-lang="es">Características</span>
+          </a>
+          <a href="get-started.html">
+            <span class="lang-inline is-active" data-lang="en">Get Started</span>
+            <span class="lang-inline" data-lang="pt">Primeiros Passos</span>
+            <span class="lang-inline" data-lang="es">Primeros Pasos</span>
+          </a>
+          <a href="documentation.html" class="active">
+            <span class="lang-inline is-active" data-lang="en">Documentation</span>
+            <span class="lang-inline" data-lang="pt">Documentação</span>
+            <span class="lang-inline" data-lang="es">Documentación</span>
+          </a>
+        </nav>
+        <div class="language-switch" role="group" aria-label="Language selector">
+          <button type="button" class="is-active" data-switch-lang="en">EN</button>
+          <button type="button" data-switch-lang="pt">PT</button>
+          <button type="button" data-switch-lang="es">ES</button>
+        </div>
+        <div class="socials">
+          <a class="icon-link" href="https://github.com/amarorn/orion_framework" target="_blank" rel="noopener" title="GitHub repository">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.1.82-.26.82-.58v-2.02c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.1-.75.08-.74.08-.74 1.22.09 1.86 1.26 1.86 1.26 1.08 1.85 2.83 1.31 3.52 1 .1-.78.42-1.32.76-1.63-2.67-.3-5.47-1.34-5.47-5.94 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.16 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.67 1.64.25 2.86.12 3.16.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.64-5.48 5.94.43.37.82 1.1.82 2.22v3.29c0 .32.21.69.82.58A12 12 0 0 0 12 .5Z"/>
+            </svg>
+          </a>
+          <a class="icon-link" href="https://www.linkedin.com/in/SEU_USUARIO" target="_blank" rel="noopener" title="LinkedIn (update with your profile)">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20.45 20.45h-3.55v-5.31c0-1.27-.03-2.9-1.77-2.9-1.78 0-2.06 1.38-2.06 2.8v5.41H9.53V9h3.4v1.56h.05c.47-.9 1.61-1.86 3.31-1.86 3.54 0 4.2 2.33 4.2 5.36v6.39ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm-1.77 13.02h3.55V9H3.57v11.45Z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="layout hero-content">
+          <div class="lang-block is-active" data-lang="en">
+            <div class="hero-badge">Documentation</div>
+            <h1>Bilingual knowledge base spanning architecture, operations, and tutorials.</h1>
+            <p>
+              Orion’s documentation mirrors Kedro’s structured approach: curated pathways for discoverability,
+              rich diagrams, and quick references that keep teams aligned in English and Portuguese.
+            </p>
+            <div class="cta-group">
+              <a class="btn btn-primary" href="../docs/index.md" target="_blank" rel="noopener">Open doc portal</a>
+              <a class="btn btn-outline" href="../README_GET_STARTED.md" target="_blank" rel="noopener">Read developer welcome</a>
+            </div>
+          </div>
+
+          <div class="lang-block" data-lang="pt">
+            <div class="hero-badge">Documentação</div>
+            <h1>Base de conhecimento bilíngue cobrindo arquitetura, operações e tutoriais.</h1>
+            <p>
+              A documentação do Orion reflete a estrutura do Kedro: caminhos curados para descoberta,
+              diagramas ricos e referências rápidas que mantêm as equipes alinhadas em inglês e português,
+              entregando precisão, direção e coordenação para guiar fluxos complexos de dados.
+            </p>
+            <div class="cta-group">
+              <a class="btn btn-primary" href="../docs/index.md" target="_blank" rel="noopener">Abrir portal de docs</a>
+              <a class="btn btn-outline" href="../README_GET_STARTED.md" target="_blank" rel="noopener">Ler boas-vindas para devs</a>
+            </div>
+          </div>
+
+          <div class="lang-block" data-lang="es">
+            <div class="hero-badge">Documentación</div>
+            <h1>Base de conocimiento bilingüe que cubre arquitectura, operaciones y tutoriales.</h1>
+            <p>
+              La documentación de Orion refleja el enfoque estructurado de Kedro: rutas curadas para descubrir contenido,
+              diagramas ricos y referencias rápidas que mantienen al equipo alineado en inglés y portugués.
+            </p>
+            <div class="cta-group">
+              <a class="btn btn-primary" href="../docs/index.md" target="_blank" rel="noopener">Abrir portal de docs</a>
+              <a class="btn btn-outline" href="../README_GET_STARTED.md" target="_blank" rel="noopener">Leer bienvenida para devs</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="layout">
+          <div class="lang-block is-active" data-lang="en">
+            <h2>Documentation pillars</h2>
+            <p class="section-lead">
+              Four categories keep the knowledge base cohesive. Each link opens the original Markdown guide inside the repository.
+            </p>
+          </div>
+          <div class="lang-block" data-lang="pt">
+            <h2>Pilares da documentação</h2>
+            <p class="section-lead">
+              Quatro categorias mantêm a base de conhecimento coesa. Cada link abre o guia original em Markdown dentro do repositório.
+            </p>
+          </div>
+          <div class="lang-block" data-lang="es">
+            <h2>Pilares de la documentación</h2>
+            <p class="section-lead">
+              Cuatro categorías mantienen cohesionada la base de conocimiento. Cada enlace abre la guía original en Markdown dentro del repositorio.
+            </p>
+          </div>
+          <div class="grid four">
+            <article class="card">
+              <div class="lang-block is-active" data-lang="en">
+                <h3>Getting Started</h3>
+                <p>Quickstart tutorials for onboarding new developers and data scientists.</p>
+              </div>
+              <div class="lang-block" data-lang="pt">
+                <h3>Primeiros Passos</h3>
+                <p>Tutoriais de início rápido para integrar novos desenvolvedores e cientistas de dados.</p>
+              </div>
+              <div class="lang-block" data-lang="es">
+                <h3>Primeros Pasos</h3>
+                <p>Tutoriales rápidos para incorporar a nuevos desarrolladores y científicos de datos.</p>
+              </div>
+              <a class="inline-link" href="../GET_STARTED.md" target="_blank" rel="noopener">
+                <span class="lang-inline is-active" data-lang="en">GET_STARTED.md</span>
+                <span class="lang-inline" data-lang="pt">GET_STARTED.md</span>
+                <span class="lang-inline" data-lang="es">GET_STARTED.md</span>
+              </a>
+            </article>
+            <article class="card">
+              <div class="lang-block is-active" data-lang="en">
+                <h3>Architecture</h3>
+                <p>Layer breakdown, design principles, and component responsibilities.</p>
+              </div>
+              <div class="lang-block" data-lang="pt">
+                <h3>Arquitetura</h3>
+                <p>Desdobramento das camadas, princípios de design e responsabilidades dos componentes.</p>
+              </div>
+              <div class="lang-block" data-lang="es">
+                <h3>Arquitectura</h3>
+                <p>Desglose de capas, principios de diseño y responsabilidades de los componentes.</p>
+              </div>
+              <a class="inline-link" href="../docs/ARCHITECTURE.md" target="_blank" rel="noopener">
+                <span class="lang-inline is-active" data-lang="en">ARCHITECTURE.md</span>
+                <span class="lang-inline" data-lang="pt">ARCHITECTURE.md</span>
+                <span class="lang-inline" data-lang="es">ARCHITECTURE.md</span>
+              </a>
+            </article>
+            <article class="card">
+              <div class="lang-block is-active" data-lang="en">
+                <h3>Operations</h3>
+                <p>Guides for connectors, deployment, and governance across teams.</p>
+              </div>
+              <div class="lang-block" data-lang="pt">
+                <h3>Operações</h3>
+                <p>Guias para conectores, deploy e governança entre equipes.</p>
+              </div>
+              <div class="lang-block" data-lang="es">
+                <h3>Operaciones</h3>
+                <p>Guías sobre conectores, despliegue y gobernanza entre equipos.</p>
+              </div>
+              <a class="inline-link" href="../docs/DATABRICKS_SETUP.md" target="_blank" rel="noopener">
+                <span class="lang-inline is-active" data-lang="en">DATABRICKS_SETUP.md</span>
+                <span class="lang-inline" data-lang="pt">DATABRICKS_SETUP.md</span>
+                <span class="lang-inline" data-lang="es">DATABRICKS_SETUP.md</span>
+              </a>
+            </article>
+            <article class="card">
+              <div class="lang-block is-active" data-lang="en">
+                <h3>Contributions</h3>
+                <p>Standards for commits, PRs, automated agents, and branching.</p>
+              </div>
+              <div class="lang-block" data-lang="pt">
+                <h3>Contribuições</h3>
+                <p>Padrões para commits, PRs, agentes automáticos e fluxo de branching.</p>
+              </div>
+              <div class="lang-block" data-lang="es">
+                <h3>Contribuciones</h3>
+                <p>Estándares para commits, PR, agentes automatizados y flujo de ramas.</p>
+              </div>
+              <a class="inline-link" href="../AGENTS.md" target="_blank" rel="noopener">
+                <span class="lang-inline is-active" data-lang="en">AGENTS.md</span>
+                <span class="lang-inline" data-lang="pt">AGENTS.md</span>
+                <span class="lang-inline" data-lang="es">AGENTS.md</span>
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="layout">
+          <div class="lang-block is-active" data-lang="en">
+            <h2>Visual storytelling with Mermaid</h2>
+            <p class="section-lead">Diagram complex flows directly in Markdown or embed them here with live Mermaid rendering.</p>
+          </div>
+          <div class="lang-block" data-lang="pt">
+            <h2>Storytelling visual com Mermaid</h2>
+            <p class="section-lead">Modele fluxos complexos diretamente em Markdown ou incorpore-os aqui com renderização Mermaid ao vivo.</p>
+          </div>
+          <div class="lang-block" data-lang="es">
+            <h2>Narrativa visual con Mermaid</h2>
+            <p class="section-lead">Diagramas complejos directamente en Markdown o incrústalos aquí con renderizado Mermaid en vivo.</p>
+          </div>
+          <div class="diagram-callout">
+            <div class="lang-block is-active" data-lang="en">
+              <h3>Layered architecture</h3>
+            </div>
+            <div class="lang-block" data-lang="pt">
+              <h3>Arquitetura em camadas</h3>
+            </div>
+            <div class="lang-block" data-lang="es">
+              <h3>Arquitectura en capas</h3>
+            </div>
+            <div class="mermaid-block">
+              <div class="mermaid">
+                graph LR
+                  subgraph Core
+                    Entities --> UseCases
+                    UseCases --> Interfaces
+                  end
+                  subgraph Application
+                    Builder --> Runner --> CLI
+                  end
+                  subgraph Infrastructure
+                    Catalog --> Connectors
+                    Connectors --> Databricks[(Databricks)]
+                    Connectors --> Local[(Local Storage)]
+                  end
+                  Entities -.-> Builder
+                  UseCases -.-> Runner
+                  Catalog -.-> Builder
+                  CLI --> Runner
+              </div>
+            </div>
+          </div>
+          <div class="diagram-callout">
+            <div class="lang-block is-active" data-lang="en">
+              <h3>Governance workflow</h3>
+            </div>
+            <div class="lang-block" data-lang="pt">
+              <h3>Fluxo de governança</h3>
+            </div>
+            <div class="lang-block" data-lang="es">
+              <h3>Flujo de gobernanza</h3>
+            </div>
+            <div class="mermaid-block">
+              <div class="mermaid">
+                sequenceDiagram
+                  participant Dev
+                  participant Agent
+                  participant CI
+                  participant Repo
+                  Dev->>Repo: git checkout -b feature/*
+                  Dev->>Dev: Implement nodes, connectors, docs
+                  Dev->>Agent: trigger automation (AGENTS.md)
+                  Agent->>CI: run python run_tests.py
+                  CI->>Repo: status Checks
+                  Dev->>Repo: open pull request
+                  Repo->>Dev: review feedback
+                  Dev->>Repo: merge after approval
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="layout">
+          <div class="lang-block is-active" data-lang="en">
+            <h2>Localization strategy</h2>
+            <p class="section-lead">Keep English and Portuguese guides synchronized to ensure cross-team alignment.</p>
+          </div>
+          <div class="lang-block" data-lang="pt">
+            <h2>Estratégia de localização</h2>
+            <p class="section-lead">Mantenha os guias em inglês e português sincronizados para garantir alinhamento entre equipes.</p>
+          </div>
+          <div class="lang-block" data-lang="es">
+            <h2>Estrategia de localización</h2>
+            <p class="section-lead">Mantén sincronizadas las guías en inglés y portugués para asegurar el alineamiento entre equipos.</p>
+          </div>
+          <ul class="list-grid">
+            <li>
+              <span class="lang-inline is-active" data-lang="en"><strong>Mirrored pages:</strong> When updating <code>QUICKSTART.md</code>, replicate content in both languages.</span>
+              <span class="lang-inline" data-lang="pt"><strong>Páginas espelhadas:</strong> Ao atualizar o <code>QUICKSTART.md</code>, replique o conteúdo em ambos os idiomas.</span>
+              <span class="lang-inline" data-lang="es"><strong>Páginas espejo:</strong> Al actualizar <code>QUICKSTART.md</code>, replica el contenido en ambos idiomas.</span>
+            </li>
+            <li>
+              <span class="lang-inline is-active" data-lang="en"><strong>Glossary:</strong> Maintain consistent terminology (e.g., “Pipeline”, “Data Catalog”).</span>
+              <span class="lang-inline" data-lang="pt"><strong>Glossário:</strong> Mantenha a terminologia consistente (ex.: “Pipeline”, “Catálogo de Dados”).</span>
+              <span class="lang-inline" data-lang="es"><strong>Glosario:</strong> Mantén la terminología consistente (p. ej., “Pipeline”, “Catálogo de Datos”).</span>
+            </li>
+            <li>
+              <span class="lang-inline is-active" data-lang="en"><strong>Navigation:</strong> The doc portal (`docs/index.md`) offers bilingual entry points—update it whenever new guides land.</span>
+              <span class="lang-inline" data-lang="pt"><strong>Navegação:</strong> O portal de docs (`docs/index.md`) oferece entradas bilíngues — atualize-o sempre que surgirem novos guias.</span>
+              <span class="lang-inline" data-lang="es"><strong>Navegación:</strong> El portal de docs (`docs/index.md`) ofrece accesos bilingües — actualízalo cada vez que lleguen nuevas guías.</span>
+            </li>
+            <li>
+              <span class="lang-inline is-active" data-lang="en"><strong>Automation:</strong> Configure bots to flag sections that drift across translations.</span>
+              <span class="lang-inline" data-lang="pt"><strong>Automação:</strong> Configure bots para sinalizar seções que divergirem entre traduções.</span>
+              <span class="lang-inline" data-lang="es"><strong>Automatización:</strong> Configura bots para señalar secciones que difieran entre traducciones.</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="layout">
+          <div class="lang-block is-active" data-lang="en">
+            <h2>Keep improving</h2>
+            <p class="section-lead">Use these resources to extend the documentation experience.</p>
+          </div>
+          <div class="lang-block" data-lang="pt">
+            <h2>Continue evoluindo</h2>
+            <p class="section-lead">Use estes recursos para ampliar a experiência de documentação.</p>
+          </div>
+          <div class="lang-block" data-lang="es">
+            <h2>Sigue mejorando</h2>
+            <p class="section-lead">Utiliza estos recursos para ampliar la experiencia de documentación.</p>
+          </div>
+          <div class="grid three">
+            <article class="card">
+              <div class="lang-block is-active" data-lang="en">
+                <h3>Docs style guide</h3>
+                <p>Adopt consistent heading structures, code fencing, and translation notes.</p>
+              </div>
+              <div class="lang-block" data-lang="pt">
+                <h3>Guia de estilo</h3>
+                <p>Adote estruturas consistentes de headings, blocos de código e notas de tradução.</p>
+              </div>
+              <div class="lang-block" data-lang="es">
+                <h3>Guía de estilo</h3>
+                <p>Adopta estructuras consistentes de encabezados, bloques de código y notas de traducción.</p>
+              </div>
+              <a class="inline-link" href="../docs/README.md" target="_blank" rel="noopener">
+                <span class="lang-inline is-active" data-lang="en">Documentation guide</span>
+                <span class="lang-inline" data-lang="pt">Guia de documentação</span>
+                <span class="lang-inline" data-lang="es">Guía de documentación</span>
+              </a>
+            </article>
+            <article class="card">
+              <div class="lang-block is-active" data-lang="en">
+                <h3>Examples gallery</h3>
+                <p>Grow the <code>examples/</code> directory with use-case-driven pipelines and narrative notebooks.</p>
+              </div>
+              <div class="lang-block" data-lang="pt">
+                <h3>Galeria de exemplos</h3>
+                <p>Expanda o diretório <code>examples/</code> com pipelines orientadas a casos de uso e notebooks narrativos.</p>
+              </div>
+              <div class="lang-block" data-lang="es">
+                <h3>Galería de ejemplos</h3>
+                <p>Amplía el directorio <code>examples/</code> con pipelines guiadas por casos de uso y notebooks narrativos.</p>
+              </div>
+              <a class="inline-link" href="../examples" target="_blank" rel="noopener">
+                <span class="lang-inline is-active" data-lang="en">Examples folder</span>
+                <span class="lang-inline" data-lang="pt">Pasta de exemplos</span>
+                <span class="lang-inline" data-lang="es">Carpeta de ejemplos</span>
+              </a>
+            </article>
+            <article class="card">
+              <div class="lang-block is-active" data-lang="en">
+                <h3>Roadmap contributions</h3>
+                <p>Share ideas through GitHub discussions, issues, or PRs with design proposals.</p>
+              </div>
+              <div class="lang-block" data-lang="pt">
+                <h3>Contribuições para o roadmap</h3>
+                <p>Compartilhe ideias via discussões do GitHub, issues ou PRs com propostas de design.</p>
+              </div>
+              <div class="lang-block" data-lang="es">
+                <h3>Contribuciones al roadmap</h3>
+                <p>Comparte ideas mediante discusiones de GitHub, issues o PR con propuestas de diseño.</p>
+              </div>
+              <a class="inline-link" href="https://github.com/amarorn/orion_framework/issues" target="_blank" rel="noopener">
+                <span class="lang-inline is-active" data-lang="en">Open an issue</span>
+                <span class="lang-inline" data-lang="pt">Abrir uma issue</span>
+                <span class="lang-inline" data-lang="es">Abrir un issue</span>
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="layout footer-content">
+        <div class="footer-brand">
+          <img src="../logo_orion_origin.svg" alt="Orion crest">
+          <div class="lang-block is-active" data-lang="en">
+            <p>Orion Framework — weaving classical navigation principles into future-ready data engineering.</p>
+          </div>
+          <div class="lang-block" data-lang="pt">
+            <p>Orion Framework — tecendo princípios clássicos de navegação em engenharia de dados pronta para o futuro.</p>
+          </div>
+          <div class="lang-block" data-lang="es">
+            <p>Orion Framework — tejiendo principios clásicos de navegación en ingeniería de datos preparada para el futuro.</p>
+          </div>
+        </div>
+        <div class="footer-columns">
+          <div>
+            <h4>
+              <span class="lang-inline is-active" data-lang="en">Explore</span>
+              <span class="lang-inline" data-lang="pt">Explore</span>
+              <span class="lang-inline" data-lang="es">Explora</span>
+            </h4>
+            <ul>
+              <li>
+                <a href="index.html">
+                  <span class="lang-inline is-active" data-lang="en">Why Orion?</span>
+                  <span class="lang-inline" data-lang="pt">Por que Orion?</span>
+                  <span class="lang-inline" data-lang="es">¿Por qué Orion?</span>
+                </a>
+              </li>
+              <li>
+                <a href="features.html">
+                  <span class="lang-inline is-active" data-lang="en">Features</span>
+                  <span class="lang-inline" data-lang="pt">Funcionalidades</span>
+                  <span class="lang-inline" data-lang="es">Características</span>
+                </a>
+              </li>
+              <li>
+                <a href="get-started.html">
+                  <span class="lang-inline is-active" data-lang="en">Get Started</span>
+                  <span class="lang-inline" data-lang="pt">Primeiros Passos</span>
+                  <span class="lang-inline" data-lang="es">Primeros Pasos</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4>
+              <span class="lang-inline is-active" data-lang="en">Repository</span>
+              <span class="lang-inline" data-lang="pt">Repositório</span>
+              <span class="lang-inline" data-lang="es">Repositorio</span>
+            </h4>
+            <ul>
+              <li><a href="https://github.com/amarorn/orion_framework" target="_blank" rel="noopener">GitHub</a></li>
+              <li>
+                <a href="../AGENTS.md">
+                  <span class="lang-inline is-active" data-lang="en">Contributor Guide</span>
+                  <span class="lang-inline" data-lang="pt">Guia de Contribuição</span>
+                  <span class="lang-inline" data-lang="es">Guía de Contribución</span>
+                </a>
+              </li>
+              <li>
+                <a href="../DEVELOPER_GUIDELINES.md">
+                  <span class="lang-inline is-active" data-lang="en">Developer Guidelines</span>
+                  <span class="lang-inline" data-lang="pt">Diretrizes de Desenvolvimento</span>
+                  <span class="lang-inline" data-lang="es">Guías de Desarrollo</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4>
+              <span class="lang-inline is-active" data-lang="en">Connect</span>
+              <span class="lang-inline" data-lang="pt">Conectar</span>
+              <span class="lang-inline" data-lang="es">Conectar</span>
+            </h4>
+            <ul>
+              <li>
+                <a href="https://www.linkedin.com/in/SEU_USUARIO" target="_blank" rel="noopener">LinkedIn</a>
+                <span class="lang-inline is-active" data-lang="en">(update link)</span>
+                <span class="lang-inline" data-lang="pt">(atualize o link)</span>
+                <span class="lang-inline" data-lang="es">(actualiza el enlace)</span>
+              </li>
+              <li><a href="mailto:contact@example.com">contact@example.com</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="layout footer-meta">
+        <span class="lang-inline is-active" data-lang="en">© <span data-year>2024</span> Orion Framework. Crafted with constellations and clean code.</span>
+        <span class="lang-inline" data-lang="pt">© <span data-year>2024</span> Orion Framework. Criado com constelações e clean code.</span>
+        <span class="lang-inline" data-lang="es">© <span data-year>2024</span> Orion Framework. Creado con constelaciones y clean code.</span>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+      mermaid.initialize({ startOnLoad: true, theme: "dark" });
+    </script>
+    <script src="assets/scripts.js"></script>
+  </body>
+</html>
