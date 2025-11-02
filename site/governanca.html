@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Governança · Orion Framework</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+  </head>
+  <body>
+    <div class="floating-orbs" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <header class="site-header">
+      <div class="layout nav">
+        <a class="brand" href="index.html">
+          <img src="orion_logo_embedded.svg" alt="Orion Framework Logo" class="logo-img">
+          <span>Orion Framework</span>
+        </a>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="index.html">
+            <span class="lang-inline is-active" data-lang="en">Home</span>
+            <span class="lang-inline" data-lang="pt">Início</span>
+          </a>
+          <a href="quickstart.html">
+            <span class="lang-inline is-active" data-lang="en">Quick Start</span>
+            <span class="lang-inline" data-lang="pt">Guia Rápido</span>
+          </a>
+          <a href="architecture.html">
+            <span class="lang-inline is-active" data-lang="en">Architecture</span>
+            <span class="lang-inline" data-lang="pt">Arquitetura</span>
+          </a>
+          <a href="documentation.html">
+            <span class="lang-inline is-active" data-lang="en">Documentation</span>
+            <span class="lang-inline" data-lang="pt">Documentação</span>
+          </a>
+          <a href="developer-guidelines.html">
+            <span class="lang-inline is-active" data-lang="en">Guidelines</span>
+            <span class="lang-inline" data-lang="pt">Guidelines</span>
+          </a>
+          <a href="governanca.html" class="active">
+            <span class="lang-inline is-active" data-lang="en">Governance</span>
+            <span class="lang-inline" data-lang="pt">Governança</span>
+          </a>
+          <a href="observabilidade.html">
+            <span class="lang-inline is-active" data-lang="en">Observability</span>
+            <span class="lang-inline" data-lang="pt">Observabilidade</span>
+          </a>
+          <a href="databricks-setup.html">
+            <span class="lang-inline is-active" data-lang="en">Databricks</span>
+            <span class="lang-inline" data-lang="pt">Databricks</span>
+          </a>
+          <a href="diagrams.html">
+            <span class="lang-inline is-active" data-lang="en">Diagrams</span>
+            <span class="lang-inline" data-lang="pt">Diagramas</span>
+          </a>
+        </nav>
+        <div class="language-switch" role="group" aria-label="Language selector">
+          <button type="button" class="is-active" data-switch-lang="en">EN</button>
+          <button type="button" data-switch-lang="pt">PT</button>
+        </div>
+        <div class="socials">
+          <a class="icon-link" href="https://github.com/amarorn/orion_framework" target="_blank" rel="noopener" title="GitHub repository">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.1.82-.26.82-.58v-2.02c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.1-.75.08-.74.08-.74 1.22.09 1.86 1.26 1.86 1.26 1.08 1.85 2.83 1.31 3.52 1 .1-.78.42-1.32.76-1.63-2.67-.3-5.47-1.34-5.47-5.94 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.16 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.67 1.64.25 2.86.12 3.16.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.64-5.48 5.94.43.37.82 1.1.82 2.22v3.29c0 .32.21.69.82.58A12 12 0 0 0 12 .5Z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="layout hero-content">
+          <div class="lang-block is-active" data-lang="en">
+            <div class="hero-badge">Data Governance</div>
+            <h1>Governance in Orion</h1>
+            <p>
+              Access policies, dataset versioning and audit trails for teams with regulatory requirements.
+            </p>
+          </div>
+          <div class="lang-block" data-lang="pt">
+            <div class="hero-badge">Governança de Dados</div>
+            <h1>Governança no Orion</h1>
+            <p>
+              Políticas de acesso, versionamento de datasets e trilhas de auditoria para times com requisitos regulatórios.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="layout">
+          <div class="content">
+            <div class="lang-block is-active" data-lang="en">
+              <h2>Data Governance Principles</h2>
+              <p>Orion Framework supports data governance through catalog-based policies, versioning and audit capabilities.</p>
+
+              <h3>Catalog-Based Access Control</h3>
+              <p>The catalog.yml file acts as a central registry of all datasets, making it easy to track data sources and enforce access policies.</p>
+
+              <h3>Dataset Versioning</h3>
+              <p>Version your datasets by updating catalog entries. Maintain historical versions for compliance and rollback capabilities.</p>
+
+              <h3>Audit Trails</h3>
+              <p>All pipeline executions are logged with timestamps, context information and node-level details through the OrionContext logger.</p>
+
+              <h3>Security Best Practices</h3>
+              <ul>
+                <li>Store credentials securely using environment variables or encrypted configuration files</li>
+                <li>Never commit sensitive data or credentials to version control</li>
+                <li>Use restricted file permissions for configuration files (<code>chmod 600</code>)</li>
+                <li>Implement role-based access control at the infrastructure level</li>
+              </ul>
+            </div>
+
+            <div class="lang-block" data-lang="pt">
+              <h2>Princípios de Governança de Dados</h2>
+              <p>O Orion Framework suporta governança de dados através de políticas baseadas em catálogo, versionamento e capacidades de auditoria.</p>
+
+              <h3>Controle de Acesso Baseado em Catálogo</h3>
+              <p>O arquivo catalog.yml atua como um registro central de todos os datasets, facilitando o rastreamento de fontes de dados e a aplicação de políticas de acesso.</p>
+
+              <h3>Versionamento de Datasets</h3>
+              <p>Versionar seus datasets atualizando entradas do catálogo. Mantenha versões históricas para conformidade e capacidade de rollback.</p>
+
+              <h3>Trilhas de Auditoria</h3>
+              <p>Todas as execuções de pipeline são registradas com timestamps, informações de contexto e detalhes em nível de node através do logger do OrionContext.</p>
+
+              <h3>Melhores Práticas de Segurança</h3>
+              <ul>
+                <li>Armazene credenciais de forma segura usando variáveis de ambiente ou arquivos de configuração criptografados</li>
+                <li>Nunca faça commit de dados sensíveis ou credenciais no controle de versão</li>
+                <li>Use permissões restritas de arquivo para arquivos de configuração (<code>chmod 600</code>)</li>
+                <li>Implemente controle de acesso baseado em funções no nível de infraestrutura</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="layout footer-content">
+        <div class="footer-brand">
+          <img src="orion_logo_embedded.svg" alt="Orion Framework Logo" class="logo-img">
+          <div class="lang-block is-active" data-lang="en">
+            <p>Orion Framework — weaving classical navigation principles into future-ready data engineering.</p>
+          </div>
+          <div class="lang-block" data-lang="pt">
+            <p>Orion Framework — tecendo princípios clássicos de navegação em engenharia de dados pronta para o futuro.</p>
+          </div>
+        </div>
+      </div>
+      <div class="layout footer-meta">
+        <span class="lang-inline is-active" data-lang="en">© <span data-year>2024</span> Orion Framework. Crafted with constellations and clean code.</span>
+        <span class="lang-inline" data-lang="pt">© <span data-year>2024</span> Orion Framework. Criado com constelações e clean code.</span>
+      </div>
+    </footer>
+
+    <script src="assets/scripts.js"></script>
+  </body>
+</html>
+

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Rápido · Orion Framework</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+  </head>
+  <body>
+    <div class="floating-orbs" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <header class="site-header">
+      <div class="layout nav">
+        <a class="brand" href="index.html">
+          <img src="orion_logo_embedded.svg" alt="Orion Framework Logo" class="logo-img">
+          <span>Orion Framework</span>
+        </a>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="index.html">
+            <span class="lang-inline is-active" data-lang="en">Home</span>
+            <span class="lang-inline" data-lang="pt">Início</span>
+          </a>
+          <a href="quickstart.html" class="active">
+            <span class="lang-inline is-active" data-lang="en">Quick Start</span>
+            <span class="lang-inline" data-lang="pt">Guia Rápido</span>
+          </a>
+          <a href="architecture.html">
+            <span class="lang-inline is-active" data-lang="en">Architecture</span>
+            <span class="lang-inline" data-lang="pt">Arquitetura</span>
+          </a>
+          <a href="documentation.html">
+            <span class="lang-inline is-active" data-lang="en">Documentation</span>
+            <span class="lang-inline" data-lang="pt">Documentação</span>
+          </a>
+          <a href="developer-guidelines.html">
+            <span class="lang-inline is-active" data-lang="en">Guidelines</span>
+            <span class="lang-inline" data-lang="pt">Guidelines</span>
+          </a>
+          <a href="governanca.html">
+            <span class="lang-inline is-active" data-lang="en">Governance</span>
+            <span class="lang-inline" data-lang="pt">Governança</span>
+          </a>
+          <a href="observabilidade.html">
+            <span class="lang-inline is-active" data-lang="en">Observability</span>
+            <span class="lang-inline" data-lang="pt">Observabilidade</span>
+          </a>
+          <a href="databricks-setup.html">
+            <span class="lang-inline is-active" data-lang="en">Databricks</span>
+            <span class="lang-inline" data-lang="pt">Databricks</span>
+          </a>
+          <a href="diagrams.html">
+            <span class="lang-inline is-active" data-lang="en">Diagrams</span>
+            <span class="lang-inline" data-lang="pt">Diagramas</span>
+          </a>
+        </nav>
+        <div class="language-switch" role="group" aria-label="Language selector">
+          <button type="button" class="is-active" data-switch-lang="en">EN</button>
+          <button type="button" data-switch-lang="pt">PT</button>
+        </div>
+        <div class="socials">
+          <a class="icon-link" href="https://github.com/amarorn/orion_framework" target="_blank" rel="noopener" title="GitHub repository">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.1.82-.26.82-.58v-2.02c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.1-.75.08-.74.08-.74 1.22.09 1.86 1.26 1.86 1.26 1.08 1.85 2.83 1.31 3.52 1 .1-.78.42-1.32.76-1.63-2.67-.3-5.47-1.34-5.47-5.94 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.16 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.67 1.64.25 2.86.12 3.16.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.64-5.48 5.94.43.37.82 1.1.82 2.22v3.29c0 .32.21.69.82.58A12 12 0 0 0 12 .5Z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="layout hero-content">
+          <div class="lang-block is-active" data-lang="en">
+            <div class="hero-badge">Quick Start Guide</div>
+            <h1>Get Started with Orion</h1>
+            <p>
+              Learn how to set up your environment, create a simple pipeline and run your first data flow with Orion Framework in minutes.
+            </p>
+          </div>
+          <div class="lang-block" data-lang="pt">
+            <div class="hero-badge">Guia de Início Rápido</div>
+            <h1>Começando com Orion</h1>
+            <p>
+              Aprenda a configurar o ambiente, criar uma pipeline simples e executar seu primeiro fluxo de dados com o Orion Framework em poucos minutos.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="layout">
+          <div class="content">
+            <div class="lang-block is-active" data-lang="en">
+              <h2>Prerequisites</h2>
+              <ul>
+                <li>Python 3.8 or higher</li>
+                <li>pip</li>
+              </ul>
+
+              <h2>Installation</h2>
+              <div class="code-block">
+                <pre><code># Clone or navigate to the project directory
+cd orion_framework
+
+# Install basic dependencies
+pip install pandas pyyaml click
+
+# (Optional) If using Databricks
+pip install databricks-sql-connector</code></pre>
+              </div>
+
+              <h2>Example 1 · Simple CSV Pipeline</h2>
+              <h3>1. Create directory structure</h3>
+              <div class="code-block">
+                <pre><code>mkdir -p meu_pipeline/nodes
+mkdir -p data/raw data/processed</code></pre>
+              </div>
+
+              <h3>2. Create catalog.yml</h3>
+              <div class="code-block">
+                <pre><code># meu_pipeline/catalog.yml
+clientes_raw:
+  type: local_csv
+  path: data/raw/clientes.csv
+
+clientes_processados:
+  type: local_csv
+  path: data/processed/clientes_processed.csv</code></pre>
+              </div>
+
+              <h3>3. Create sample data</h3>
+              <div class="code-block">
+                <pre><code>echo "nome,email,idade
+João Silva,joao@email.com,30
+Maria Santos,maria@email.com,25
+Pedro Costa,pedro@email.com,35" > data/raw/clientes.csv</code></pre>
+              </div>
+
+              <h3>4. Create nodes</h3>
+              <p><strong>meu_pipeline/nodes/extract.py</strong></p>
+              <div class="code-block">
+                <pre><code>import pandas as pd
+from ...infrastructure.config.context import OrionContext
+
+def extract(context: OrionContext) -> pd.DataFrame:
+    df = context.catalog.load("clientes_raw")
+    context.logger.info(f"Extraídos {len(df)} registros")
+    return df</code></pre>
+              </div>
+
+              <p><strong>meu_pipeline/nodes/transform.py</strong></p>
+              <div class="code-block">
+                <pre><code>import pandas as pd
+from ...infrastructure.config.context import OrionContext
+
+def transform(context: OrionContext, df: pd.DataFrame) -> pd.DataFrame:
+    context.logger.info(f"Transformando {len(df)} registros")
+    df.columns = [c.strip().lower() for c in df.columns]
+    df["idade_categoria"] = df["idade"].apply(
+        lambda x: "jovem" if x < 30 else "adulto"
+    )
+    return df</code></pre>
+              </div>
+
+              <p><strong>meu_pipeline/nodes/load.py</strong></p>
+              <div class="code-block">
+                <pre><code>import pandas as pd
+from ...infrastructure.config.context import OrionContext
+
+def load(context: OrionContext, df: pd.DataFrame) -> None:
+    context.catalog.save("clientes_processados", df)
+    context.logger.info(f"Salvos {len(df)} registros processados")</code></pre>
+              </div>
+
+              <h3>5. Create pipeline</h3>
+              <p><strong>meu_pipeline/pipeline.py</strong></p>
+              <div class="code-block">
+                <pre><code>from ...application.pipeline.builder import PipelineBuilder
+from .nodes.extract import extract
+from .nodes.transform import transform
+from .nodes.load import load
+
+def create_pipeline():
+    builder = PipelineBuilder("meu_pipeline_clientes")
+    builder.add_node(extract, inputs=[], outputs=["clientes_raw"])
+    builder.add_node(transform, inputs=["clientes_raw"], outputs=["clientes_processados"])
+    builder.add_node(load, inputs=["clientes_processados"], outputs=[])
+    return builder.build()</code></pre>
+              </div>
+
+              <h3>6. Execute</h3>
+              <div class="code-block">
+                <pre><code>orion run \
+  --module meu_pipeline.pipeline \
+  --catalog meu_pipeline/catalog.yml</code></pre>
+              </div>
+
+              <h3>7. Check result</h3>
+              <div class="code-block">
+                <pre><code>cat data/processed/clientes_processed.csv</code></pre>
+              </div>
+            </div>
+
+            <div class="lang-block" data-lang="pt">
+              <h2>Pré-requisitos</h2>
+              <ul>
+                <li>Python 3.8 ou superior</li>
+                <li>pip</li>
+              </ul>
+
+              <h2>Instalação</h2>
+              <div class="code-block">
+                <pre><code># Clone ou navegue até o diretório do projeto
+cd orion_framework
+
+# Instale dependências básicas
+pip install pandas pyyaml click
+
+# (Opcional) Se for usar Databricks
+pip install databricks-sql-connector</code></pre>
+              </div>
+
+              <h2>Exemplo 1 · Pipeline CSV simples</h2>
+              <h3>1. Criar estrutura de diretórios</h3>
+              <div class="code-block">
+                <pre><code>mkdir -p meu_pipeline/nodes
+mkdir -p data/raw data/processed</code></pre>
+              </div>
+
+              <h3>2. Criar catalog.yml</h3>
+              <div class="code-block">
+                <pre><code># meu_pipeline/catalog.yml
+clientes_raw:
+  type: local_csv
+  path: data/raw/clientes.csv
+
+clientes_processados:
+  type: local_csv
+  path: data/processed/clientes_processed.csv</code></pre>
+              </div>
+
+              <h3>3. Criar dados de exemplo</h3>
+              <div class="code-block">
+                <pre><code>echo "nome,email,idade
+João Silva,joao@email.com,30
+Maria Santos,maria@email.com,25
+Pedro Costa,pedro@email.com,35" > data/raw/clientes.csv</code></pre>
+              </div>
+
+              <h3>4. Criar nodes</h3>
+              <p><strong>meu_pipeline/nodes/extract.py</strong></p>
+              <div class="code-block">
+                <pre><code>import pandas as pd
+from ...infrastructure.config.context import OrionContext
+
+def extract(context: OrionContext) -> pd.DataFrame:
+    df = context.catalog.load("clientes_raw")
+    context.logger.info(f"Extraídos {len(df)} registros")
+    return df</code></pre>
+              </div>
+
+              <p><strong>meu_pipeline/nodes/transform.py</strong></p>
+              <div class="code-block">
+                <pre><code>import pandas as pd
+from ...infrastructure.config.context import OrionContext
+
+def transform(context: OrionContext, df: pd.DataFrame) -> pd.DataFrame:
+    context.logger.info(f"Transformando {len(df)} registros")
+    df.columns = [c.strip().lower() for c in df.columns]
+    df["idade_categoria"] = df["idade"].apply(
+        lambda x: "jovem" if x < 30 else "adulto"
+    )
+    return df</code></pre>
+              </div>
+
+              <p><strong>meu_pipeline/nodes/load.py</strong></p>
+              <div class="code-block">
+                <pre><code>import pandas as pd
+from ...infrastructure.config.context import OrionContext
+
+def load(context: OrionContext, df: pd.DataFrame) -> None:
+    context.catalog.save("clientes_processados", df)
+    context.logger.info(f"Salvos {len(df)} registros processados")</code></pre>
+              </div>
+
+              <h3>5. Criar pipeline</h3>
+              <p><strong>meu_pipeline/pipeline.py</strong></p>
+              <div class="code-block">
+                <pre><code>from ...application.pipeline.builder import PipelineBuilder
+from .nodes.extract import extract
+from .nodes.transform import transform
+from .nodes.load import load
+
+def create_pipeline():
+    builder = PipelineBuilder("meu_pipeline_clientes")
+    builder.add_node(extract, inputs=[], outputs=["clientes_raw"])
+    builder.add_node(transform, inputs=["clientes_raw"], outputs=["clientes_processados"])
+    builder.add_node(load, inputs=["clientes_processados"], outputs=[])
+    return builder.build()</code></pre>
+              </div>
+
+              <h3>6. Executar</h3>
+              <div class="code-block">
+                <pre><code>orion run \
+  --module meu_pipeline.pipeline \
+  --catalog meu_pipeline/catalog.yml</code></pre>
+              </div>
+
+              <h3>7. Verificar resultado</h3>
+              <div class="code-block">
+                <pre><code>cat data/processed/clientes_processed.csv</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="layout footer-content">
+        <div class="footer-brand">
+          <img src="orion_logo_embedded.svg" alt="Orion Framework Logo" class="logo-img">
+          <div class="lang-block is-active" data-lang="en">
+            <p>Orion Framework — weaving classical navigation principles into future-ready data engineering.</p>
+          </div>
+          <div class="lang-block" data-lang="pt">
+            <p>Orion Framework — tecendo princípios clássicos de navegação em engenharia de dados pronta para o futuro.</p>
+          </div>
+        </div>
+        <div class="footer-columns">
+          <div>
+            <h4>
+              <span class="lang-inline is-active" data-lang="en">Explore</span>
+              <span class="lang-inline" data-lang="pt">Explorar</span>
+            </h4>
+            <ul>
+              <li><a href="quickstart.html">
+                <span class="lang-inline is-active" data-lang="en">Quick Start</span>
+                <span class="lang-inline" data-lang="pt">Guia Rápido</span>
+              </a></li>
+              <li><a href="documentation.html">
+                <span class="lang-inline is-active" data-lang="en">Documentation</span>
+                <span class="lang-inline" data-lang="pt">Documentação</span>
+              </a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="layout footer-meta">
+        <span class="lang-inline is-active" data-lang="en">© <span data-year>2024</span> Orion Framework. Crafted with constellations and clean code.</span>
+        <span class="lang-inline" data-lang="pt">© <span data-year>2024</span> Orion Framework. Criado com constelações e clean code.</span>
+      </div>
+    </footer>
+
+    <script src="assets/scripts.js"></script>
+  </body>
+</html>
+
