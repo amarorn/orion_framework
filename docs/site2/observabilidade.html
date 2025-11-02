@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Configuração Databricks · Orion Framework</title>
+    <title>Observabilidade · Orion Framework</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -46,11 +46,11 @@
             <span class="lang-inline is-active" data-lang="en">Governance</span>
             <span class="lang-inline" data-lang="pt">Governança</span>
           </a>
-          <a href="observabilidade.html">
+          <a href="observabilidade.html" class="active">
             <span class="lang-inline is-active" data-lang="en">Observability</span>
             <span class="lang-inline" data-lang="pt">Observabilidade</span>
           </a>
-          <a href="databricks-setup.html" class="active">
+          <a href="databricks-setup.html">
             <span class="lang-inline is-active" data-lang="en">Databricks</span>
             <span class="lang-inline" data-lang="pt">Databricks</span>
           </a>
@@ -77,17 +77,17 @@
       <section class="hero">
         <div class="layout hero-content">
           <div class="lang-block is-active" data-lang="en">
-            <div class="hero-badge">Databricks Setup</div>
-            <h1>Configure Databricks</h1>
+            <div class="hero-badge">Observability</div>
+            <h1>Monitoring & Observability</h1>
             <p>
-              Configure Databricks credentials once and reuse them in Orion pipelines securely and productively.
+              Metrics, structured logs and response playbooks to ensure operational reliability.
             </p>
           </div>
           <div class="lang-block" data-lang="pt">
-            <div class="hero-badge">Configuração Databricks</div>
-            <h1>Configurar Databricks</h1>
+            <div class="hero-badge">Observabilidade</div>
+            <h1>Monitoramento & Observabilidade</h1>
             <p>
-              Configure credenciais do Databricks uma única vez e reutilize-as em pipelines do Orion com segurança e produtividade.
+              Métricas, logs estruturados e playbooks de resposta para garantir confiabilidade operacional.
             </p>
           </div>
         </div>
@@ -97,144 +97,82 @@
         <div class="layout">
           <div class="content">
             <div class="lang-block is-active" data-lang="en">
-              <h2>1. Configure credentials via CLI</h2>
+              <h2>Structured Logging</h2>
+              <p>Orion Framework provides structured logging through the OrionContext logger interface. Every pipeline execution, node execution and data operation is logged with context.</p>
+
+              <h3>Using the Logger</h3>
               <div class="code-block">
-                <pre><code>orion databricks-config-orion</code></pre>
+                <pre><code>def transform(context: OrionContext, df: pd.DataFrame):
+    context.logger.info(f"Processing {len(df)} records")
+    context.logger.warning("Data quality check: missing values detected")
+    context.logger.error("Failed to process record", exc_info=True)
+    return df</code></pre>
               </div>
-              <p>When prompted, provide:</p>
+
+              <h3>Log Levels</h3>
               <ul>
-                <li><strong>server-hostname</strong>: Workspace address.</li>
-                <li><strong>http-path</strong>: SQL warehouse path.</li>
-                <li><strong>access-token</strong>: Personal token.</li>
-                <li><strong>catalog</strong> (optional) and <strong>schema</strong> (optional).</li>
+                <li><strong>INFO</strong>: Informational messages about pipeline execution</li>
+                <li><strong>WARNING</strong>: Warning messages about potential issues</li>
+                <li><strong>ERROR</strong>: Error messages for failures</li>
+                <li><strong>DEBUG</strong>: Detailed debugging information</li>
               </ul>
-              <p>Configuration is saved in <code>~/.orion/databricks.yml</code>.</p>
 
-              <h3>Alternative: Environment variables</h3>
-              <div class="code-block">
-                <pre><code>export DATABRICKS_SERVER_HOSTNAME="workspace.cloud.databricks.com"
-export DATABRICKS_HTTP_PATH="/sql/1.0/warehouses/abc123def456"
-export DATABRICKS_ACCESS_TOKEN="dapi..."
-export DATABRICKS_CATALOG="hive_metastore"
-export DATABRICKS_SCHEMA="default"</code></pre>
-              </div>
-
-              <h2>2. Declare sources in catalog.yml</h2>
-              <div class="code-block">
-                <pre><code># Load from a table
-clientes_raw:
-  type: databricks
-  table: clientes
-
-# Load with query
-clientes_ativos:
-  type: databricks
-  query: "SELECT * FROM clientes WHERE status = 'ativo'"
-
-# Save to Databricks
-clientes_processados:
-  type: databricks
-  table: clientes_processados
-  mode: overwrite</code></pre>
-              </div>
-
-              <h3>Advanced options</h3>
-              <div class="code-block">
-                <pre><code>clientes_analytics:
-  type: databricks
-  table: clientes
-  catalog: analytics_catalog
-  schema: curated</code></pre>
-              </div>
-
-              <h2>3. Use in nodes</h2>
-              <div class="code-block">
-                <pre><code>def extract(context: OrionContext):
-    df = context.catalog.load("clientes_raw")
-    context.logger.info(f"Loaded {len(df)} records")
-    return df
-
-def load(context: OrionContext, df):
-    context.catalog.save("clientes_processados", df)
-    context.logger.info(f"Saved {len(df)} records")</code></pre>
-              </div>
-
-              <h2>Security</h2>
+              <h2>Metrics Collection</h2>
+              <p>Track key metrics for pipeline health and performance:</p>
               <ul>
-                <li>Never version the file <code>~/.orion/databricks.yml</code>.</li>
-                <li>Ensure restricted permissions: <code>chmod 600 ~/.orion/databricks.yml</code>.</li>
-                <li>Add <code>~/.orion/</code> to <code>.gitignore</code>.</li>
+                <li>Execution time per node</li>
+                <li>Record counts at each stage</li>
+                <li>Data quality metrics</li>
+                <li>Error rates</li>
+              </ul>
+
+              <h2>Error Handling & Response</h2>
+              <p>Implement robust error handling in your nodes to ensure pipeline reliability:</p>
+              <ul>
+                <li>Validate input data before processing</li>
+                <li>Use try/except blocks with proper logging</li>
+                <li>Implement retry logic for transient failures</li>
+                <li>Monitor error rates and set up alerts</li>
               </ul>
             </div>
 
             <div class="lang-block" data-lang="pt">
-              <h2>1. Configurar credenciais via CLI</h2>
+              <h2>Logging Estruturado</h2>
+              <p>O Orion Framework fornece logging estruturado através da interface de logger do OrionContext. Cada execução de pipeline, execução de node e operação de dados é registrada com contexto.</p>
+
+              <h3>Usando o Logger</h3>
               <div class="code-block">
-                <pre><code>orion databricks-config-orion</code></pre>
+                <pre><code>def transform(context: OrionContext, df: pd.DataFrame):
+    context.logger.info(f"Processando {len(df)} registros")
+    context.logger.warning("Verificação de qualidade: valores faltantes detectados")
+    context.logger.error("Falha ao processar registro", exc_info=True)
+    return df</code></pre>
               </div>
-              <p>Informe quando solicitado:</p>
+
+              <h3>Níveis de Log</h3>
               <ul>
-                <li><strong>server-hostname</strong>: Endereço do workspace.</li>
-                <li><strong>http-path</strong>: Caminho do SQL warehouse.</li>
-                <li><strong>access-token</strong>: Token pessoal.</li>
-                <li><strong>catalog</strong> (opcional) e <strong>schema</strong> (opcional).</li>
+                <li><strong>INFO</strong>: Mensagens informativas sobre execução de pipeline</li>
+                <li><strong>WARNING</strong>: Mensagens de aviso sobre possíveis problemas</li>
+                <li><strong>ERROR</strong>: Mensagens de erro para falhas</li>
+                <li><strong>DEBUG</strong>: Informações detalhadas de depuração</li>
               </ul>
-              <p>A configuração é salva em <code>~/.orion/databricks.yml</code>.</p>
 
-              <h3>Alternativa: Variáveis de ambiente</h3>
-              <div class="code-block">
-                <pre><code>export DATABRICKS_SERVER_HOSTNAME="workspace.cloud.databricks.com"
-export DATABRICKS_HTTP_PATH="/sql/1.0/warehouses/abc123def456"
-export DATABRICKS_ACCESS_TOKEN="dapi..."
-export DATABRICKS_CATALOG="hive_metastore"
-export DATABRICKS_SCHEMA="default"</code></pre>
-              </div>
-
-              <h2>2. Declarar fontes no catalog.yml</h2>
-              <div class="code-block">
-                <pre><code># Carregar de uma tabela
-clientes_raw:
-  type: databricks
-  table: clientes
-
-# Carregar com query
-clientes_ativos:
-  type: databricks
-  query: "SELECT * FROM clientes WHERE status = 'ativo'"
-
-# Salvar no Databricks
-clientes_processados:
-  type: databricks
-  table: clientes_processados
-  mode: overwrite</code></pre>
-              </div>
-
-              <h3>Opções avançadas</h3>
-              <div class="code-block">
-                <pre><code>clientes_analytics:
-  type: databricks
-  table: clientes
-  catalog: analytics_catalog
-  schema: curated</code></pre>
-              </div>
-
-              <h2>3. Utilizar em nodes</h2>
-              <div class="code-block">
-                <pre><code>def extract(context: OrionContext):
-    df = context.catalog.load("clientes_raw")
-    context.logger.info(f"Carregados {len(df)} registros")
-    return df
-
-def load(context: OrionContext, df):
-    context.catalog.save("clientes_processados", df)
-    context.logger.info(f"Salvos {len(df)} registros")</code></pre>
-              </div>
-
-              <h2>Segurança</h2>
+              <h2>Coleta de Métricas</h2>
+              <p>Acompanhe métricas-chave para saúde e desempenho da pipeline:</p>
               <ul>
-                <li>Não versione o arquivo <code>~/.orion/databricks.yml</code>.</li>
-                <li>Garanta permissões restritas: <code>chmod 600 ~/.orion/databricks.yml</code>.</li>
-                <li>Adicione <code>~/.orion/</code> ao <code>.gitignore</code>.</li>
+                <li>Tempo de execução por node</li>
+                <li>Contagem de registros em cada estágio</li>
+                <li>Métricas de qualidade de dados</li>
+                <li>Taxas de erro</li>
+              </ul>
+
+              <h2>Tratamento de Erros & Resposta</h2>
+              <p>Implemente tratamento robusto de erros em seus nodes para garantir confiabilidade da pipeline:</p>
+              <ul>
+                <li>Valide dados de entrada antes de processar</li>
+                <li>Use blocos try/except com logging apropriado</li>
+                <li>Implemente lógica de retry para falhas transitórias</li>
+                <li>Monitore taxas de erro e configure alertas</li>
               </ul>
             </div>
           </div>

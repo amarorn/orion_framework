@@ -3,13 +3,11 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diagramas · Orion Framework</title>
+    <title>Governança · Orion Framework</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({ startOnLoad: true, theme: 'dark' });</script>
   </head>
   <body>
     <div class="floating-orbs" aria-hidden="true">
@@ -44,7 +42,7 @@
             <span class="lang-inline is-active" data-lang="en">Guidelines</span>
             <span class="lang-inline" data-lang="pt">Guidelines</span>
           </a>
-          <a href="governanca.html">
+          <a href="governanca.html" class="active">
             <span class="lang-inline is-active" data-lang="en">Governance</span>
             <span class="lang-inline" data-lang="pt">Governança</span>
           </a>
@@ -56,7 +54,7 @@
             <span class="lang-inline is-active" data-lang="en">Databricks</span>
             <span class="lang-inline" data-lang="pt">Databricks</span>
           </a>
-          <a href="diagrams.html" class="active">
+          <a href="diagrams.html">
             <span class="lang-inline is-active" data-lang="en">Diagrams</span>
             <span class="lang-inline" data-lang="pt">Diagramas</span>
           </a>
@@ -79,17 +77,17 @@
       <section class="hero">
         <div class="layout hero-content">
           <div class="lang-block is-active" data-lang="en">
-            <div class="hero-badge">Mermaid Diagrams</div>
-            <h1>Orion Framework Diagrams</h1>
+            <div class="hero-badge">Data Governance</div>
+            <h1>Governance in Orion</h1>
             <p>
-              Official Orion Framework diagrams ready to embed in presentations or wikis.
+              Access policies, dataset versioning and audit trails for teams with regulatory requirements.
             </p>
           </div>
           <div class="lang-block" data-lang="pt">
-            <div class="hero-badge">Diagramas Mermaid</div>
-            <h1>Diagramas do Orion Framework</h1>
+            <div class="hero-badge">Governança de Dados</div>
+            <h1>Governança no Orion</h1>
             <p>
-              Diagramas oficiais do Orion Framework prontos para embutir em apresentações ou wikis.
+              Políticas de acesso, versionamento de datasets e trilhas de auditoria para times com requisitos regulatórios.
             </p>
           </div>
         </div>
@@ -99,133 +97,47 @@
         <div class="layout">
           <div class="content">
             <div class="lang-block is-active" data-lang="en">
-              <h2>Complete Data Flow</h2>
-              <div class="mermaid-block">
-                <pre class="mermaid">graph TB
-    Start([CLI: orion run]) --> LoadConfig[Carregar catalog.yml]
-    LoadConfig --> CreateContext[Criar OrionContext]
-    CreateContext --> LoadPipeline[Carregar Pipeline via PipelineBuilder]
-    LoadPipeline --> InitRunner[PipelineRunner]
-    InitRunner --> UseCase[RunPipelineUseCase.execute]
-    UseCase --> Loop{Iterar Nodes}
-    Loop --> PrepareInputs{Preparar Inputs}
-    PrepareInputs -->|Em Memória| MemCheck{Tem em data?}
-    PrepareInputs -->|Do Catalog| CatalogLoad[Catalog.load]
-    MemCheck -->|Sim| UseMemory[Usar valor em memória]
-    MemCheck -->|Não| CatalogLoad
-    CatalogLoad --> ExecuteNode[Executar Node Function]
-    UseMemory --> ExecuteNode
-    ExecuteNode --> StoreMemory[Armazenar em data dict]
-    StoreMemory --> CheckCatalog{Output existe no catalog?}
-    CheckCatalog -->|Sim| AutoSave[Auto-salvar via Catalog]
-    CheckCatalog -->|Não| NextNode{Próximo Node?}
-    AutoSave --> NextNode
-    NextNode -->|Sim| Loop
-    NextNode -->|Não| ReturnResults[Retornar data dict]
-    ReturnResults --> End([Fim])</pre>
-              </div>
+              <h2>Data Governance Principles</h2>
+              <p>Orion Framework supports data governance through catalog-based policies, versioning and audit capabilities.</p>
 
-              <h2>Layer Architecture</h2>
-              <div class="mermaid-block">
-                <pre class="mermaid">graph TB
-    subgraph "APPLICATION LAYER"
-        CLI[CLI Commands]
-        Runner[Pipeline Runner]
-        Builder[Pipeline Builder]
-    end
+              <h3>Catalog-Based Access Control</h3>
+              <p>The catalog.yml file acts as a central registry of all datasets, making it easy to track data sources and enforce access policies.</p>
 
-    subgraph "CORE LAYER"
-        Pipeline[Pipeline Entity]
-        Node[Node Entity]
-        Interface[Interfaces]
-        UseCase[RunPipelineUseCase]
-    end
+              <h3>Dataset Versioning</h3>
+              <p>Version your datasets by updating catalog entries. Maintain historical versions for compliance and rollback capabilities.</p>
 
-    subgraph "INFRASTRUCTURE LAYER"
-        LocalConn[LocalCSV Connector]
-        DBConn[Databricks Connector]
-        Catalog[Data Catalog]
-        Logger[Console Logger]
-        Context[Orion Context]
-    end
+              <h3>Audit Trails</h3>
+              <p>All pipeline executions are logged with timestamps, context information and node-level details through the OrionContext logger.</p>
 
-    CLI --> Runner
-    Runner --> UseCase
-    Builder --> Pipeline
-    UseCase --> Pipeline
-    Pipeline --> Node
-    Node --> Interface
-    Node --> Context
-    Context --> Catalog
-    Context --> Logger
-    Catalog --> LocalConn
-    Catalog --> DBConn</pre>
-              </div>
+              <h3>Security Best Practices</h3>
+              <ul>
+                <li>Store credentials securely using environment variables or encrypted configuration files</li>
+                <li>Never commit sensitive data or credentials to version control</li>
+                <li>Use restricted file permissions for configuration files (<code>chmod 600</code>)</li>
+                <li>Implement role-based access control at the infrastructure level</li>
+              </ul>
             </div>
 
             <div class="lang-block" data-lang="pt">
-              <h2>Fluxo de Dados Completo</h2>
-              <div class="mermaid-block">
-                <pre class="mermaid">graph TB
-    Start([CLI: orion run]) --> LoadConfig[Carregar catalog.yml]
-    LoadConfig --> CreateContext[Criar OrionContext]
-    CreateContext --> LoadPipeline[Carregar Pipeline via PipelineBuilder]
-    LoadPipeline --> InitRunner[PipelineRunner]
-    InitRunner --> UseCase[RunPipelineUseCase.execute]
-    UseCase --> Loop{Iterar Nodes}
-    Loop --> PrepareInputs{Preparar Inputs}
-    PrepareInputs -->|Em Memória| MemCheck{Tem em data?}
-    PrepareInputs -->|Do Catalog| CatalogLoad[Catalog.load]
-    MemCheck -->|Sim| UseMemory[Usar valor em memória]
-    MemCheck -->|Não| CatalogLoad
-    CatalogLoad --> ExecuteNode[Executar Node Function]
-    UseMemory --> ExecuteNode
-    ExecuteNode --> StoreMemory[Armazenar em data dict]
-    StoreMemory --> CheckCatalog{Output existe no catalog?}
-    CheckCatalog -->|Sim| AutoSave[Auto-salvar via Catalog]
-    CheckCatalog -->|Não| NextNode{Próximo Node?}
-    AutoSave --> NextNode
-    NextNode -->|Sim| Loop
-    NextNode -->|Não| ReturnResults[Retornar data dict]
-    ReturnResults --> End([Fim])</pre>
-              </div>
+              <h2>Princípios de Governança de Dados</h2>
+              <p>O Orion Framework suporta governança de dados através de políticas baseadas em catálogo, versionamento e capacidades de auditoria.</p>
 
-              <h2>Arquitetura em Camadas</h2>
-              <div class="mermaid-block">
-                <pre class="mermaid">graph TB
-    subgraph "APPLICATION LAYER"
-        CLI[CLI Commands]
-        Runner[Pipeline Runner]
-        Builder[Pipeline Builder]
-    end
+              <h3>Controle de Acesso Baseado em Catálogo</h3>
+              <p>O arquivo catalog.yml atua como um registro central de todos os datasets, facilitando o rastreamento de fontes de dados e a aplicação de políticas de acesso.</p>
 
-    subgraph "CORE LAYER"
-        Pipeline[Pipeline Entity]
-        Node[Node Entity]
-        Interface[Interfaces]
-        UseCase[RunPipelineUseCase]
-    end
+              <h3>Versionamento de Datasets</h3>
+              <p>Versionar seus datasets atualizando entradas do catálogo. Mantenha versões históricas para conformidade e capacidade de rollback.</p>
 
-    subgraph "INFRASTRUCTURE LAYER"
-        LocalConn[LocalCSV Connector]
-        DBConn[Databricks Connector]
-        Catalog[Data Catalog]
-        Logger[Console Logger]
-        Context[Orion Context]
-    end
+              <h3>Trilhas de Auditoria</h3>
+              <p>Todas as execuções de pipeline são registradas com timestamps, informações de contexto e detalhes em nível de node através do logger do OrionContext.</p>
 
-    CLI --> Runner
-    Runner --> UseCase
-    Builder --> Pipeline
-    UseCase --> Pipeline
-    Pipeline --> Node
-    Node --> Interface
-    Node --> Context
-    Context --> Catalog
-    Context --> Logger
-    Catalog --> LocalConn
-    Catalog --> DBConn</pre>
-              </div>
+              <h3>Melhores Práticas de Segurança</h3>
+              <ul>
+                <li>Armazene credenciais de forma segura usando variáveis de ambiente ou arquivos de configuração criptografados</li>
+                <li>Nunca faça commit de dados sensíveis ou credenciais no controle de versão</li>
+                <li>Use permissões restritas de arquivo para arquivos de configuração (<code>chmod 600</code>)</li>
+                <li>Implemente controle de acesso baseado em funções no nível de infraestrutura</li>
+              </ul>
             </div>
           </div>
         </div>
