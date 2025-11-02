@@ -1,158 +1,301 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Oríon Framework · Documentação</title>
-    <link rel="stylesheet" href="./assets/styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orion Framework · Documentação</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
   </head>
   <body>
-    <header>
-      <div class="navbar">
-        <a class="brand" href="./index.html">
-          <span class="logo">Ω</span>
-          <span>Oríon Framework Docs</span>
+    <div class="floating-orbs" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <header class="site-header">
+      <div class="layout nav">
+        <a class="brand" href="index.html">
+          <img src="orion_logo_embedded.svg" alt="Orion Framework Logo" class="logo-img">
+          <span>Orion Framework</span>
         </a>
-        <nav>
-          <ul>
-            <li><a class="active" href="./index.html">Início</a></li>
-            <li><a href="./quickstart.html">Guia Rápido</a></li>
-            <li><a href="./architecture.html">Arquitetura</a></li>
-            <li><a href="./documentation.html">Documentação</a></li>
-            <li><a href="./developer-guidelines.html">Guidelines</a></li>
-            <li><a href="./governanca.html">Governança</a></li>
-            <li><a href="./observabilidade.html">Observabilidade</a></li>
-            <li><a href="./developer-guidelines.html">Guidelines</a></li>
-            <li><a href="./documentation.html">Documentação</a></li>
-            <li><a href="./databricks-setup.html">Databricks</a></li>
-            <li><a href="./diagrams.html">Diagramas</a></li>
-          </ul>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="index.html" class="active">
+            <span class="lang-inline is-active" data-lang="en">Home</span>
+            <span class="lang-inline" data-lang="pt">Início</span>
+          </a>
+          <a href="quickstart.html">
+            <span class="lang-inline is-active" data-lang="en">Quick Start</span>
+            <span class="lang-inline" data-lang="pt">Guia Rápido</span>
+          </a>
+          <a href="architecture.html">
+            <span class="lang-inline is-active" data-lang="en">Architecture</span>
+            <span class="lang-inline" data-lang="pt">Arquitetura</span>
+          </a>
+          <a href="documentation.html">
+            <span class="lang-inline is-active" data-lang="en">Documentation</span>
+            <span class="lang-inline" data-lang="pt">Documentação</span>
+          </a>
+          <a href="developer-guidelines.html">
+            <span class="lang-inline is-active" data-lang="en">Guidelines</span>
+            <span class="lang-inline" data-lang="pt">Guidelines</span>
+          </a>
+          <a href="governanca.html">
+            <span class="lang-inline is-active" data-lang="en">Governance</span>
+            <span class="lang-inline" data-lang="pt">Governança</span>
+          </a>
+          <a href="observabilidade.html">
+            <span class="lang-inline is-active" data-lang="en">Observability</span>
+            <span class="lang-inline" data-lang="pt">Observabilidade</span>
+          </a>
+          <a href="databricks-setup.html">
+            <span class="lang-inline is-active" data-lang="en">Databricks</span>
+            <span class="lang-inline" data-lang="pt">Databricks</span>
+          </a>
+          <a href="diagrams.html">
+            <span class="lang-inline is-active" data-lang="en">Diagrams</span>
+            <span class="lang-inline" data-lang="pt">Diagramas</span>
+          </a>
         </nav>
+        <div class="language-switch" role="group" aria-label="Language selector">
+          <button type="button" class="is-active" data-switch-lang="en">EN</button>
+          <button type="button" data-switch-lang="pt">PT</button>
+        </div>
+        <div class="socials">
+          <a class="icon-link" href="https://github.com/amarorn/orion_framework" target="_blank" rel="noopener" title="GitHub repository">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.1.82-.26.82-.58v-2.02c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.1-.75.08-.74.08-.74 1.22.09 1.86 1.26 1.86 1.26 1.08 1.85 2.83 1.31 3.52 1 .1-.78.42-1.32.76-1.63-2.67-.3-5.47-1.34-5.47-5.94 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.16 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.67 1.64.25 2.86.12 3.16.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.64-5.48 5.94.43.37.82 1.1.82 2.22v3.29c0 .32.21.69.82.58A12 12 0 0 0 12 .5Z"/>
+            </svg>
+          </a>
+        </div>
       </div>
     </header>
 
     <main>
       <section class="hero">
-        <p class="tag">Documentação Oficial</p>
-        <h1>Oríon Framework</h1>
-        <p>
-          Bem-vindo ao portal de documentação do <strong>Oríon Framework</strong>.
-          Aqui você encontra guias completos, arquitetura detalhada, melhores práticas e
-          integrações para criar pipelines de dados modernas com Clean Architecture.
-        </p>
-        <div class="badge-list">
-          <span class="badge">Clean Architecture</span>
-          <span class="badge">Observabilidade</span>
-          <span class="badge">Type Safety</span>
-          <span class="badge">Pipelines Declarativas</span>
+        <div class="layout hero-content">
+          <div class="lang-block is-active" data-lang="en">
+            <div class="hero-badge">Documentation Portal</div>
+            <h1>Orion Framework</h1>
+            <p>
+              Welcome to the Orion Framework documentation portal. Here you'll find complete guides, detailed architecture, best practices, and integrations to create modern data pipelines with Clean Architecture.
+            </p>
+            <div class="cta-group">
+              <a class="btn btn-primary" href="quickstart.html">Get Started</a>
+              <a class="btn btn-outline" href="documentation.html">View Documentation</a>
+            </div>
+          </div>
+
+          <div class="lang-block" data-lang="pt">
+            <div class="hero-badge">Portal de Documentação</div>
+            <h1>Orion Framework</h1>
+            <p>
+              Bem-vindo ao portal de documentação do Orion Framework. Aqui você encontra guias completos, arquitetura detalhada, melhores práticas e integrações para criar pipelines de dados modernas com Clean Architecture.
+            </p>
+            <div class="cta-group">
+              <a class="btn btn-primary" href="quickstart.html">Começar</a>
+              <a class="btn btn-outline" href="documentation.html">Ver Documentação</a>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section>
-        <h2 class="section-title">Comece por aqui</h2>
-        <div class="grid cards">
-          <a class="card" href="./quickstart.html">
-            <p class="tag">Passo a passo</p>
-            <h3>Guia de Início Rápido</h3>
-            <p>
-              Instalação, primeira pipeline em minutos e exemplos práticos para sair do zero
-              com o Oríon Framework.
+      <section class="section">
+        <div class="layout">
+          <div class="lang-block is-active" data-lang="en">
+            <h2>Start here</h2>
+            <p class="section-lead">
+              Quick guides to get you up and running with Orion Framework in minutes.
             </p>
-          </a>
-          <a class="card" href="./documentation.html">
-            <p class="tag">Referência</p>
-            <h3>Documentação Completa</h3>
-            <p>
-              Conceitos fundamentais, fluxos detalhados, guia de uso e referência das APIs
-              principais do framework.
+          </div>
+          <div class="lang-block" data-lang="pt">
+            <h2>Comece por aqui</h2>
+            <p class="section-lead">
+              Guias rápidos para colocar o Orion Framework em funcionamento em minutos.
             </p>
-          </a>
-          <a class="card" href="./architecture.html">
-            <p class="tag">Estratégia</p>
-            <h3>Arquitetura</h3>
-            <p>
-              Entenda a organização em camadas, princípios SOLID adotados e como estender o
-              framework com segurança.
-            </p>
-          </a>
-          <a class="card" href="./developer-guidelines.html">
-            <p class="tag">Boas práticas</p>
-            <h3>Developer Guidelines</h3>
-            <p>
-              Checklist de contribuições, convenções de código, padrões de testes e fluxo de
-              revisão para manter o projeto saudável.
-            </p>
-          </a>
+          </div>
+          <div class="grid three">
+            <article class="card">
+              <div class="lang-block is-active" data-lang="en">
+                <h3>Quick Start</h3>
+                <p>Installation, first pipeline in minutes, and practical examples to get started from zero with Orion Framework.</p>
+                <a class="inline-link" href="quickstart.html">View guide →</a>
+              </div>
+              <div class="lang-block" data-lang="pt">
+                <h3>Guia Rápido</h3>
+                <p>Instalação, primeira pipeline em minutos e exemplos práticos para sair do zero com o Orion Framework.</p>
+                <a class="inline-link" href="quickstart.html">Ver guia →</a>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="lang-block is-active" data-lang="en">
+                <h3>Documentation</h3>
+                <p>Fundamental concepts, detailed flows, usage guide and reference of the main APIs of the framework.</p>
+                <a class="inline-link" href="documentation.html">Browse docs →</a>
+              </div>
+              <div class="lang-block" data-lang="pt">
+                <h3>Documentação</h3>
+                <p>Conceitos fundamentais, fluxos detalhados, guia de uso e referência das APIs principais do framework.</p>
+                <a class="inline-link" href="documentation.html">Ver documentação →</a>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="lang-block is-active" data-lang="en">
+                <h3>Architecture</h3>
+                <p>Understand layer organization, adopted SOLID principles and how to extend the framework safely.</p>
+                <a class="inline-link" href="architecture.html">Learn more →</a>
+              </div>
+              <div class="lang-block" data-lang="pt">
+                <h3>Arquitetura</h3>
+                <p>Entenda a organização em camadas, princípios SOLID adotados e como estender o framework com segurança.</p>
+                <a class="inline-link" href="architecture.html">Saiba mais →</a>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
 
-      <section>
-        <div class="content">
-          <h2>Fluxo de Dados (Visão Geral)</h2>
-          <p>
-            O Oríon organiza pipelines por meio de um <strong>PipelineBuilder</strong> que
-            orquestra funções puras (nodes) executadas com um
-            <strong>OrionContext</strong>. O contexto entrega catálogos, conectores e logging.
-          </p>
-          <pre><code>CLI → Catalog → Context → Pipeline → Nodes → Connectors → Storage</code></pre>
-          <p>
-            Explore os diagramas completos na página de <a href="./diagrams.html">Diagramas</a>
-            para entender cada etapa e os contratos entre as camadas do framework.
-          </p>
-        </div>
-      </section>
+      <section class="section">
+        <div class="layout">
+          <div class="lang-block is-active" data-lang="en">
+            <h2>Essential Resources</h2>
+            <p class="section-lead">
+              Everything you need to build and operate data pipelines with Orion.
+            </p>
+          </div>
+          <div class="lang-block" data-lang="pt">
+            <h2>Recursos Essenciais</h2>
+            <p class="section-lead">
+              Tudo que você precisa para construir e operar pipelines de dados com Orion.
+            </p>
+          </div>
+          <div class="grid three">
+            <article class="card">
+              <div class="lang-block is-active" data-lang="en">
+                <h3>Databricks Integration</h3>
+                <p>Configure credentials, catalogs and hybrid pipelines using Orion's official Databricks connector.</p>
+                <a class="inline-link" href="databricks-setup.html">Setup guide →</a>
+              </div>
+              <div class="lang-block" data-lang="pt">
+                <h3>Integração Databricks</h3>
+                <p>Configure credenciais, catálogos e pipelines híbridas utilizando o conector oficial do Orion para Databricks.</p>
+                <a class="inline-link" href="databricks-setup.html">Ver guia →</a>
+              </div>
+            </article>
 
-      <section>
-        <div class="content">
-          <h2>Recursos Essenciais</h2>
-          <div class="grid cards">
-            <div class="card">
-              <h3>Integrações Databricks</h3>
-              <p>
-                Configure credenciais, catálogos e pipelines híbridas utilizando o conector
-                oficial do Oríon para Databricks.
-              </p>
-              <a href="./databricks-setup.html">Ver passo a passo →</a>
-            </div>
-            <div class="card">
-              <h3>Diagramas Mermaid</h3>
-              <p>
-                Fluxos de dados, arquitetura em camadas e sequência de execução para embutir na
-                sua wiki ou apresentações técnicas.
-              </p>
-              <a href="./diagrams.html">Abrir diagramas →</a>
-            </div>
-            <div class="card">
-              <h3>Padrões de Projeto</h3>
-              <p>
-                Aplicação prática de SOLID, separação por camadas e como manter boundaries
-                saudáveis entre domínios.
-              </p>
-              <a href="./architecture.html">Detalhar arquitetura →</a>
-            </div>
-            <div class="card">
-              <h3>Governança de Dados</h3>
-              <p>
-                Políticas de acesso, versionamento de datasets e trilhas de auditoria para times
-                com requisitos regulatórios.
-              </p>
-              <a href="./governanca.html">Ver diretrizes →</a>
-            </div>
-            <div class="card">
-              <h3>Observabilidade</h3>
-              <p>
-                Métricas, logs estruturados e playbooks de resposta para garantir confiabilidade
-                operacional.
-              </p>
-              <a href="./observabilidade.html">Implementar monitoramento →</a>
-            </div>
+            <article class="card">
+              <div class="lang-block is-active" data-lang="en">
+                <h3>Diagrams</h3>
+                <p>Data flows, layer architecture and execution sequence diagrams ready to embed in your wiki or technical presentations.</p>
+                <a class="inline-link" href="diagrams.html">View diagrams →</a>
+              </div>
+              <div class="lang-block" data-lang="pt">
+                <h3>Diagramas</h3>
+                <p>Fluxos de dados, arquitetura em camadas e sequência de execução para embutir na sua wiki ou apresentações técnicas.</p>
+                <a class="inline-link" href="diagrams.html">Ver diagramas →</a>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="lang-block is-active" data-lang="en">
+                <h3>Developer Guidelines</h3>
+                <p>Contribution checklist, code conventions, testing patterns and review flow to keep the project healthy.</p>
+                <a class="inline-link" href="developer-guidelines.html">Read guidelines →</a>
+              </div>
+              <div class="lang-block" data-lang="pt">
+                <h3>Developer Guidelines</h3>
+                <p>Checklist de contribuições, convenções de código, padrões de testes e fluxo de revisão para manter o projeto saudável.</p>
+                <a class="inline-link" href="developer-guidelines.html">Ver guidelines →</a>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="lang-block is-active" data-lang="en">
+                <h3>Governance</h3>
+                <p>Access policies, dataset versioning and audit trails for teams with regulatory requirements.</p>
+                <a class="inline-link" href="governanca.html">View guidelines →</a>
+              </div>
+              <div class="lang-block" data-lang="pt">
+                <h3>Governança</h3>
+                <p>Políticas de acesso, versionamento de datasets e trilhas de auditoria para times com requisitos regulatórios.</p>
+                <a class="inline-link" href="governanca.html">Ver diretrizes →</a>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="lang-block is-active" data-lang="en">
+                <h3>Observability</h3>
+                <p>Metrics, structured logs and response playbooks to ensure operational reliability.</p>
+                <a class="inline-link" href="observabilidade.html">Implement monitoring →</a>
+              </div>
+              <div class="lang-block" data-lang="pt">
+                <h3>Observabilidade</h3>
+                <p>Métricas, logs estruturados e playbooks de resposta para garantir confiabilidade operacional.</p>
+                <a class="inline-link" href="observabilidade.html">Implementar monitoramento →</a>
+              </div>
+            </article>
           </div>
         </div>
       </section>
     </main>
 
-    <footer>
-      <p>Oríon Framework · Última atualização 2024 · <a href="./developer-guidelines.html">Contribua com o projeto</a></p>
+    <footer class="site-footer">
+      <div class="layout footer-content">
+        <div class="footer-brand">
+          <img src="orion_logo_embedded.svg" alt="Orion Framework" class="footer-logo">
+          <div class="lang-block is-active" data-lang="en">
+            <p>Orion Framework — weaving classical navigation principles into future-ready data engineering.</p>
+          </div>
+          <div class="lang-block" data-lang="pt">
+            <p>Orion Framework — tecendo princípios clássicos de navegação em engenharia de dados pronta para o futuro.</p>
+          </div>
+        </div>
+        <div class="footer-columns">
+          <div>
+            <h4>
+              <span class="lang-inline is-active" data-lang="en">Explore</span>
+              <span class="lang-inline" data-lang="pt">Explorar</span>
+            </h4>
+            <ul>
+              <li><a href="quickstart.html">
+                <span class="lang-inline is-active" data-lang="en">Quick Start</span>
+                <span class="lang-inline" data-lang="pt">Guia Rápido</span>
+              </a></li>
+              <li><a href="documentation.html">
+                <span class="lang-inline is-active" data-lang="en">Documentation</span>
+                <span class="lang-inline" data-lang="pt">Documentação</span>
+              </a></li>
+              <li><a href="architecture.html">
+                <span class="lang-inline is-active" data-lang="en">Architecture</span>
+                <span class="lang-inline" data-lang="pt">Arquitetura</span>
+              </a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>
+              <span class="lang-inline is-active" data-lang="en">Repository</span>
+              <span class="lang-inline" data-lang="pt">Repositório</span>
+            </h4>
+            <ul>
+              <li><a href="https://github.com/amarorn/orion_framework" target="_blank" rel="noopener">GitHub</a></li>
+              <li><a href="developer-guidelines.html">
+                <span class="lang-inline is-active" data-lang="en">Contributor Guide</span>
+                <span class="lang-inline" data-lang="pt">Guia de Contribuição</span>
+              </a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="layout footer-meta">
+        <span class="lang-inline is-active" data-lang="en">© <span data-year>2024</span> Orion Framework. Crafted with constellations and clean code.</span>
+        <span class="lang-inline" data-lang="pt">© <span data-year>2024</span> Orion Framework. Criado com constelações e clean code.</span>
+      </div>
     </footer>
+
+    <script src="assets/scripts.js"></script>
   </body>
 </html>

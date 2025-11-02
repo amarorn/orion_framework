@@ -1,175 +1,200 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Documentação Completa · Oríon Framework</title>
-    <link rel="stylesheet" href="./assets/styles.css" />
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({ startOnLoad: true, theme: 'dark' });</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentação · Orion Framework</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
   </head>
   <body>
-    <header>
-      <div class="navbar">
-        <a class="brand" href="./index.html">
-          <span class="logo">Ω</span>
-          <span>Oríon Framework Docs</span>
+    <div class="floating-orbs" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <header class="site-header">
+      <div class="layout nav">
+        <a class="brand" href="index.html">
+          <img src="orion_logo_embedded.svg" alt="Orion Framework Logo" class="logo-img">
+          <span>Orion Framework</span>
         </a>
-        <nav>
-          <ul>
-            <li><a href="./index.html">Início</a></li>
-            <li><a href="./quickstart.html">Guia Rápido</a></li>
-            <li><a href="./architecture.html">Arquitetura</a></li>
-            <li><a class="active" href="./documentation.html">Documentação</a></li>
-            <li><a href="./developer-guidelines.html">Guidelines</a></li>
-            <li><a href="./governanca.html">Governança</a></li>
-            <li><a href="./observabilidade.html">Observabilidade</a></li>
-            <li><a href="./developer-guidelines.html">Guidelines</a></li>
-            <li><a class="active" href="./documentation.html">Documentação</a></li>
-            <li><a href="./databricks-setup.html">Databricks</a></li>
-            <li><a href="./diagrams.html">Diagramas</a></li>
-          </ul>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="index.html">
+            <span class="lang-inline is-active" data-lang="en">Home</span>
+            <span class="lang-inline" data-lang="pt">Início</span>
+          </a>
+          <a href="quickstart.html">
+            <span class="lang-inline is-active" data-lang="en">Quick Start</span>
+            <span class="lang-inline" data-lang="pt">Guia Rápido</span>
+          </a>
+          <a href="architecture.html">
+            <span class="lang-inline is-active" data-lang="en">Architecture</span>
+            <span class="lang-inline" data-lang="pt">Arquitetura</span>
+          </a>
+          <a href="documentation.html" class="active">
+            <span class="lang-inline is-active" data-lang="en">Documentation</span>
+            <span class="lang-inline" data-lang="pt">Documentação</span>
+          </a>
+          <a href="developer-guidelines.html">
+            <span class="lang-inline is-active" data-lang="en">Guidelines</span>
+            <span class="lang-inline" data-lang="pt">Guidelines</span>
+          </a>
+          <a href="governanca.html">
+            <span class="lang-inline is-active" data-lang="en">Governance</span>
+            <span class="lang-inline" data-lang="pt">Governança</span>
+          </a>
+          <a href="observabilidade.html">
+            <span class="lang-inline is-active" data-lang="en">Observability</span>
+            <span class="lang-inline" data-lang="pt">Observabilidade</span>
+          </a>
+          <a href="databricks-setup.html">
+            <span class="lang-inline is-active" data-lang="en">Databricks</span>
+            <span class="lang-inline" data-lang="pt">Databricks</span>
+          </a>
+          <a href="diagrams.html">
+            <span class="lang-inline is-active" data-lang="en">Diagrams</span>
+            <span class="lang-inline" data-lang="pt">Diagramas</span>
+          </a>
         </nav>
+        <div class="language-switch" role="group" aria-label="Language selector">
+          <button type="button" class="is-active" data-switch-lang="en">EN</button>
+          <button type="button" data-switch-lang="pt">PT</button>
+        </div>
+        <div class="socials">
+          <a class="icon-link" href="https://github.com/amarorn/orion_framework" target="_blank" rel="noopener" title="GitHub repository">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.1.82-.26.82-.58v-2.02c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.1-.75.08-.74.08-.74 1.22.09 1.86 1.26 1.86 1.26 1.08 1.85 2.83 1.31 3.52 1 .1-.78.42-1.32.76-1.63-2.67-.3-5.47-1.34-5.47-5.94 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.16 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.67 1.64.25 2.86.12 3.16.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.64-5.48 5.94.43.37.82 1.1.82 2.22v3.29c0 .32.21.69.82.58A12 12 0 0 0 12 .5Z"/>
+            </svg>
+          </a>
+        </div>
       </div>
     </header>
 
     <main>
-      <section class="content">
-        <h1>🧭 Oríon Framework · Documentação Completa</h1>
-        <p>
-          O <strong>Oríon Framework</strong> é uma plataforma de engenharia de dados baseada em
-          <strong>Clean Architecture</strong> e <strong>SOLID</strong>, projetada para pipelines
-          declarativas, idempotentes e observáveis.
-        </p>
+      <section class="hero">
+        <div class="layout hero-content">
+          <div class="lang-block is-active" data-lang="en">
+            <div class="hero-badge">Complete Documentation</div>
+            <h1>Orion Framework Documentation</h1>
+            <p>
+              Complete reference guide covering fundamental concepts, detailed flows, usage guides and API references for the Orion Framework.
+            </p>
+          </div>
+          <div class="lang-block" data-lang="pt">
+            <div class="hero-badge">Documentação Completa</div>
+            <h1>Documentação do Orion Framework</h1>
+            <p>
+              Guia de referência completo cobrindo conceitos fundamentais, fluxos detalhados, guias de uso e referência de APIs do Orion Framework.
+            </p>
+          </div>
+        </div>
+      </section>
 
-        <h2>Visão Geral</h2>
-        <p>
-          Com o Oríon você constrói pipelines compostas por <em>nodes</em> (funções Python) que
-          recebem um <code>OrionContext</code> com dependências resolvidas (catalog, logger e
-          configurações). A execução sequencial garante previsibilidade e facilita o debugging.
-        </p>
-        <ul>
-          <li><strong>Clean Architecture</strong>: separação clara de responsabilidades.</li>
-          <li><strong>Type Safety</strong>: uso extensivo de type hints.</li>
-          <li><strong>Observabilidade</strong>: logging contextual integrado.</li>
-          <li><strong>Extensibilidade</strong>: conectores plugáveis.</li>
-          <li><strong>Idempotência</strong>: execução determinística.</li>
-        </ul>
+      <section class="section">
+        <div class="layout">
+          <div class="content">
+            <div class="lang-block is-active" data-lang="en">
+              <h2>Core Concepts</h2>
+              <p>Orion allows you to build declarative and type-safe data pipelines, where each step (node) can consume and produce data flexibly, with support for multiple storage backends through connectors.</p>
 
-        <h2>Arquitetura em camadas</h2>
-        <pre class="mermaid">graph TB
-    subgraph Application
-        CLI[CLI]
-        Runner[PipelineRunner]
-        Builder[PipelineBuilder]
-    end
-    subgraph Core
-        Pipeline[Pipeline]
-        Node[Node]
-        Dataset[Dataset]
-        Interfaces[Interfaces]
-        UseCase[RunPipelineUseCase]
-    end
-    subgraph Infrastructure
-        Catalog[Catalog]
-        Local[LocalCSVConnector]
-        DB[DatabricksConnector]
-        Logger[ConsoleLogger]
-        Context[OrionContext]
-    end
+              <h3>Key Features</h3>
+              <ul>
+                <li><strong>Clean Architecture</strong>: Clear separation of responsibilities in layers</li>
+                <li><strong>Type Safety</strong>: Mandatory type hints and automatic validation</li>
+                <li><strong>Observability</strong>: Structured and contextual logging</li>
+                <li><strong>Extensibility</strong>: Pluggable connectors for different data sources</li>
+                <li><strong>Idempotency</strong>: Deterministic and reproducible executions</li>
+                <li><strong>Declarative</strong>: Pipelines defined simply and readably</li>
+              </ul>
 
-    CLI --> Runner
-    CLI --> Builder
-    Runner --> UseCase
-    UseCase --> Pipeline
-    Pipeline --> Node
-    Node --> Interfaces
-    Node --> Context
-    Context --> Catalog
-    Catalog --> Local
-    Catalog --> DB</pre>
+              <h2>Data Flow</h2>
+              <p>Orion organizes pipelines through a <strong>PipelineBuilder</strong> that orchestrates pure functions (nodes) executed with an <strong>OrionContext</strong>. The context provides catalogs, connectors and logging.</p>
 
-        <h2>Fluxo de dados</h2>
-        <pre class="mermaid">graph LR
-    CLI[CLI: orion run] --> CatalogStep[Carregar catalog.yml]
-    CatalogStep --> ContextStep[Criar OrionContext]
-    ContextStep --> PipelineStep[Carregar Pipeline]
-    PipelineStep --> RunnerStep[PipelineRunner]
-    RunnerStep --> ExecuteStep[RunPipelineUseCase]
-    ExecuteStep --> Loop{Iterar nodes}
-    Loop -->|Inputs em memória| Memory
-    Loop -->|Catalog| CatalogLoad
-    CatalogLoad --> Connectors
-    Connectors --> ExecuteNode
-    Memory --> ExecuteNode
-    ExecuteNode --> Outputs[Outputs normalizados]
-    Outputs --> Persist[Auto save no catalog]
-    Persist --> Loop
-    Outputs --> Resultado[Retornar data]</pre>
+              <div class="code-block">
+                <pre><code>CLI → Catalog → Context → Pipeline → Nodes → Connectors → Storage</code></pre>
+              </div>
 
-        <h2>Guia rápido</h2>
-        <p>
-          Para iniciar um projeto, siga os passos do <a href="./quickstart.html">Guia de Início Rápido</a>:
-        </p>
-        <ol>
-          <li>Configure diretórios e <code>catalog.yml</code>.</li>
-          <li>Implemente funções <code>extract</code>, <code>transform</code> e <code>load</code>.</li>
-          <li>Monte a pipeline com <code>PipelineBuilder</code>.</li>
-          <li>Execute com <code>orion run</code>.</li>
-        </ol>
+              <h2>Main Components</h2>
+              <h3>Pipeline</h3>
+              <p>Orchestrates the sequence of nodes and manages execution order.</p>
 
-        <h2>Conceitos fundamentais</h2>
-        <ul>
-          <li><strong>Node</strong>: função que recebe <code>context</code> e inputs e devolve outputs.</li>
-          <li><strong>Pipeline</strong>: sequência ordenada de nodes.</li>
-          <li><strong>Data Catalog</strong>: mapeia nomes lógicos para conectores físicos.</li>
-          <li><strong>OrionContext</strong>: injeta dependências durante a execução.</li>
-        </ul>
+              <h3>Node</h3>
+              <p>Encapsulates a transformation. Pure functions that receive context and inputs, returning outputs.</p>
 
-        <h2>Guia de uso</h2>
-        <h3>Definição de pipeline</h3>
-        <pre><code class="language-python">from orion_framework.application.pipeline.builder import PipelineBuilder
-from .nodes import extract, transform, load
+              <h3>Catalog</h3>
+              <p>Maintains the mapping of logical dataset names to physical connectors.</p>
 
-def create_pipeline():
-    builder = PipelineBuilder("pipeline_clientes")
-    builder.add_node(extract, inputs=[], outputs=["clientes_raw"])
-    builder.add_node(transform, inputs=["clientes_raw"], outputs=["clientes_processados"])
-    builder.add_node(load, inputs=["clientes_processados"], outputs=[])
-    return builder.build()</code></pre>
+              <h3>Connector</h3>
+              <p>Implements specific persistence for different storage backends (CSV, Databricks, etc.).</p>
 
-        <h3>Execução</h3>
-        <pre><code class="language-bash">orion run \
-  --module examples.pipeline_clientes.pipeline \
-  --catalog examples/catalog.yml</code></pre>
+              <h3>Context</h3>
+              <p>OrionContext centralizes catalog access, logging and configuration.</p>
+            </div>
 
-        <h3>Catalog</h3>
-        <pre><code class="language-yaml">clientes_raw:
-  type: local_csv
-  path: data/raw/clientes.csv
+            <div class="lang-block" data-lang="pt">
+              <h2>Conceitos Fundamentais</h2>
+              <p>O Orion permite construir pipelines de dados declarativos e type-safe, onde cada etapa (node) pode consumir e produzir dados de forma flexível, com suporte a múltiplos backends de armazenamento através de conectores.</p>
 
-clientes_processados:
-  type: databricks
-  table: analytics.clientes_processed
-  mode: overwrite</code></pre>
+              <h3>Características Principais</h3>
+              <ul>
+                <li><strong>Clean Architecture</strong>: Separação clara de responsabilidades em camadas</li>
+                <li><strong>Type Safety</strong>: Type hints obrigatórios e validação automática</li>
+                <li><strong>Observabilidade</strong>: Logging estruturado e contextual</li>
+                <li><strong>Extensibilidade</strong>: Conectores plugáveis para diferentes fontes de dados</li>
+                <li><strong>Idempotência</strong>: Execuções determinísticas e reproduzíveis</li>
+                <li><strong>Declarativo</strong>: Pipelines definidas de forma simples e legível</li>
+              </ul>
 
-        <h2>API Reference</h2>
-        <ul>
-          <li><code>PipelineBuilder.add_node(func, inputs, outputs)</code>: adiciona etapas.</li>
-          <li><code>OrionContext.catalog</code>: acesso a <code>load</code> e <code>save</code>.</li>
-          <li><code>PipelineRunner.run(pipeline, context)</code>: executa pipelines.</li>
-        </ul>
+              <h2>Fluxo de Dados</h2>
+              <p>O Orion organiza pipelines por meio de um <strong>PipelineBuilder</strong> que orquestra funções puras (nodes) executadas com um <strong>OrionContext</strong>. O contexto entrega catálogos, conectores e logging.</p>
 
-        <h2>Exemplos</h2>
-        <p>
-          Veja a pasta <code>examples/</code> para pipelines completas, incluindo integrações com
-          Databricks.
-        </p>
+              <div class="code-block">
+                <pre><code>CLI → Catalog → Context → Pipeline → Nodes → Connectors → Storage</code></pre>
+              </div>
+
+              <h2>Componentes Principais</h2>
+              <h3>Pipeline</h3>
+              <p>Orquestra a sequência de nodes e gerencia a ordem de execução.</p>
+
+              <h3>Node</h3>
+              <p>Encapsula uma transformação. Funções puras que recebem contexto e inputs, retornando outputs.</p>
+
+              <h3>Catalog</h3>
+              <p>Mantém o mapeamento de nomes lógicos de datasets para conectores físicos.</p>
+
+              <h3>Connector</h3>
+              <p>Implementa persistência específica para diferentes backends de armazenamento (CSV, Databricks, etc.).</p>
+
+              <h3>Context</h3>
+              <p>OrionContext centraliza acesso ao catálogo, logging e configuração.</p>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
 
-    <footer>
-      <p>Oríon Framework · Última atualização 2024 · <a href="./developer-guidelines.html">Contribua com o projeto</a></p>
+    <footer class="site-footer">
+      <div class="layout footer-content">
+        <div class="footer-brand">
+          <img src="orion_logo_embedded.svg" alt="Orion Framework Logo" class="logo-img">
+          <div class="lang-block is-active" data-lang="en">
+            <p>Orion Framework — weaving classical navigation principles into future-ready data engineering.</p>
+          </div>
+          <div class="lang-block" data-lang="pt">
+            <p>Orion Framework — tecendo princípios clássicos de navegação em engenharia de dados pronta para o futuro.</p>
+          </div>
+        </div>
+      </div>
+      <div class="layout footer-meta">
+        <span class="lang-inline is-active" data-lang="en">© <span data-year>2024</span> Orion Framework. Crafted with constellations and clean code.</span>
+        <span class="lang-inline" data-lang="pt">© <span data-year>2024</span> Orion Framework. Criado com constelações e clean code.</span>
+      </div>
     </footer>
+
+    <script src="assets/scripts.js"></script>
   </body>
 </html>
+
