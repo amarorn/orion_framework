@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4d99a517-1d9c-4164-b309-7af33cc025bd" name="Changes" comment="" />
+    <list default="true" id="4d99a517-1d9c-4164-b309-7af33cc025bd" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -184,8 +186,17 @@
       <workItem from="1762023211335" duration="875000" />
       <workItem from="1762056946734" duration="306000" />
       <workItem from="1762057269795" duration="13979000" />
-      <workItem from="1762136372743" duration="634000" />
+      <workItem from="1762136372743" duration="1704000" />
     </task>
+    <task id="LOCAL-00001" summary="Enhance architecture documentation with detailed sections on layered architecture, context boundaries, data flow, and node lifecycle. Introduce navigation elements for improved accessibility and update styles for better presentation.">
+      <option name="closed" value="true" />
+      <created>1762138195471</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1762138195471</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,5 +212,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Enhance architecture documentation with detailed sections on layered architecture, context boundaries, data flow, and node lifecycle. Introduce navigation elements for improved accessibility and update styles for better presentation." />
+    <option name="LAST_COMMIT_MESSAGE" value="Enhance architecture documentation with detailed sections on layered architecture, context boundaries, data flow, and node lifecycle. Introduce navigation elements for improved accessibility and update styles for better presentation." />
   </component>
 </project>
