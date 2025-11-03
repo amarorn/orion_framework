@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handoff Analista · Orion Framework</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+  </head>
+  <body>
+    <div class="floating-orbs" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <header class="site-header">
+      <div class="layout nav">
+        <a class="brand" href="index.html">
+          <img src="orion_logo_embedded.svg" alt="Orion Framework Logo" class="logo-img">
+          <span>Orion Framework</span>
+        </a>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="index.html">
+            <span class="lang-inline is-active" data-lang="en">Home</span>
+            <span class="lang-inline" data-lang="pt">Início</span>
+          </a>
+          <a href="quickstart.html">
+            <span class="lang-inline is-active" data-lang="en">Quick Start</span>
+            <span class="lang-inline" data-lang="pt">Guia Rápido</span>
+          </a>
+          <a href="architecture.html">
+            <span class="lang-inline is-active" data-lang="en">Architecture</span>
+            <span class="lang-inline" data-lang="pt">Arquitetura</span>
+          </a>
+          <a href="documentation.html">
+            <span class="lang-inline is-active" data-lang="en">Documentation</span>
+            <span class="lang-inline" data-lang="pt">Documentação</span>
+          </a>
+          <a href="developer-guidelines.html">
+            <span class="lang-inline is-active" data-lang="en">Guidelines</span>
+            <span class="lang-inline" data-lang="pt">Guidelines</span>
+          </a>
+          <a href="governanca.html">
+            <span class="lang-inline is-active" data-lang="en">Governance</span>
+            <span class="lang-inline" data-lang="pt">Governança</span>
+          </a>
+          <a href="observabilidade.html">
+            <span class="lang-inline is-active" data-lang="en">Observability</span>
+            <span class="lang-inline" data-lang="pt">Observabilidade</span>
+          </a>
+          <a href="databricks-setup.html">
+            <span class="lang-inline is-active" data-lang="en">Databricks</span>
+            <span class="lang-inline" data-lang="pt">Databricks</span>
+          </a>
+          <a href="diagrams.html">
+            <span class="lang-inline is-active" data-lang="en">Diagrams</span>
+            <span class="lang-inline" data-lang="pt">Diagramas</span>
+          </a>
+        </nav>
+        <div class="language-switch" role="group" aria-label="Language selector">
+          <button type="button" class="is-active" data-switch-lang="en">EN</button>
+          <button type="button" data-switch-lang="pt">PT</button>
+        </div>
+        <div class="socials">
+          <a class="icon-link" href="https://github.com/amarorn/orion_framework" target="_blank" rel="noopener" title="GitHub repository">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.1.82-.26.82-.58v-2.02c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.1-.75.08-.74.08-.74 1.22.09 1.86 1.26 1.86 1.26 1.08 1.85 2.83 1.31 3.52 1 .1-.78.42-1.32.76-1.63-2.67-.3-5.47-1.34-5.47-5.94 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.16 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.67 1.64.25 2.86.12 3.16.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.64-5.48 5.94.43.37.82 1.1.82 2.22v3.29c0 .32.21.69.82.58A12 12 0 0 0 12 .5Z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="layout hero-content">
+          <div class="lang-block is-active" data-lang="en">
+            <div class="hero-badge">Collaboration</div>
+            <h1>Analyst Handoff Guide</h1>
+            <p>
+              Align analysts and engineers on Orion deliveries with an SQL-first handoff process, shared templates and clear acceptance rules.
+            </p>
+          </div>
+          <div class="lang-block" data-lang="pt">
+            <div class="hero-badge">Colaboração</div>
+            <h1>Guia de Handoff Analista</h1>
+            <p>
+              Alinhe analistas e engenheiros nas entregas Orion com um handoff orientado a SQL, mantendo template compartilhado e critérios de aceite claros.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="layout">
+          <div class="content">
+            <div class="lang-block is-active" data-lang="en">
+              <h2>How to Use the Handoff Template</h2>
+              <p class="section-lead">
+                The template bridges business questions and Orion implementation. Follow the steps to keep requirements, SQL and validation aligned across teams.
+              </p>
+              <div class="info-note">
+                <p>Download the template using the button below and keep it attached to your ticket so engineering can trace context, SQL draft and validation in one place.</p>
+              </div>
+              <div class="grid three">
+                <article class="card">
+                  <h3>1. Context Sheet</h3>
+                  <p>Capture the business goal, datasets, grain, freshness and constraints.</p>
+                  <ul>
+                    <li>List catalog aliases when known</li>
+                    <li>Attach sample rows or screenshots</li>
+                    <li>Identify stakeholders and compliance rules</li>
+                  </ul>
+                </article>
+                <article class="card">
+                  <h3>2. Requirements → SQL</h3>
+                  <p>Draft the core query using catalog aliases and note open questions.</p>
+                  <ul>
+                    <li>Highlight joins, filters and calculations</li>
+                    <li>Use comments to surface doubts</li>
+                    <li>Ensure ordering and limits are explicit</li>
+                  </ul>
+                </article>
+                <article class="card">
+                  <h3>3. Impact Matrix &amp; Validation</h3>
+                  <p>Map result columns to sources and define the acceptance check.</p>
+                  <ul>
+                    <li>Flag new connectors or catalog entries</li>
+                    <li>Assign ownership for each dataset</li>
+                    <li>Describe one deterministic validation scenario</li>
+                  </ul>
+                </article>
+              </div>
+            </div>
+
+            <div class="lang-block" data-lang="pt">
+              <h2>Como Usar o Template de Handoff</h2>
+              <p class="section-lead">
+                O template conecta a pergunta de negócio à implementação no Orion. Siga os passos para manter requisitos, SQL e validação alinhados entre as equipes.
+              </p>
+              <div class="info-note">
+                <p>Baixe o template pelo botão abaixo e mantenha-o anexado ao ticket para que a engenharia tenha contexto, SQL esboçada e validação em um único lugar.</p>
+              </div>
+              <div class="grid three">
+                <article class="card">
+                  <h3>1. Ficha de Contexto</h3>
+                  <p>Registre objetivo, datasets, granularidade, recorte temporal e restrições.</p>
+                  <ul>
+                    <li>Informe aliases do catálogo quando existirem</li>
+                    <li>Anexe linhas de exemplo ou prints esperados</li>
+                    <li>Identifique stakeholders e regras de compliance</li>
+                  </ul>
+                </article>
+                <article class="card">
+                  <h3>2. Requisitos → SQL</h3>
+                  <p>Esboce a consulta principal usando aliases do catálogo e sinalize dúvidas.</p>
+                  <ul>
+                    <li>Evidencie joins, filtros e cálculos</li>
+                    <li>Use comentários para destacar pontos em aberto</li>
+                    <li>Garanta que ordenações e limites estejam claros</li>
+                  </ul>
+                </article>
+                <article class="card">
+                  <h3>3. Matriz &amp; Validação</h3>
+                  <p>Mapeie colunas do resultado para suas origens e defina o teste de aceite.</p>
+                  <ul>
+                    <li>Sinalize conectores ou entradas novas no catálogo</li>
+                    <li>Associe responsáveis por dataset</li>
+                    <li>Descreva um cenário determinístico de validação</li>
+                  </ul>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="layout">
+          <div class="content">
+            <div class="lang-block is-active" data-lang="en">
+              <h2>Steps for Analysts</h2>
+              <ol>
+                <li>Download the template and duplicate it for your request.</li>
+                <li>Fill the context sheet and add sample data or visuals.</li>
+                <li>Draft the SQL query, marking uncertainties with comments.</li>
+                <li>Complete the impact matrix and validation scenario.</li>
+                <li>Attach the filled template to the ticket opened for engineering.</li>
+              </ol>
+              <div class="info-note">
+                <p>Keep the SQL draft runnable in your exploration environment whenever possible; share query IDs or notebooks so engineers can reproduce the exact logic.</p>
+              </div>
+              <p>
+                The more precise the SQL draft, the faster the engineering team can build or adjust nodes and catalog entries.
+              </p>
+            </div>
+
+            <div class="lang-block" data-lang="pt">
+              <h2>Passos para Analistas</h2>
+              <ol>
+                <li>Baixe o template e crie uma cópia para a sua demanda.</li>
+                <li>Preencha a ficha de contexto e inclua dados ou visuais de exemplo.</li>
+                <li>Esboce a query SQL, sinalizando dúvidas com comentários.</li>
+                <li>Complete a matriz de impacto e o cenário de validação.</li>
+                <li>Anexe o template preenchido ao ticket aberto para engenharia.</li>
+              </ol>
+              <div class="info-note">
+                <p>Mantenha a SQL executável no ambiente de exploração sempre que possível; compartilhe IDs de consultas ou notebooks para que a engenharia reproduza exatamente a lógica.</p>
+              </div>
+              <p>
+                Quanto mais preciso o esboço SQL, mais rápido o time de engenharia consegue criar nodes e ajustar o catálogo.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="layout">
+          <div class="content">
+            <div class="lang-block is-active" data-lang="en">
+              <h2>Steps for Engineers</h2>
+              <ol>
+                <li>Review the context, SQL draft and validation scenario.</li>
+                <li>Confirm catalog aliases and identify missing datasets.</li>
+                <li>Translate the SQL into Orion nodes, following the provided example.</li>
+                <li>Update the catalog and pipeline builder with the agreed outputs.</li>
+                <li>Run the validation scenario and share results with the analyst.</li>
+              </ol>
+              <div class="info-note">
+                <p>Document any deviations from the original SQL directly in the template so analysts and stakeholders understand adjustments made during implementation.</p>
+              </div>
+              <p>
+                Keep the template updated during implementation to capture additional assumptions or changes agreed with stakeholders.
+              </p>
+            </div>
+
+            <div class="lang-block" data-lang="pt">
+              <h2>Passos para Engenheiros</h2>
+              <ol>
+                <li>Revise o contexto, esboço SQL e cenário de validação.</li>
+                <li>Confirme aliases do catálogo e identifique datasets faltantes.</li>
+                <li>Traduza a SQL em nodes Orion conforme o exemplo fornecido.</li>
+                <li>Atualize catálogo e pipeline builder com os outputs acordados.</li>
+                <li>Execute o teste de validação e compartilhe o resultado com o analista.</li>
+              </ol>
+              <div class="info-note">
+                <p>Registre no template qualquer ajuste em relação à SQL original para que analistas e stakeholders entendam as decisões tomadas na implementação.</p>
+              </div>
+              <p>
+                Mantenha o template atualizado durante a implementação para registrar premissas adicionais ou ajustes combinados com os stakeholders.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="layout">
+          <div class="content">
+            <div class="cta-block">
+              <div class="lang-block is-active" data-lang="en">
+                <h2>Download the Template</h2>
+                <p>
+                  Access the ready-to-use handoff template and adapt it to your workflow. It includes examples of catalog updates, node creation and validation checklists.
+                </p>
+                <p class="info-inline">When you click the button, the Markdown file is downloaded directly to your default folder.</p>
+                <a class="btn btn-primary" href="../docs/ANALISTA_HANDOFF.md" download="ANALISTA_HANDOFF.md">
+                  Open Analyst → Engineering Template
+                </a>
+              </div>
+              <div class="lang-block" data-lang="pt">
+                <h2>Baixe o Template</h2>
+                <p>
+                  Acesse o template de handoff pronto para uso e adapte ao seu fluxo. Ele traz exemplos de ajustes no catálogo, criação de nodes e checklist de validação.
+                </p>
+                <p class="info-inline">Ao clicar no botão, o arquivo Markdown é baixado diretamente na sua pasta padrão.</p>
+                <a class="btn btn-primary" href="../docs/ANALISTA_HANDOFF.md" download="ANALISTA_HANDOFF.md">
+                  Abrir Template Analista → Engenharia
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="layout footer-content">
+        <div class="footer-brand">
+          <img src="orion_logo_embedded.svg" alt="Orion Framework Logo" class="logo-img">
+          <div class="lang-block is-active" data-lang="en">
+            <p>Orion Framework — weaving classical navigation principles into future-ready data engineering.</p>
+          </div>
+          <div class="lang-block" data-lang="pt">
+            <p>Orion Framework — tecendo princípios clássicos de navegação em engenharia de dados pronta para o futuro.</p>
+          </div>
+        </div>
+      </div>
+      <div class="layout footer-meta">
+        <span class="lang-inline is-active" data-lang="en">© <span data-year>2024</span> Orion Framework. Crafted with constellations and clean code.</span>
+        <span class="lang-inline" data-lang="pt">© <span data-year>2024</span> Orion Framework. Criado com constelações e clean code.</span>
+      </div>
+    </footer>
+    <script src="assets/scripts.js"></script>
+  </body>
+</html>

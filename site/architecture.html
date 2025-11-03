@@ -82,14 +82,14 @@
             <div class="hero-badge">Architecture</div>
             <h1>Orion Framework Architecture</h1>
             <p>
-              The Orion architecture is inspired by Clean Architecture and SOLID principles, ensuring layer isolation, testability and ease of extension.
+              Explore the canonical models that shape Orion — boundaries, data flow and connector responsibilities working together for resilient pipelines.
             </p>
           </div>
           <div class="lang-block" data-lang="pt">
             <div class="hero-badge">Arquitetura</div>
             <h1>Arquitetura do Orion Framework</h1>
             <p>
-              A arquitetura do Orion é inspirada em Clean Architecture e nos princípios SOLID, garantindo isolamento de camadas, testabilidade e facilidade de extensão.
+              Explore os modelos de arquitetura que orientam o Orion — limites, fluxo de dados e responsabilidades dos conectores alinhados para pipelines resilientes.
             </p>
           </div>
         </div>
@@ -99,64 +99,438 @@
         <div class="layout">
           <div class="content">
             <div class="lang-block is-active" data-lang="en">
-              <h2>Overview</h2>
-              <p>Orion follows <strong>Clean Architecture</strong> principles with three main layers:</p>
-              <ul>
-                <li><strong>Core Layer</strong>: Entities and interfaces, no external dependencies.</li>
-                <li><strong>Application Layer</strong>: Use cases, builders, runners and CLI commands.</li>
-                <li><strong>Infrastructure Layer</strong>: Concrete implementations (connectors, logging, persistence).</li>
-              </ul>
-
-              <h2>Design Principles</h2>
-              <h3>SOLID</h3>
-              <ul>
-                <li><strong>Single Responsibility</strong>: Each class has one reason to change.</li>
-                <li><strong>Open/Closed</strong>: Open for extension, closed for modification.</li>
-                <li><strong>Liskov Substitution</strong>: Implementations are interchangeable via interfaces.</li>
-                <li><strong>Interface Segregation</strong>: Small, focused interfaces.</li>
-                <li><strong>Dependency Inversion</strong>: Depend on abstractions, not concretions.</li>
-              </ul>
-
-              <h2>Execution Flow</h2>
-              <ol>
-                <li>CLI receives command: <code>orion run --module X --catalog Y</code></li>
-                <li>Load catalog from YAML file</li>
-                <li>Create OrionContext with catalog and logger</li>
-                <li>Load pipeline module</li>
-                <li>Execute use case: RunPipelineUseCase.execute()</li>
-                <li>Execute nodes sequentially, managing inputs/outputs</li>
-              </ol>
+              <nav class="architecture-nav" aria-label="Architecture sections">
+                <a href="#layered-architecture" class="nav-pill">Layered Model</a>
+                <a href="#context-boundaries" class="nav-pill">Boundaries</a>
+                <a href="#pipeline-flow" class="nav-pill">Data Flow</a>
+                <a href="#layer-sequence" class="nav-pill">Layer Sequence</a>
+                <a href="#connector-map" class="nav-pill">Connectors</a>
+                <a href="#node-lifecycle" class="nav-pill">Node Lifecycle</a>
+                <a href="#catalog-structure" class="nav-pill">Catalog</a>
+                <a href="#pipeline-lifecycle" class="nav-pill">Pipeline Lifecycle</a>
+                <a href="#analyst-handoff" class="nav-pill">Analyst Handoff</a>
+              </nav>
             </div>
 
             <div class="lang-block" data-lang="pt">
-              <h2>Visão Geral</h2>
-              <p>O Orion segue os princípios de <strong>Clean Architecture</strong> com três camadas principais:</p>
-              <ul>
-                <li><strong>Core Layer</strong>: Entidades e interfaces, sem dependências externas.</li>
-                <li><strong>Application Layer</strong>: Casos de uso, builders, runners e comandos CLI.</li>
-                <li><strong>Infrastructure Layer</strong>: Implementações concretas (conectores, logging, persistência).</li>
-              </ul>
-
-              <h2>Princípios de Design</h2>
-              <h3>SOLID</h3>
-              <ul>
-                <li><strong>Single Responsibility</strong>: Cada classe tem uma razão para mudar.</li>
-                <li><strong>Open/Closed</strong>: Aberto para extensão, fechado para modificação.</li>
-                <li><strong>Liskov Substitution</strong>: Implementações são intercambiáveis via interfaces.</li>
-                <li><strong>Interface Segregation</strong>: Interfaces pequenas e focadas.</li>
-                <li><strong>Dependency Inversion</strong>: Depender de abstrações, não de concretizações.</li>
-              </ul>
-
-              <h2>Fluxo de Execução</h2>
-              <ol>
-                <li>CLI recebe comando: <code>orion run --module X --catalog Y</code></li>
-                <li>Carrega catalog do arquivo YAML</li>
-                <li>Cria OrionContext com catalog e logger</li>
-                <li>Carrega módulo da pipeline</li>
-                <li>Executa caso de uso: RunPipelineUseCase.execute()</li>
-                <li>Executa nodes sequencialmente, gerenciando inputs/outputs</li>
-              </ol>
+              <nav class="architecture-nav" aria-label="Seções da arquitetura">
+                <a href="#layered-architecture" class="nav-pill">Modelo em Camadas</a>
+                <a href="#context-boundaries" class="nav-pill">Limites</a>
+                <a href="#pipeline-flow" class="nav-pill">Fluxo de Dados</a>
+                <a href="#layer-sequence" class="nav-pill">Sequência</a>
+                <a href="#connector-map" class="nav-pill">Conectores</a>
+                <a href="#node-lifecycle" class="nav-pill">Ciclo do Node</a>
+                <a href="#catalog-structure" class="nav-pill">Catálogo</a>
+                <a href="#pipeline-lifecycle" class="nav-pill">Ciclo de Vida</a>
+                <a href="#analyst-handoff" class="nav-pill">Colaboração</a>
+              </nav>
             </div>
+
+            <article id="layered-architecture" class="architecture-section">
+              <div class="lang-block is-active" data-lang="en">
+                <h2>Layered Architecture Model</h2>
+                <p class="section-lead">
+                  Orion enforces a layered model to keep pipeline logic independent from orchestration, logging and storage concerns.
+                </p>
+                <div class="grid three">
+                  <article class="card">
+                    <h3>Core Layer</h3>
+                    <p>Pure business rules for pipelines, kept free from external dependencies.</p>
+                    <ul>
+                      <li>Entities for pipelines, nodes and datasets</li>
+                      <li>Interfaces describing connectors, logging and catalog access</li>
+                      <li>Use cases such as <code>RunPipelineUseCase</code> to drive execution</li>
+                    </ul>
+                  </article>
+                  <article class="card">
+                    <h3>Application Layer</h3>
+                    <p>Coordinates orchestration by composing core abstractions.</p>
+                    <ul>
+                      <li>CLI, pipeline builders and runners</li>
+                      <li>Wires the context, catalog and logging for each execution</li>
+                      <li>Guarantees dependency inversion — only depends on core interfaces</li>
+                    </ul>
+                  </article>
+                  <article class="card">
+                    <h3>Infrastructure Layer</h3>
+                    <p>Implements integrations while honoring contracts defined by core.</p>
+                    <ul>
+                      <li>Connectors for filesystems, warehouses and APIs</li>
+                      <li>Concrete loggers and configuration providers</li>
+                      <li>Persists datasets via <code>DataCatalog</code> and context helpers</li>
+                    </ul>
+                  </article>
+                </div>
+              </div>
+              <div class="lang-block" data-lang="pt">
+                <h2>Modelo em Camadas</h2>
+                <p class="section-lead">
+                  O Orion aplica um modelo em camadas para manter a lógica das pipelines isolada de orquestração, logging e persistência.
+                </p>
+                <div class="grid three">
+                  <article class="card">
+                    <h3>Core Layer</h3>
+                    <p>Regras de negócio puras para pipelines, sem dependências externas.</p>
+                    <ul>
+                      <li>Entidades de pipeline, nodes e datasets</li>
+                      <li>Interfaces para conectores, logging e acesso ao catálogo</li>
+                      <li>Casos de uso como <code>RunPipelineUseCase</code> para conduzir a execução</li>
+                    </ul>
+                  </article>
+                  <article class="card">
+                    <h3>Application Layer</h3>
+                    <p>Coordena a orquestração compondo as abstrações do core.</p>
+                    <ul>
+                      <li>CLI, builders de pipeline e runners</li>
+                      <li>Configura contexto, catálogo e logging para cada execução</li>
+                      <li>Garante inversão de dependência — depende apenas de interfaces do core</li>
+                    </ul>
+                  </article>
+                  <article class="card">
+                    <h3>Infrastructure Layer</h3>
+                    <p>Implementa integrações respeitando os contratos definidos no core.</p>
+                    <ul>
+                      <li>Conectores para arquivos, warehouses e APIs</li>
+                      <li>Loggers concretos e provedores de configuração</li>
+                      <li>Persiste datasets via <code>DataCatalog</code> e utilidades do contexto</li>
+                    </ul>
+                  </article>
+                </div>
+              </div>
+            </article>
+
+            <article id="context-boundaries" class="architecture-section">
+              <div class="lang-block is-active" data-lang="en">
+                <h2>Context Boundaries</h2>
+                <p>
+                  External actors reach Orion exclusively through the CLI and configuration artifacts, while the layered core mediates every call to underlying services.
+                </p>
+              </div>
+              <div class="lang-block" data-lang="pt">
+                <h2>Limites de Contexto</h2>
+                <p>
+                  Atores externos acessam o Orion exclusivamente pela CLI e artefatos de configuração, enquanto o núcleo em camadas media cada chamada aos serviços subjacentes.
+                </p>
+              </div>
+              <div class="mermaid-block">
+                <pre class="mermaid">graph LR
+    subgraph "External Actors"
+        Operator["Operator / CLI User"]
+        Scheduler["Scheduler / Orchestrator"]
+        Repo["Pipeline Module"]
+        CatalogFile["Catalog YAML"]
+        SourceSystems["Source Systems"]
+        TargetStores["Target Stores"]
+    end
+
+    subgraph "Orion Framework"
+        CLI["orion CLI"]
+        Application["Application Layer"]
+        Core["Core Layer"]
+        Infrastructure["Infrastructure Layer"]
+    end
+
+    Operator --> CLI
+    Scheduler --> CLI
+    Repo --> Application
+    CatalogFile --> Application
+    CLI --> Application
+    Application --> Core
+    Core --> Infrastructure
+    SourceSystems <---> Infrastructure
+    Infrastructure --> TargetStores
+</pre>
+              </div>
+            </article>
+
+            <article id="pipeline-flow" class="architecture-section">
+              <div class="lang-block is-active" data-lang="en">
+                <h2>Data Flow Through a Pipeline</h2>
+                <p>
+                  Each run resolves configuration, builds the execution context and iterates nodes while caching inputs in memory and persisting outputs when the catalog requires.
+                </p>
+              </div>
+              <div class="lang-block" data-lang="pt">
+                <h2>Fluxo de Dados na Pipeline</h2>
+                <p>
+                  Cada execução resolve a configuração, monta o contexto e itera os nodes armazenando entradas em memória e persistindo saídas quando o catálogo exige.
+                </p>
+              </div>
+              <div class="mermaid-block">
+                <pre class="mermaid">flowchart TD
+    CLI["CLI Command: orion run"] --> LoadCatalog["Load catalog.yml"]
+    LoadCatalog --> BuildContext["Build OrionContext (catalog, logger, hooks)"]
+    BuildContext --> LoadPipeline["PipelineBuilder imports module"]
+    LoadPipeline --> UseCase["RunPipelineUseCase"]
+    UseCase --> Iterate{"Next node?"}
+    Iterate -->|Resolve inputs| ResolveInputs["Read from in-memory cache"]
+    ResolveInputs --> MemoryBranch{"Inputs missing?"}
+    MemoryBranch -->|No| ExecuteNode["Execute node function"]
+    MemoryBranch -->|Yes| FetchCatalog["Catalog.load(dataset)"]
+    FetchCatalog --> Connectors["Connectors fetch data"]
+    Connectors --> ExecuteNode
+    ExecuteNode --> Persist["Store outputs in cache"]
+    Persist --> CatalogCheck{"Catalog entry configured?"}
+    CatalogCheck -->|Yes| SaveCatalog["Catalog.save(outputs)"]
+    CatalogCheck -->|No| Iterate
+    SaveCatalog --> Iterate
+    Iterate -->|All nodes processed| Finish["Return collected data"]
+</pre>
+              </div>
+            </article>
+
+            <article id="layer-sequence" class="architecture-section">
+              <div class="lang-block is-active" data-lang="en">
+                <h2>Layer Communication Sequence</h2>
+                <p>
+                  The sequence diagram highlights how the CLI request travels across layers, keeping application logic thin and delegating work to core and infrastructure components.
+                </p>
+              </div>
+              <div class="lang-block" data-lang="pt">
+                <h2>Sequência de Comunicação</h2>
+                <p>
+                  O diagrama de sequência mostra como a requisição da CLI percorre as camadas, mantendo a lógica de aplicação enxuta e delegando trabalho a core e infraestrutura.
+                </p>
+              </div>
+              <div class="mermaid-block">
+                <pre class="mermaid">sequenceDiagram
+    participant Operator as Operator
+    participant CLI as CLI
+    participant Builder as PipelineBuilder
+    participant UseCase as RunPipelineUseCase
+    participant Catalog as DataCatalog
+    participant Connector as Connector Adapter
+    participant Node as Pipeline Node
+
+    Operator->>CLI: orion run --module pipeline --catalog catalog.yml
+    CLI->>Builder: load_pipeline(module)
+    Builder-->>CLI: pipeline definition
+    CLI->>UseCase: execute(pipeline, context)
+    UseCase->>Catalog: load(inputs)
+    Catalog->>Connector: fetch(dataset)
+    Connector-->>Catalog: dataset payload
+    Catalog-->>UseCase: provide inputs
+    UseCase->>Node: call(**kwargs)
+    Node-->>UseCase: outputs
+    UseCase->>Catalog: save(outputs)
+    Catalog->>Connector: persist(dataset)
+    Connector-->>Catalog: confirmation
+</pre>
+              </div>
+            </article>
+
+            <article id="connector-map" class="architecture-section">
+              <div class="lang-block is-active" data-lang="en">
+                <h2>Connector Interaction Map</h2>
+                <p>
+                  Infrastructure adapters plug into the catalog to abstract persistence mechanics while providing observability hooks through the shared context.
+                </p>
+              </div>
+              <div class="lang-block" data-lang="pt">
+                <h2>Mapa de Conectores</h2>
+                <p>
+                  Adaptadores de infraestrutura plugam-se ao catálogo para abstrair a persistência e expõem ganchos de observabilidade via contexto compartilhado.
+                </p>
+              </div>
+              <div class="mermaid-block">
+                <pre class="mermaid">graph TD
+    subgraph "Infrastructure Layer"
+        Context["OrionContext"]
+        Catalog["DataCatalog"]
+        Loader["Dataset Loader"]
+        Saver["Dataset Saver"]
+        Logger["Logger Adapter"]
+    end
+
+    subgraph "Connector Adapters"
+        FileConn["FilesystemConnector"]
+        DBConn["DatabricksConnector"]
+        APIConn["APIConnector"]
+    end
+
+    subgraph "External Services"
+        DataLake["Data Lake / Files"]
+        Warehouse["Warehouse"]
+        Services["HTTP Services"]
+    end
+
+    Context --> Catalog
+    Catalog --> Loader
+    Catalog --> Saver
+    Context --> Logger
+    Loader --> FileConn
+    Loader --> DBConn
+    Loader --> APIConn
+    Saver --> FileConn
+    Saver --> DBConn
+    Saver --> APIConn
+    FileConn --> DataLake
+   DBConn --> Warehouse
+    APIConn --> Services
+</pre>
+              </div>
+            </article>
+
+            <article id="node-lifecycle" class="architecture-section">
+              <div class="lang-block is-active" data-lang="en">
+                <h2>Node Execution Lifecycle</h2>
+                <p>
+                  A node resolves its inputs, executes custom logic with the Orion context and persists outputs whenever the catalog defines a matching dataset.
+                </p>
+              </div>
+              <div class="lang-block" data-lang="pt">
+                <h2>Ciclo de Execução do Node</h2>
+                <p>
+                  Um node resolve os inputs, executa lógica customizada com o contexto Orion e persiste os outputs sempre que o catálogo define um dataset correspondente.
+                </p>
+              </div>
+              <div class="mermaid-block">
+                <pre class="mermaid">sequenceDiagram
+    participant P as Pipeline
+    participant N as Node
+    participant C as Context
+    participant Cat as Catalog
+    participant Conn as Connector
+    participant Mem as Memory(data)
+
+    P->>N: Prepare inputs
+    loop For each input
+        N->>Mem: Is value cached?
+        alt In memory
+            Mem-->>N: Return cached value
+        else Not cached
+            N->>Cat: catalog.load(name)
+            Cat->>Conn: pick connector
+            Conn->>Conn: load()
+            Conn-->>Cat: data payload
+            Cat-->>N: provide value
+        end
+    end
+
+    N->>C: call(context, *inputs)
+    C->>C: process data
+    C->>C: logger.info(...)
+    C-->>N: outputs
+
+    N->>Mem: store outputs
+
+    alt Catalog entry exists
+        N->>Cat: catalog.save(output)
+        Cat->>Conn: pick connector
+        Conn->>Conn: save()
+    end
+
+    N-->>P: Node finished
+</pre>
+              </div>
+            </article>
+
+            <article id="catalog-structure" class="architecture-section">
+              <div class="lang-block is-active" data-lang="en">
+                <h2>Catalog Structure</h2>
+                <p>
+                  The catalog bridges YAML definitions and connector implementations, keeping metadata centralized while adapters handle the underlying storage.
+                </p>
+              </div>
+              <div class="lang-block" data-lang="pt">
+                <h2>Estrutura do Catálogo</h2>
+                <p>
+                  O catálogo faz a ponte entre definições YAML e implementações de conectores, centralizando metadados enquanto adaptadores cuidam do storage.
+                </p>
+              </div>
+              <div class="mermaid-block">
+                <pre class="mermaid">graph LR
+    subgraph "catalog.yml"
+        YAML["YAML File<br/>dataset: type: ..."]
+    end
+
+    subgraph "DataCatalog"
+        Entries["entries dict"]
+        Registry["connectors registry"]
+    end
+
+    subgraph "Connector Implementations"
+        Local["LocalCSVConnector"]
+        DB["DatabricksConnector"]
+    end
+
+    YAML -->|from_yaml| Entries
+    Entries -->|lookup| Local
+    Entries -->|lookup| DB
+    Entries -->|load/save| Local
+    Entries -->|load/save| DB
+</pre>
+              </div>
+            </article>
+
+            <article id="pipeline-lifecycle" class="architecture-section">
+              <div class="lang-block is-active" data-lang="en">
+                <h2>Pipeline Lifecycle</h2>
+                <p>
+                  Pipelines move from definition to execution and completion through well-defined stages managed by the builder, context and runner utilities.
+                </p>
+              </div>
+              <div class="lang-block" data-lang="pt">
+                <h2>Ciclo de Vida da Pipeline</h2>
+                <p>
+                  Pipelines evoluem da definição à execução e conclusão em estágios bem definidos gerenciados por builder, contexto e runner.
+                </p>
+              </div>
+              <div class="mermaid-block">
+                <pre class="mermaid">stateDiagram-v2
+    [*] --> Defined: PipelineBuilder.build()
+    Defined --> ContextReady: Create OrionContext
+    ContextReady --> Prepared: Load catalog.yml
+    Prepared --> Running: PipelineRunner.run()
+    Running --> ProcessingNode: For each node
+    ProcessingNode --> LoadingInputs: Resolve inputs
+    LoadingInputs --> Executing: Execute node
+    Executing --> Persisting: Save outputs (if catalog)
+    Persisting --> ProcessingNode
+    ProcessingNode --> Completed: All nodes processed
+    Completed --> [*]
+</pre>
+              </div>
+            </article>
+
+            <article id="analyst-handoff" class="architecture-section">
+              <div class="lang-block is-active" data-lang="en">
+                <h2>Analyst to Engineering Collaboration</h2>
+                <p>
+                  Orion promotes an SQL-first dialogue between analysts and engineers. Use the shared template to capture the business question, SQL sketch and validation before a new node is built.
+                </p>
+                <div class="info-note">
+                  <p>Visit the dedicated handoff page to see analyst and engineering walkthroughs, plus a ready-to-download template with catalog and node examples.</p>
+                </div>
+                <ul>
+                  <li>Collect context with the <a href="analyst-handoff.html">handoff template</a> (business need, datasets, grain, constraints).</li>
+                  <li>Draft the “Requirements → SQL” block highlighting joins, filters and open questions.</li>
+                  <li>Fill the impact matrix to map each output column back to a catalog entry or new source.</li>
+                  <li>Describe the validation scenario so engineers know how to certify the result.</li>
+                </ul>
+                <p>
+                  The document also exemplifies how the SQL draft becomes an Orion node and how to wire it into the pipeline builder.
+                </p>
+              </div>
+              <div class="lang-block" data-lang="pt">
+                <h2>Colaboração Analista → Engenharia</h2>
+                <p>
+                  O Orion incentiva a conversa em SQL entre analistas e engenheiros. Utilize o template compartilhado para registrar a demanda, o esboço SQL e a validação antes de criar um novo node.
+                </p>
+                <div class="info-note">
+                  <p>Acesse a página dedicada de handoff para conferir o passo a passo de analistas e engenheiros, além do template pronto com exemplos de catálogo e nodes.</p>
+                </div>
+                <ul>
+                  <li>Reúna o contexto com o <a href="analyst-handoff.html">template de handoff</a> (pergunta de negócio, datasets, granularidade, restrições).</li>
+                  <li>Preencha o bloco “Requisitos → SQL” destacando joins, filtros e dúvidas em aberto.</li>
+                  <li>Complete a matriz de impacto para mapear cada coluna de saída a um alias do catálogo ou nova fonte.</li>
+                  <li>Descreva o cenário de validação para que a engenharia saiba como certificar o resultado.</li>
+                </ul>
+                <p>
+                  O documento também mostra como o esboço SQL vira um node Orion e como registrá-lo no pipeline builder.
+                </p>
+              </div>
+            </article>
           </div>
         </div>
       </section>
@@ -183,4 +557,3 @@
     <script src="assets/scripts.js"></script>
   </body>
 </html>
-
