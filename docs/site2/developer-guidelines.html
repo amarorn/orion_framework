@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Guidelines · Orion Framework</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css">
+  </head>
+  <body>
+    <div class="floating-orbs" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <header class="site-header">
+      <div class="layout nav">
+        <a class="brand" href="index.html">
+          <img src="orion_logo_embedded.svg" alt="Orion Framework Logo" class="logo-img">
+          <span>Orion Framework</span>
+        </a>
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="index.html">
+            <span class="lang-inline is-active" data-lang="en">Home</span>
+            <span class="lang-inline" data-lang="pt">Início</span>
+          </a>
+          <a href="quickstart.html">
+            <span class="lang-inline is-active" data-lang="en">Quick Start</span>
+            <span class="lang-inline" data-lang="pt">Guia Rápido</span>
+          </a>
+          <a href="architecture.html">
+            <span class="lang-inline is-active" data-lang="en">Architecture</span>
+            <span class="lang-inline" data-lang="pt">Arquitetura</span>
+          </a>
+          <a href="documentation.html">
+            <span class="lang-inline is-active" data-lang="en">Documentation</span>
+            <span class="lang-inline" data-lang="pt">Documentação</span>
+          </a>
+          <a href="developer-guidelines.html" class="active">
+            <span class="lang-inline is-active" data-lang="en">Guidelines</span>
+            <span class="lang-inline" data-lang="pt">Guidelines</span>
+          </a>
+          <a href="governanca.html">
+            <span class="lang-inline is-active" data-lang="en">Governance</span>
+            <span class="lang-inline" data-lang="pt">Governança</span>
+          </a>
+          <a href="observabilidade.html">
+            <span class="lang-inline is-active" data-lang="en">Observability</span>
+            <span class="lang-inline" data-lang="pt">Observabilidade</span>
+          </a>
+          <a href="databricks-setup.html">
+            <span class="lang-inline is-active" data-lang="en">Databricks</span>
+            <span class="lang-inline" data-lang="pt">Databricks</span>
+          </a>
+          <a href="diagrams.html">
+            <span class="lang-inline is-active" data-lang="en">Diagrams</span>
+            <span class="lang-inline" data-lang="pt">Diagramas</span>
+          </a>
+        </nav>
+        <div class="language-switch" role="group" aria-label="Language selector">
+          <button type="button" class="is-active" data-switch-lang="en">EN</button>
+          <button type="button" data-switch-lang="pt">PT</button>
+        </div>
+        <div class="socials">
+          <a class="icon-link" href="https://github.com/amarorn/orion_framework" target="_blank" rel="noopener" title="GitHub repository">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.1.82-.26.82-.58v-2.02c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.1-.75.08-.74.08-.74 1.22.09 1.86 1.26 1.86 1.26 1.08 1.85 2.83 1.31 3.52 1 .1-.78.42-1.32.76-1.63-2.67-.3-5.47-1.34-5.47-5.94 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.16 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.67 1.64.25 2.86.12 3.16.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.64-5.48 5.94.43.37.82 1.1.82 2.22v3.29c0 .32.21.69.82.58A12 12 0 0 0 12 .5Z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="layout hero-content">
+          <div class="lang-block is-active" data-lang="en">
+            <div class="hero-badge">Contributor Guide</div>
+            <h1>Developer Guidelines</h1>
+            <p>
+              This guide describes best practices for collaborating with Orion Framework and keeping the codebase consistent, testable and easy to evolve.
+            </p>
+          </div>
+          <div class="lang-block" data-lang="pt">
+            <div class="hero-badge">Guia de Contribuição</div>
+            <h1>Developer Guidelines</h1>
+            <p>
+              Este guia descreve as práticas recomendadas para colaborar com o Orion Framework e manter a base de código consistente, testável e fácil de evoluir.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="layout">
+          <div class="content">
+            <div class="lang-block is-active" data-lang="en">
+              <h2>Prerequisites</h2>
+              <ul>
+                <li>Read the <a href="documentation.html">complete documentation</a>.</li>
+                <li>Set up the environment as per the <a href="quickstart.html">Quick Start Guide</a>.</li>
+                <li>Use Python 3.10+ with updated <code>pip</code>.</li>
+              </ul>
+
+              <h2>Architecture Standards</h2>
+              <p>The project follows <strong>Clean Architecture</strong> and <strong>SOLID</strong> principles.</p>
+              <ul>
+                <li><strong>Core (<code>core/</code>)</strong>: Only entities and interfaces, no external dependencies.</li>
+                <li><strong>Application (<code>application/</code>)</strong>: Use cases, services and CLI; depends only on contracts.</li>
+                <li><strong>Infrastructure (<code>infrastructure/</code>)</strong>: Concrete implementations (connectors, logging, persistence).</li>
+              </ul>
+
+              <h2>Code Style</h2>
+              <ul>
+                <li>Use complete <em>type hints</em> and <code>from __future__ import annotations</code> when necessary.</li>
+                <li>Prefer pure and composable functions in pipelines.</li>
+                <li>Descriptive names: Portuguese for documentation, English for code.</li>
+                <li>Do not wrap imports in <code>try/except</code> blocks.</li>
+                <li>Functions up to ~40 lines, extracting auxiliary responsibilities.</li>
+              </ul>
+
+              <h2>Pull Request Checklist</h2>
+              <ol>
+                <li>Add tests for the change.</li>
+                <li>Run <code>pytest</code> locally.</li>
+                <li>Update relevant documentation.</li>
+                <li>Clearly describe the PR context (with screenshots when necessary).</li>
+                <li>Request review before merging.</li>
+              </ol>
+            </div>
+
+            <div class="lang-block" data-lang="pt">
+              <h2>Pré-requisitos</h2>
+              <ul>
+                <li>Ler a <a href="documentation.html">documentação completa</a>.</li>
+                <li>Configurar o ambiente conforme o <a href="quickstart.html">Guia Rápido</a>.</li>
+                <li>Utilizar Python 3.10+ com <code>pip</code> atualizado.</li>
+              </ul>
+
+              <h2>Padrões de Arquitetura</h2>
+              <p>O projeto segue <strong>Clean Architecture</strong> e princípios <strong>SOLID</strong>.</p>
+              <ul>
+                <li><strong>Core (<code>core/</code>)</strong>: Somente entidades e interfaces, sem dependências externas.</li>
+                <li><strong>Application (<code>application/</code>)</strong>: Casos de uso, serviços e CLI; depende apenas de contratos.</li>
+                <li><strong>Infrastructure (<code>infrastructure/</code>)</strong>: Implementações concretas (conectores, logging, persistência).</li>
+              </ul>
+
+              <h2>Estilo de Código</h2>
+              <ul>
+                <li>Use <em>type hints</em> completos e <code>from __future__ import annotations</code> quando necessário.</li>
+                <li>Priorize funções puras e componíveis nas pipelines.</li>
+                <li>Nomes descritivos: português para documentação, inglês para código.</li>
+                <li>Não envolva imports em blocos <code>try/except</code>.</li>
+                <li>Funções até ~40 linhas, extraindo responsabilidades auxiliares.</li>
+              </ul>
+
+              <h2>Checklist de Pull Request</h2>
+              <ol>
+                <li>Adicione testes para a mudança.</li>
+                <li>Execute <code>pytest</code> localmente.</li>
+                <li>Atualize a documentação relevante.</li>
+                <li>Descreva claramente o contexto da PR (com screenshots quando necessário).</li>
+                <li>Solicite review antes do merge.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="layout footer-content">
+        <div class="footer-brand">
+          <img src="orion_logo_embedded.svg" alt="Orion Framework Logo" class="logo-img">
+          <div class="lang-block is-active" data-lang="en">
+            <p>Orion Framework — weaving classical navigation principles into future-ready data engineering.</p>
+          </div>
+          <div class="lang-block" data-lang="pt">
+            <p>Orion Framework — tecendo princípios clássicos de navegação em engenharia de dados pronta para o futuro.</p>
+          </div>
+        </div>
+      </div>
+      <div class="layout footer-meta">
+        <span class="lang-inline is-active" data-lang="en">© <span data-year>2024</span> Orion Framework. Crafted with constellations and clean code.</span>
+        <span class="lang-inline" data-lang="pt">© <span data-year>2024</span> Orion Framework. Criado com constelações e clean code.</span>
+      </div>
+    </footer>
+
+    <script src="assets/scripts.js"></script>
+  </body>
+</html>
+

@@ -1,4 +1,9 @@
 setup.py
+exemplo_get_started/__init__.py
+exemplo_get_started/pipeline.py
+exemplo_get_started/nodes/__init__.py
+exemplo_get_started/nodes/extract.py
+exemplo_get_started/nodes/transform.py
 orion_framework.egg-info/PKG-INFO
 orion_framework.egg-info/SOURCES.txt
 orion_framework.egg-info/dependency_links.txt
